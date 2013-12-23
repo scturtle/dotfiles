@@ -1,0 +1,3 @@
+startup_message off
+shell bash
+hardstatus alwayslastline "%{=b}%{b}%w %=%{kG}(load: %l) %c "

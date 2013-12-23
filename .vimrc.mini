@@ -1,0 +1,34 @@
+set nocompatible
+filetype plugin indent on
+syntax on
+
+set ruler " show line and row number on cursor
+set showmatch " show matching bracket
+set hidden "switching buffers without saving
+set showcmd " display incomplete commands
+set clipboard=unnamed " use system clipboard
+set backspace=indent,eol,start " backspacing in insert mode
+set scrolloff=6
+set autoread " reload files when changed on disk
+
+set ignorecase " case-insensitive search
+set smartcase " case-sensitive search if any caps
+set incsearch " search as you type
+set hlsearch
+set magic
+
+set autoindent
+set smartindent
+
+" persistent undo
+set undofile
+set undodir=~/.vimundo
+set history=500
+
+"colorscheme desert
+autocmd FileType python,c,cpp setlocal et sta ts=4 sts=4 sw=4
+
+let mapleader=","
+map<silent><leader>ss :source ~/.vimrc<cr>
+map<silent><leader>ee :e ~/.vimrc<cr>
+autocmd! bufwritepost .vimrc source ~/.vimrc
