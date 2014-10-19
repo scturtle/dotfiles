@@ -14,7 +14,8 @@
 (prefer-coding-system 'utf-8)
 
 ;; font (osx)
-(set-face-attribute 'default nil :family "Source Code Pro" :height 165 :weight 'normal)
+(set-default-font "Source Code Pro-18")
+(setq default-frame-alist '((font . "Source Code Pro-18")))
 
 ;; theme
 (load-theme 'tango-plus t)
@@ -28,16 +29,11 @@
 ;; --------- plugins -----------
 
 ;; exec-path-from-shell
-(require 'exec-path-from-shell)
 (when (memq window-system '(mac ns))
       (exec-path-from-shell-initialize))
 
 ; helm mode
 ;; (require 'helm-config)
-
-;; fix flyspell (osx)
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setq exec-path (append exec-path '("/usr/local/bin")))
 
 ;; aspell
 (setq ispell-program-name "/usr/local/bin/aspell")
@@ -47,6 +43,13 @@
 (global-evil-tabs-mode t) ;; evil-tabs package
 (evilnc-default-hotkeys)
 
+;; elscreen quick jump
+(global-set-key (kbd "s-1") '(lambda () (interactive) (elscreen-goto 0)))
+(global-set-key (kbd "s-2") '(lambda () (interactive) (elscreen-goto 1)))
+(global-set-key (kbd "s-3") '(lambda () (interactive) (elscreen-goto 2)))
+(global-set-key (kbd "s-4") '(lambda () (interactive) (elscreen-goto 3)))
+(global-set-key (kbd "s-5") '(lambda () (interactive) (elscreen-goto 4)))
+
 ;; cursor color in evil mode
 (setq evil-emacs-state-cursor '("red" box))
 (setq evil-normal-state-cursor '("black" box))
@@ -54,41 +57,22 @@
 (setq evil-insert-state-cursor '("red" bar))
 
 ;; smooth scrolling like vim
-(require 'smooth-scrolling)
 (setq smooth-scroll-margin 5)
 (setq scroll-conservatively 9999
       scroll-preserve-screen-position t)
 
 ;; company mode
-(require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "C-x C-o") 'company-complete)
 
-;; rainbow
-(require 'rainbow-delimiters)
+;; rainbow-delimiters
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;; python
-(package-initialize)
 (elpy-enable)
 (elpy-use-ipython)
 
-;; coq
-;; (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
-;; (autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
-
-;; proof-general
-(load-file "/usr/local/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
-(customize-set-variable 'proof-three-window-mode-policy 'hybrid)
-
 ;;  -- haskell start --
-
-;; env variable (osx)
-(setenv "PATH" (concat "~/.cabal/bin:" (getenv "PATH")))
-(add-to-list 'exec-path "~/.cabal/bin")
-(setenv "PATH" (concat "/Applications/ghc-7.8.3.app/Contents/bin:" 
-                       (getenv "PATH")))
-(add-to-list 'exec-path "/Applications/ghc-7.8.3.app/Contents/bin")
 
 (custom-set-variables
  '(haskell-tags-on-save t)
@@ -98,11 +82,8 @@
  '(haskell-process-type 'cabal-repl))
 
 ;; indentation
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-
-;; hi2
-;; (require 'hi2)
-;; (add-hook 'haskell-mode-hook 'turn-on-hi2)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'turn-on-hi2)
 
 ;; hotkey
 (eval-after-load 'haskell-mode '(progn
@@ -166,3 +147,15 @@
       (add-to-list 'TeX-view-program-selection '(output-pdf "PDF Viewer"))))
 
 ;; -- latex end --
+
+;; coq
+;; (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
+;; (autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
+
+;; proof-general
+(load-file "/usr/local/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
+(customize-set-variable 'proof-three-window-mode-policy 'hybrid)
+
+;; Racer - code completion for Rust
+(setenv "DYLD_LIBRARY_PATH" "/usr/local/lib/rustlib/x86_64-apple-darwin/lib")
+(add-to-list 'load-path "~/code/racer/editors") (require 'racer)
