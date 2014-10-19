@@ -48,10 +48,15 @@ plugins=(git brew golang zsh-syntax-highlighting history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
-# /usr/local/share/python
-export PATH=.:/usr/local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:/Users/scturtle/.cabal/bin:/opt/X11/bin:/usr/texbin:$PATH
+# powerline
+. ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+# haskell
+GHC_DOT_APP="/Applications/ghc-7.8.3.app"
+export PATH=.:/usr/local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:$HOME/.cabal/bin:$GHC_DOT_APP/Contents/bin:/opt/X11/bin:/usr/texbin:$PATH
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # auto-fu.zsh
 #if [ -f ~/.config/zsh/auto-fu.zsh/auto-fu.zsh ]; then
