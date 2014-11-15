@@ -1,13 +1,23 @@
 ;; for Emacs Starter Kit
+
 ;; quick access to this config file
 (global-set-key (kbd "C-c e")
-                '(lambda ()
-                   (interactive)
-                   (find-file (concat "~/.emacs.d/" (getenv "USER") ".el"))))
+   '(lambda () (interactive)
+      (find-file (concat "~/.emacs.d/" (getenv "USER") ".el"))))
 
-;; (setq linum-mode t)
+;; toolbar
+(tool-bar-mode -1)
+
 (setq column-number-mode t)
-;; (setq show-trailing-whitespace t)
+(add-hook 'prog-mode-hook
+  (lambda ()
+    (linum-mode)
+    (setq show-trailing-whitespace t)))
+
+;; mouse in terminal
+(require 'mouse)
+(xterm-mouse-mode t)
+(defun track-mouse (e))
 
 ;; coding system
 (prefer-coding-system 'chinese-gbk)
@@ -26,7 +36,11 @@
 ;; turn off visual bell
 (setq ring-bell-function 'ignore)
 
+
 ;; --------- plugins -----------
+
+;; color-theme-approximate
+(color-theme-approximate-on)
 
 ;; exec-path-from-shell
 (when (memq window-system '(mac ns))
@@ -43,12 +57,16 @@
 (global-evil-tabs-mode t) ;; evil-tabs package
 (evilnc-default-hotkeys)
 
-;; elscreen quick jump
+;; elscreen quick jump, index from 1
 (global-set-key (kbd "s-1") '(lambda () (interactive) (elscreen-goto 0)))
 (global-set-key (kbd "s-2") '(lambda () (interactive) (elscreen-goto 1)))
 (global-set-key (kbd "s-3") '(lambda () (interactive) (elscreen-goto 2)))
 (global-set-key (kbd "s-4") '(lambda () (interactive) (elscreen-goto 3)))
 (global-set-key (kbd "s-5") '(lambda () (interactive) (elscreen-goto 4)))
+(global-set-key (kbd "s-6") '(lambda () (interactive) (elscreen-goto 5)))
+(global-set-key (kbd "s-7") '(lambda () (interactive) (elscreen-goto 6)))
+(global-set-key (kbd "s-8") '(lambda () (interactive) (elscreen-goto 7)))
+(global-set-key (kbd "s-9") '(lambda () (interactive) (elscreen-goto 8)))
 
 ;; cursor color in evil mode
 (setq evil-emacs-state-cursor '("red" box))
@@ -61,18 +79,59 @@
 (setq scroll-conservatively 9999
       scroll-preserve-screen-position t)
 
-;; company mode
-(add-hook 'after-init-hook 'global-company-mode)
-(global-set-key (kbd "C-x C-o") 'company-complete)
-
 ;; rainbow-delimiters
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+;; company mode
+(add-hook 'prog-mode-hook 'company-mode)
+
+;; flycheck
+(add-hook 'prog-mode-hook 'flycheck-mode)
 
 ;; python
 (elpy-enable)
 (elpy-use-ipython)
 
-;;  -- haskell start --
+
+;; ------- c++ start -------
+
+;; flycheck
+(setq flycheck-clang-language-standard "c++11")
+
+;; semantic
+(add-hook 'c++-mode-hook 'semantic-mode)
+
+;; compile
+(add-hook 'c++-mode-hook
+          (lambda () (set (make-local-variable 'compile-command)
+                          (concat "g++ -std=c++11 -Wall "
+                                  buffer-file-name " && ./a.out"))))
+
+;; company mode
+;; FIXME: semantic-mode and company-mode neither works perfectly
+(defun check-expansion ()
+  (interactive)
+  (if (and (eq major-mode 'c++-mode)
+       (or (looking-back "\\.\\w*")
+           (looking-back "->\\w*")
+           (looking-back "::\\w*")))
+    (company-begin-backend 'company-clang)
+    (company-complete)))
+
+(global-set-key (kbd "C-x C-o") 'check-expansion)
+;; (global-set-key (kbd "C-x C-o") 'company-complete)
+(setq company-clang-arguments '("-std=c++11"))
+
+;; company-c-headers
+(require 'company)
+(add-to-list 'company-backends 'company-c-headers)
+(require 'company-c-headers)
+(add-to-list 'company-c-headers-path-system "/usr/include/c++/4.2.1")
+;; (add-to-list 'company-c-headers-path-system "/Applications/Xcode.app/
+;; Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")
+
+
+;;  ------- haskell start -------
 
 (custom-set-variables
  '(haskell-tags-on-save t)
@@ -122,9 +181,9 @@
 ;; (set-face-background 'shm-current-face "#eee8d5")
 ;; (set-face-background 'shm-quarantine-face "lemonchiffon")
 
-;;  -- haskell end --
 
-;; -- latex start --
+;; ------- latex start -------
+
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
@@ -146,7 +205,8 @@
       (assq-delete-all 'output-pdf TeX-view-program-selection)
       (add-to-list 'TeX-view-program-selection '(output-pdf "PDF Viewer"))))
 
-;; -- latex end --
+
+;; ------- other -------
 
 ;; coq
 ;; (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
@@ -157,5 +217,5 @@
 (customize-set-variable 'proof-three-window-mode-policy 'hybrid)
 
 ;; Racer - code completion for Rust
-(setenv "DYLD_LIBRARY_PATH" "/usr/local/lib/rustlib/x86_64-apple-darwin/lib")
-(add-to-list 'load-path "~/code/racer/editors") (require 'racer)
+;; (setenv "DYLD_LIBRARY_PATH" "/usr/local/lib/rustlib/x86_64-apple-darwin/lib")
+;; (add-to-list 'load-path "~/code/racer/editors") (require 'racer)
