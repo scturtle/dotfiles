@@ -11,14 +11,34 @@ set backspace=indent,eol,start " backspacing in insert mode
 set scrolloff=6
 set autoread " reload files when changed on disk
 
+" for search
 set ignorecase " case-insensitive search
 set smartcase " case-sensitive search if any caps
 set incsearch " search as you type
 set hlsearch
 set magic
 
+" encoding
+set encoding=utf-8
+set termencoding=utf-8
+set fileencodings=utf-8,chinese,latin-1
+
+" mimic emacs
+imap <c-b> <Left>
+imap <c-f> <Right>
+imap <c-a> <Home>
+imap <c-e> <End>
+imap <c-d> <Del>
+imap <c-h> <BS>
+
+" indent
 set autoindent
 set smartindent
+
+" no template files
+set nobackup
+set nowritebackup
+set noswapfile
 
 " persistent undo
 set undofile

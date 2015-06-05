@@ -11,7 +11,7 @@ Plugin 'bling/vim-airline'
 Plugin 'CSApprox'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'SuperTab-continued.'
+Plugin 'SuperTab--Van-Dewoestine'
 Plugin 'The-NERD-Commenter'
 Plugin 'andviro/flake8-vim'
 Plugin 'scrooloose/syntastic'
@@ -58,6 +58,14 @@ set smartcase " case-sensitive search if any caps
 set incsearch " search as you type
 set hlsearch
 set magic
+
+" mimic emacs
+imap <c-b> <Left>
+imap <c-f> <Right>
+imap <c-a> <Home>
+imap <c-e> <End>
+imap <c-d> <Del>
+imap <c-h> <BS>
 
 " indent
 set autoindent

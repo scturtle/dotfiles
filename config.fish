@@ -14,14 +14,16 @@ set PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 set HOMEBREW_NO_EMOJI 1
 set EDITOR /usr/local/bin/vim
 set HOMEBREW_CASK_OPTS --appdir=/Applications
+# for theano
+set DYLD_FALLBACK_LIBRARY_PATH /Users/scturtle/anaconda/lib
 #set fish_greeting ""
 
 alias rm trash
 
 # GHC
+set PATH /Applications/ghc-7.10.1.app/Contents/bin $PATH
 set PATH ~/.cabal/bin $PATH
 set PATH .cabal-sandbox/bin $PATH
-set PATH /Applications/ghc-7.8.3.app/Contents/bin $PATH
 alias ghc-sandbox "ghc -no-user-package-db -package-db .cabal-sandbox/*-packages.conf.d"
 alias ghci-sandbox "ghci -no-user-package-db -package-db .cabal-sandbox/*-packages.conf.d"
 alias runhaskell-sandbox "runhaskell -no-user-package-db -package-db .cabal-sandbox/*-packages.conf.d"
@@ -42,5 +44,5 @@ set fish_plugins brew python autojump
 . $fish_path/oh-my-fish.fish
 
 # powerline
-set fish_function_path $fish_function_path "~/.local/lib/python2.7/site-packages/powerline/bindings/fish"
+set fish_function_path $fish_function_path ~/.local/lib/python2.7/site-packages/powerline/bindings/fish
 powerline-setup

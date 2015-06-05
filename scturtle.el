@@ -12,6 +12,8 @@
 
 ;; bars
 (when (window-system)
+  ;; (tooltip-mode -1)
+  ;; (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
 
@@ -24,8 +26,8 @@
     (setq show-trailing-whitespace t)))
 
 ;; mouse in terminal
-(require 'mouse)
-(xterm-mouse-mode t)
+;; (require 'mouse)
+;; (xterm-mouse-mode t)
 (defun track-mouse (e))
 
 ;; coding system
@@ -36,17 +38,20 @@
 (set-frame-font "Source Code Pro-18" nil t)
 
 ;; theme
-(load-theme 'tango-plus t)
+;; (load-theme 'tango-plus t)
+(load-theme 'leuven t)
+(custom-set-faces
+ `(header-line ((t (:weight normal :underline nil :overline nil)))))
 
 ;; linum mode
 (global-linum-mode 1)
 ;; (setq linum-format "%3d")
-(set-face-background 'linum "#fcfcfc")
-(set-face-background 'fringe "#fcfcfc")
+;; (set-face-background 'linum "#fcfcfc")
+;; (set-face-background 'fringe "#fcfcfc")
 
 ;; highlight current line
 (global-hl-line-mode t)
-(set-face-background 'hl-line "#fcfcfc")
+;; (set-face-background 'hl-line "#fcfcfc")
 
 ;; transparency
 (set-frame-parameter (selected-frame) 'alpha '(99 99))
@@ -80,14 +85,17 @@
 (setq ispell-program-name "/usr/local/bin/aspell")
 
 ;; evil mode
+(require 'evil)
 (evil-mode t)
 (global-evil-tabs-mode t) ;; evil-tabs package
 (evilnc-default-hotkeys)
 
 ;; evil-easymotion
-(require 'evil)
-(require 'ace-jump-mode) ;; FIEME: 'require' required?
 (evilem-default-keybindings "SPC")
+
+;; use alt-p/n in evil command line
+(define-key evil-ex-completion-map (kbd "M-p") 'previous-history-element)
+(define-key evil-ex-completion-map (kbd "M-n") 'next-history-element)
 
 ;; evil-tabs: cmd-t to open new tab and cmd-w to close
 (global-set-key (kbd "s-t") '(lambda () (interactive) (elscreen-create)))
@@ -104,6 +112,10 @@
 (global-set-key (kbd "s-8") '(lambda () (interactive) (elscreen-goto 7)))
 (global-set-key (kbd "s-9") '(lambda () (interactive) (elscreen-goto 8)))
 
+;; elscreen-seperate
+(require 'elscreen-separate-buffer-list)
+(elscreen-separate-buffer-list-mode)
+
 ;; evil-tabs: tabbar color
 (custom-set-faces
  '(elscreen-tab-background-face ((t (:background "#f0f0f0"))))
@@ -111,7 +123,6 @@
                                        :foreground "black")))))
 
 ;; cursor color in evil mode
-(require 'evil)
 (setq evil-emacs-state-cursor '("red" box))
 (setq evil-normal-state-cursor '("black" box))
 (setq evil-visual-state-cursor '("orange" box))
@@ -139,7 +150,7 @@
 (setq elpy-modules (remove 'elpy-module-highlight-indentation elpy-modules))
 (elpy-use-ipython)
 (elpy-enable)
-(add-to-list 'company-backends 'company-anaconda) ;; company-anaconda
+(add-to-list 'company-backends 'company-anaconda)
 
 ;; ------- c++ start -------
 ;; clang-format
@@ -160,6 +171,7 @@
 ;; company mode
 ;; FIXME: semantic-mode and company-mode neither works perfectly
 (defun check-expansion ()
+  "Compbine company-clang with semantic."
   (interactive)
   (if (and (eq major-mode 'c++-mode)
        (or (looking-back "\\.\\w*")
@@ -168,7 +180,8 @@
     (company-begin-backend 'company-clang)
     (company-complete)))
 
-(global-set-key (kbd "C-x C-o") 'check-expansion)
+(add-hook 'c++-mode-hook (lambda ()
+    (global-set-key (kbd "C-x C-o") 'check-expansion)))
 ;; (global-set-key (kbd "C-x C-o") 'company-complete)
 
 (require 'company-clang)
@@ -184,60 +197,143 @@
 
 
 ;;  ------- haskell start -------
+;; from https://github.com/LukeHoersten/emacs.d/blob/master/elisp/haskell-init.el
+
+(require 'haskell)
+(require 'haskell-mode)
+(require 'haskell-process)
+(require 'haskell-flycheck)
+(require 'flycheck-ghcmod)
+(require 'haskell-interactive-mode)
+
+(add-hook 'haskell-mode-hook
+ (lambda ()
+   ;; (setq flycheck-check-syntax-automatically '(save)) ;; TODO: annoying messages
+   ;; (flycheck-disable-checker `haskell-ghc)
+   ;; (setq flycheck-checker 'haskell-process)
+   (setq flycheck-checker 'haskell-ghcmod)
+   (turn-on-hi2)
+   (interactive-haskell-mode)))
 
 (custom-set-variables
- '(haskell-tags-on-save t)
+ ;; '(haskell-stylish-on-save t)
+ '(hi2-layout-offset 2)
+ '(hi2-left-offset 2)
+ '(haskell-process-type 'cabal-repl)
+ '(haskell-process-args-cabal-repl '("--ghc-option=-ferror-spans" "--with-ghc=ghci-ng"))
+ '(haskell-process-path-ghci "ghci-ng")
+ '(haskell-process-args-ghci "-ferror-spans")
+ '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
- '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type 'cabal-repl))
+ '(haskell-process-reload-with-fbytecode nil)
+ '(haskell-process-use-presentation-mode t)
+ '(haskell-process-suggest-haskell-docs-imports t)
+ '(haskell-process-suggest-hoogle-imports t)
+ '(haskell-process-generate-tags nil)
+ '(haskell-process-show-debug-tips nil)
+ '(haskell-notify-p t)
+ '(haskell-align-imports-pad-after-name t)
+ '(haskell-ask-also-kill-buffers t)
+ '(haskell-import-mapping t)
+ '(haskell-interactive-mode-eval-pretty t)
+ '(haskell-interactive-mode-scroll-to-bottom t)
+ '(haskell-interactive-mode-eval-mode 'haskell-mode))
 
-;; indentation
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'turn-on-hi2)
 
-;; hotkey
-(eval-after-load 'haskell-mode '(progn
-  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-  (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-  (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
-  (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
-  (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
-  (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
-  (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
+;; haskell-interactive-mode keybindings
+(define-key interactive-haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+;; (define-key interactive-haskell-mode-map (kbd "M-,") 'haskell-who-calls)
+(define-key interactive-haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
+(define-key interactive-haskell-mode-map (kbd "C-?") 'haskell-mode-find-uses)
+(define-key interactive-haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+(define-key interactive-haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+(define-key interactive-haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+(define-key interactive-haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
+(define-key interactive-haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
 
-(require 'haskell-cabal)
-  (eval-after-load 'haskell-cabal '(progn
-  (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-  (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-  (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-  (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+(define-key haskell-interactive-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+(define-key haskell-interactive-mode-map (kbd "C-<left>") 'haskell-interactive-mode-error-backward)
+(define-key haskell-interactive-mode-map (kbd "C-<right>") 'haskell-interactive-mode-error-forward)
+(define-key haskell-interactive-mode-map (kbd "C-c c") 'haskell-process-cabal)
 
-(eval-after-load 'haskell-mode
-  '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
-(eval-after-load 'haskell-cabal
-  '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
+(define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+(define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+(define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+(define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+(define-key haskell-mode-map (kbd "C-c C-d") 'haskell-describe)
+(define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+(define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
+;; (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
 
-;; ghc-mod
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+(define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
+(define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+(define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
 
 ;; company mode for haskell
 (add-to-list 'company-backends 'company-ghc)
 (custom-set-variables '(company-ghc-show-info t))
 
-;; shm
-;; (require 'shm)
-;; (add-hook 'haskell-mode-hook 'structured-haskell-mode)
-;; (set-face-background 'shm-current-face "#eee8d5")
-;; (set-face-background 'shm-quarantine-face "lemonchiffon")
+;; ----------------------- OLD --------------------------------
 
-;; flycheck
-;; FIXME: ghc checker doesn't work with sandbox
-(setq flycheck-checkers (delete 'haskell-ghc flycheck-checkers))
-(require 'flycheck-ghcmod)
+;; (custom-set-variables
+;;  '(haskell-tags-on-save t)
+;;  '(haskell-process-auto-import-loaded-modules t)
+;;  '(haskell-process-log t)
+;;  '(haskell-process-suggest-remove-import-lines t)
+;;  '(haskell-process-type 'cabal-repl))
 
+;; ;; indentation
+;; ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;; (add-hook 'haskell-mode-hook 'turn-on-hi2)
+
+;; ;; hotkey
+;; (eval-after-load 'haskell-mode '(progn
+;;   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+;;   (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+;;   (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
+;;   (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
+;;   (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
+;;   (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
+;;   (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
+
+;; (require 'haskell-cabal)
+;; (eval-after-load 'haskell-cabal '(progn
+;;   (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+;;   (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+;;   (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+;;   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+
+;; (eval-after-load 'haskell-mode
+;;   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
+;; (eval-after-load 'haskell-cabal
+;;   '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
+
+
+;; ;; ghc-mod
+;; (autoload 'ghc-init "ghc" nil t)
+;; (autoload 'ghc-debug "ghc" nil t)
+;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+
+;; ;; company mode for haskell
+;; (add-to-list 'company-backends 'company-ghc)
+;; (custom-set-variables '(company-ghc-show-info t))
+
+;; ;; shm
+;; ;; (require 'shm)
+;; ;; (add-hook 'haskell-mode-hook 'structured-haskell-mode)
+;; ;; (set-face-background 'shm-current-face "#eee8d5")
+;; ;; (set-face-background 'shm-quarantine-face "lemonchiffon")
+
+;; ;; flycheck
+;; (defun set-haskell-checker ()
+;;   "Of cause, it's my plugin."
+;;   (require 'flycheck-ghcmod)
+;;   (setq flycheck-checker 'haskell-ghcmod)
+;;   (flycheck-buffer))
+;; (add-hook 'haskell-mode-hook #'set-haskell-checker)
 
 ;; ------- latex start -------
 
@@ -267,17 +363,21 @@
 
 ;; ------- other -------
 
-;; coq
-;; (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
-;; (autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
+;; ;; coq
+;; (add-hook 'coq-mode-hook (lambda () (progn
+;;   (setq tab-width 2)
+;;   (set-face-attribute 'font-lock-comment-face nil
+;;                       :foreground "#444" :slant 'normal))))
 
-;; proof-general
+;; ;; proof-general
 ;; (load-file "/usr/local/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
 ;; (customize-set-variable 'proof-three-window-mode-policy 'hybrid)
 
-;; Racer - code completion for Rust
-;; (setenv "DYLD_LIBRARY_PATH" "/usr/local/lib/rustlib/x86_64-apple-darwin/lib")
-;; (add-to-list 'load-path "~/code/racer/editors") (require 'racer)
+;; ;; Racer - code completion for Rust
+;; (setq racer-rust-src-path "/Users/scturtle/code/racer/rustc-1.0.0-alpha/src")
+;; (setq racer-cmd "/Users/scturtle/code/racer/bin/racer")
+;; (add-to-list 'load-path "/Users/scturtle/code/racer/editors")
+;; (eval-after-load "rust-mode" '(require 'racer))
 
 (provide 'scturtle)
 ;;; scturtle.el ends here

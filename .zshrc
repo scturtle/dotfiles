@@ -53,11 +53,13 @@ source $ZSH/oh-my-zsh.sh
 . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # haskell
-GHC_DOT_APP="/Applications/ghc-7.8.3.app"
+GHC_DOT_APP="/Applications/ghc-7.10.1.app"
 export PATH=.:/usr/local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:$HOME/.cabal/bin:$GHC_DOT_APP/Contents/bin:/opt/X11/bin:/usr/texbin:$PATH
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+# for theano
+export DYLD_FALLBACK_LIBRARY_PATH="/Users/scturtle/anaconda/lib"
 # auto-fu.zsh
 #if [ -f ~/.config/zsh/auto-fu.zsh/auto-fu.zsh ]; then
 #source ~/.config/zsh/auto-fu.zsh/auto-fu.zsh
@@ -70,3 +72,8 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 #zle -N predict-off
 #bindkey '^X1' predict-on
 #bindkey '^X2' predict-off
+
+# online helper
+unalias run-help
+autoload run-help
+HELPDIR=/usr/local/share/zsh/help
