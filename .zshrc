@@ -10,8 +10,12 @@ ZSH=$HOME/.oh-my-zsh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias rm="echo 'ERROR: please use trash'"
-alias axel="axel -a"
+alias rm="trash"
+alias emax="emacsclient -t"
+
+alias ghc-sandbox="ghc -no-user-package-db -package-db .cabal-sandbox/*-packages.conf.d"
+alias ghci-sandbox="ghci -no-user-package-db -package-db .cabal-sandbox/*-packages.conf.d"
+alias runhaskell-sandbox="runhaskell -no-user-package-db -package-db .cabal-sandbox/*-packages.conf.d"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -43,23 +47,23 @@ alias axel="axel -a"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # github golang cabal scala osx vi-mode vundle python zsh-syntax-highlighting history-substring-search)
-plugins=(git brew golang zsh-syntax-highlighting history-substring-search)
+plugins=(git brew zsh-syntax-highlighting history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
 # powerline
-. ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+powerline-daemon -q
+. ~/miniconda3/lib/python3.4/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # haskell
 GHC_DOT_APP="/Applications/ghc-7.10.1.app"
-export PATH=.:/usr/local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:$HOME/.cabal/bin:$GHC_DOT_APP/Contents/bin:/opt/X11/bin:/usr/texbin:$PATH
+
+export PATH=.:$HOME/.cabal/bin:$GHC_DOT_APP/Contents/bin:$HOME/miniconda3/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-# for theano
-export DYLD_FALLBACK_LIBRARY_PATH="/Users/scturtle/anaconda/lib"
 # auto-fu.zsh
 #if [ -f ~/.config/zsh/auto-fu.zsh/auto-fu.zsh ]; then
 #source ~/.config/zsh/auto-fu.zsh/auto-fu.zsh
