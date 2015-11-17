@@ -1,7 +1,7 @@
 " configure vundle
 set shell=/bin/bash " avoid problem in fish
 
-set nocompatible " be iMproved
+set nocompatible " be iMproved /N
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
@@ -18,11 +18,9 @@ Plugin 'scrooloose/syntastic'
 
 " for haskell
 Plugin 'dag/vim2hs'
-"Plugin 'travitch/hasksyn'
-Plugin 'eagletmt/neco-ghc'
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'Shougo/vimproc.vim'
-"Plugin 'nbouscal/vim-stylish-haskell'
+"Plugin 'eagletmt/neco-ghc'
+"Plugin 'eagletmt/ghcmod-vim'
+"Plugin 'Shougo/vimproc.vim'
 
 " unused
 "Plugin 'Align'
@@ -31,6 +29,8 @@ Plugin 'Shougo/vimproc.vim'
 " :NERDTree " q to quit
 "Plugin 'scrooloose/nerdtree'
 "Plugin 'sjl/gundo.vim'
+"Plugin 'travitch/hasksyn'
+"Plugin 'nbouscal/vim-stylish-haskell'
 
 call vundle#end()
 filetype plugin indent on
@@ -45,18 +45,20 @@ set showmatch " show matching bracket
 set hidden "switching buffers without saving
 set showcmd " display incomplete commands
 set clipboard=unnamed " use system clipboard
-set backspace=indent,eol,start " backspacing in insert mode
-set cursorline
+set backspace=indent,eol,start " backspacing in insert mode /N
+set cursorline " highlight current line
 set scrolloff=6
 "set relativenumber
 set visualbell
-set autoread " reload files when changed on disk
+set autoread " reload files when changed on disk /N
+set wildmenu " GREAT autocomplete menu /N
+"set foldmethod=indent
 
 " for search
 set ignorecase " case-insensitive search
 set smartcase " case-sensitive search if any caps
-set incsearch " search as you type
-set hlsearch
+set incsearch " search as you type /N
+set hlsearch " /N
 set magic
 
 " mimic emacs
@@ -68,7 +70,7 @@ imap <c-d> <Del>
 imap <c-h> <BS>
 
 " indent
-set autoindent
+set autoindent " /N
 set smartindent
 
 " no template files
@@ -78,27 +80,25 @@ set noswapfile
 
 " persistent undo
 set undofile
-" for osx
 set undodir=~/.undo
-set history=500
+set history=10000 " /N
 
 " encoding
 if has("multi_byte")
-  set encoding=utf-8
-  set termencoding=utf-8
+  set encoding=utf-8 " /N
+  set termencoding=utf-8 " /N
   set fileencodings=utf-8,chinese,latin-1
 endif
 
 " menu encoding
 source $VIMRUNTIME/delmenu.vim
-" for osx
 set langmenu=zh_CN.UTF-8
 source $VIMRUNTIME/menu.vim
 language messages zh_CN.utf-8
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-    set mouse=a
+    set mouse=a "/N
 endif
 
 set background=dark
@@ -106,7 +106,9 @@ colorscheme jellybeans
 
 " for osx
 set go=aAce
-set transparency=10
+if has("gui_running")
+    set transparency=10
+endif
 set guifont=Source\ Code\ Pro\ For\ Powerline:h19
 
 " indent
@@ -133,7 +135,7 @@ nnoremap gb :bn<cr>
 nnoremap gB :bp<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline
-set laststatus=2
+set laststatus=2 " /N
 set noshowmode
 set linespace&
 let g:airline_powerline_fonts = 1

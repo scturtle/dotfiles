@@ -1,14 +1,17 @@
 # vim: set ft=sh :
-# set LANG zh_CN.UTF-8
-# fish_vi_mode
+#set LANG zh_CN.UTF-8
+#fish_vi_mode
 
 set PATH /Library/Developer/CommandLineTools/usr/bin/ $PATH
 set PATH ~/miniconda3/bin $PATH
 
 # GHC
-set PATH /Applications/ghc-7.10.2.app/Contents/bin $PATH
-set PATH ~/.cabal/bin $PATH
 set PATH ~/.local/bin $PATH
+# fix cabal-helper
+# set PATH ~/.stack/programs/*/ghc-*/bin $PATH
+
+# ocaml
+# . ~/.config/fish/ocamlenv.fish
 
 set PATH . $PATH
 
@@ -27,3 +30,6 @@ powerline-setup
 
 # conda
 . ~/.config/fish/conda.fish
+
+# iterm2
+. ~/.iterm2_shell_integration.fish
