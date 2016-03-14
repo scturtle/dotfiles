@@ -49,4 +49,4 @@ noremap <C-o> <C-i>
 
 set nextpattern+=\s*下一页|下一张|下一篇|下一頁|下页|后页\s*
 set previouspattern+=\s*上一页|上一张|上一篇|上一頁|上页|前页\s*
-
+set editor='/usr/local/bin/mvim -f'

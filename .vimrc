@@ -62,16 +62,22 @@ set hlsearch " /N
 set magic
 
 " mimic emacs
-imap <c-b> <Left>
-imap <c-f> <Right>
-imap <c-a> <Home>
-imap <c-e> <End>
-imap <c-d> <Del>
-imap <c-h> <BS>
+inoremap <c-b> <Left>
+inoremap <c-f> <Right>
+inoremap <c-a> <Home>
+inoremap <c-e> <End>
+inoremap <c-d> <Del>
+inoremap <c-h> <BS>
+" cmdline-editing
+cnoremap <c-b> <Left>
+cnoremap <c-f> <Right>
+cnoremap <c-a> <Home>
+cnoremap <c-e> <End>
+cnoremap <c-d> <Del>
 
 " indent
 set autoindent " /N
-set smartindent
+set cindent
 
 " no template files
 set nobackup
@@ -85,7 +91,7 @@ set history=10000 " /N
 
 " encoding
 if has("multi_byte")
-  set encoding=utf-8 " /N
+  "set encoding=utf-8 " /N
   set termencoding=utf-8 " /N
   set fileencodings=utf-8,chinese,latin-1
 endif
@@ -103,6 +109,8 @@ endif
 
 set background=dark
 colorscheme jellybeans
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
 
 " for osx
 set go=aAce
@@ -114,7 +122,7 @@ set guifont=Source\ Code\ Pro\ For\ Powerline:h19
 " indent
 "setlocal expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4 
 autocmd FileType python,haskell,c,cpp setlocal et sta ts=4 sts=4 sw=4
-autocmd FileType html,htmldjango,vim setlocal et sta ts=2 sts=2 sw=2
+autocmd FileType html,htmldjango,vim,javascript setlocal et sta ts=2 sts=2 sw=2
 
 autocmd FileType python setlocal makeprg=python\ %
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
@@ -140,7 +148,7 @@ set noshowmode
 set linespace&
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#checks = [ 'indent' ]
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'bubblegum'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" jedi-vim
 " goto:<leader>g  defn:<leader>d  doc:K  rename:<leader>r  related:<leader>n
