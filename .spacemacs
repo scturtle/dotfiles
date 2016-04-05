@@ -233,6 +233,17 @@ any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (setq spacemacs-theme-comment-bg nil)
   (setq-default git-magit-status-fullscreen t)
+  ; use en_US for git
+  (defadvice magit-start-process (around lang-en_US activate)
+    "Set LANG to en_US."
+    (let ((process-environment process-environment))
+      (setenv "LANG" "en_US")
+      ad-do-it))
+  (defadvice magit-call-process (around lang-en_US activate)
+    "Set LANG to en_US."
+    (let ((process-environment process-environment))
+      (setenv "LANG" "en_US")
+      ad-do-it))
 )
 
 (defun dotspacemacs/user-config ()
@@ -256,16 +267,25 @@ layers configuration. You are free to put any user code."
 (setq flyspell-default-dictionary "english")
 (setq ispell-program-name "/usr/local/bin/aspell")
 
+;; org
+(with-eval-after-load 'org
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "v" 'org-toggle-latex-fragment)
+  )
+
 ;; c++
 ;; xcode-select --install
 ;; xcode-select -switch /Library/Developer/CommandLineTools
+(with-eval-after-load 'c++
+  (spacemacs/set-leader-keys-for-major-mode 'c++-mode
+    "o=" 'clang-format-region)
+  )
 (add-hook 'c++-mode-hook
   (lambda ()
     ;; quick compilation
     (set (make-local-variable 'compile-command)
          (concat "g++ -std=c++11 -Wall " buffer-file-name " && ./a.out"))
     ;; (push 'company-semantic company-backends)
-    (global-set-key (kbd "<spc> o =") 'clang-format-region)
     (setq company-clang-arguments '("-std=c++11"))
     (setq flycheck-clang-language-standard "c++11")
     (add-to-list 'company-c-headers-path-system
