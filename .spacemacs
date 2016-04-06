@@ -60,7 +60,7 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https t
+   dotspacemacs-elpa-https nil
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 5
    ;; If non nil then spacemacs will check for updates at startup
@@ -233,23 +233,28 @@ any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (setq spacemacs-theme-comment-bg nil)
   (setq-default git-magit-status-fullscreen t)
-  ; use en_US for git
-  (defadvice magit-start-process (around lang-en_US activate)
-    "Set LANG to en_US."
-    (let ((process-environment process-environment))
-      (setenv "LANG" "en_US")
-      ad-do-it))
-  (defadvice magit-call-process (around lang-en_US activate)
-    "Set LANG to en_US."
-    (let ((process-environment process-environment))
-      (setenv "LANG" "en_US")
-      ad-do-it))
 )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
-layers configuration. You are free to put any user code."
+layers configuration.
+This is the place where most of your configurations should be done. Unless it is
+explicitly specified that a variable should be set before a package is loaded,
+you should place you code here."
+
+;; use en_US.UTF-8 for git
+(add-hook 'magit-mode-hook
+  (lambda ()
+    (defadvice magit-start-process (around lang-en_US activate)
+       (let ((process-environment process-environment))
+         (setenv "LC_ALL" "en_US.UTF-8")
+         ad-do-it))
+    (defadvice magit-call-process (around lang-en_US activate)
+       "Set LANG to en_US."
+       (let ((process-environment process-environment))
+         (setenv "LC_ALL" "en_US.UTF-8")
+         ad-do-it))))
 
 ;; encoding
 (prefer-coding-system 'chinese-gbk)
@@ -270,16 +275,15 @@ layers configuration. You are free to put any user code."
 ;; org
 (with-eval-after-load 'org
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
-    "v" 'org-toggle-latex-fragment)
-  )
+    "v" 'org-toggle-latex-fragment))
 
 ;; c++
 ;; xcode-select --install
 ;; xcode-select -switch /Library/Developer/CommandLineTools
 (with-eval-after-load 'c++
   (spacemacs/set-leader-keys-for-major-mode 'c++-mode
-    "o=" 'clang-format-region)
-  )
+    "o=" 'clang-format-region))
+
 (add-hook 'c++-mode-hook
   (lambda ()
     ;; quick compilation
