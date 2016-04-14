@@ -2,7 +2,7 @@
 #set LANG zh_CN.UTF-8
 #fish_vi_mode
 
-set PATH /Library/Developer/CommandLineTools/usr/bin/ $PATH
+set PATH /Library/Developer/CommandLineTools/usr/bin $PATH
 set PATH ~/miniconda3/bin $PATH
 
 # GHC
@@ -17,6 +17,7 @@ set PATH . $PATH
 
 alias rm trash
 alias emax "emacsclient -t"
+alias vim /Applications/MacVim.app/Contents/MacOS/Vim
 
 # homebrew
 set HOMEBREW_NO_EMOJI 1
@@ -33,3 +34,6 @@ powerline-setup
 
 # iterm2
 . ~/.iterm2_shell_integration.fish
+
+# gpg-agent
+. ~/.config/fish/gpg-agent.fish
