@@ -20,11 +20,12 @@ values."
      '(osx
        ;; emacs-lisp
        ;; eyebrowse
-       spacemacs-layouts
+       ;; spacemacs-layouts
        syntax-checking
-       spell-checking
+       (spell-checking :variables spell-checking-enable-by-default nil)
        version-control
        auto-completion
+       semantic
        git
        (haskell :variables
                 haskell-enable-ghci-ng-support nil)
@@ -33,13 +34,13 @@ values."
               c-c++-enable-clang-support t)
        python
        )
-   ;; List of additional packages that will be installed wihout being
+   ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
      dotspacemacs-additional-packages '(monokai-theme)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(rainbow-delimiters highlight-parentheses)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -228,9 +229,11 @@ values."
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
-It is called immediately after `dotspacemacs/init'.  You are free to put almost
-any user code here.  The exception is org related code, which should be placed
-in `dotspacemacs/user-config'."
+It is called immediately after `dotspacemacs/init', before layer configuration
+executes.
+ This function is mostly useful for variables that need to be set
+before packages are loaded. If you are unsure, you should try in setting them in
+`dotspacemacs/user-config' first."
   (setq spacemacs-theme-comment-bg nil)
   (setq-default git-magit-status-fullscreen t)
 )
@@ -243,9 +246,22 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
+;; evil in compilation mode (from github.com/asok/.emacs.d)
+(add-hook 'compilation-mode-hook
+  '(lambda ()
+      (local-unset-key "g")
+      (local-unset-key "h")
+      (evil-define-key 'motion compilation-mode-map "r" 'recompile)
+      (evil-define-key 'motion compilation-mode-map "h" 'evil-backward-char)))
+
+;; evil command mode
+(define-key evil-ex-completion-map (kbd "C-a") 'move-beginning-of-line)
+(define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
+(define-key evil-ex-completion-map (kbd "C-d") 'delete-forward-char)
+(define-key evil-ex-completion-map (kbd "C-h") 'evil-ex-delete-backward-char)
+
 ;; use en_US.UTF-8 for git
-(add-hook 'magit-mode-hook
-  (lambda ()
+(with-eval-after-load 'magit
     (defadvice magit-start-process (around lang-en_US activate)
        (let ((process-environment process-environment))
          (setenv "LC_ALL" "en_US.UTF-8")
@@ -254,7 +270,7 @@ you should place you code here."
        "Set LANG to en_US."
        (let ((process-environment process-environment))
          (setenv "LC_ALL" "en_US.UTF-8")
-         ad-do-it))))
+         ad-do-it)))
 
 ;; encoding
 (prefer-coding-system 'chinese-gbk)
@@ -297,15 +313,18 @@ you should place you code here."
   ))
 
 ;; latex
-(add-hook 'LaTeX-mode-hook
-  (lambda ()
-    (setq TeX-source-correlate-mode t
-          TeX-source-correlate-method 'synctex)
-    (set-default 'preview-scale-function 1.1)
-    (add-to-list 'TeX-view-program-list
+(with-eval-after-load 'tex
+  (spacemacs/set-leader-keys-for-major-mode 'latex-mode
+    "fr" 'LaTeX-fill-region
+    "fb" 'LaTeX-fill-buffer
+    "fp" 'LaTeX-fill-paragraph
+    "fs" 'LaTeX-fill-section)
+  (setq TeX-source-correlate-mode t
+        TeX-source-correlate-method 'synctex)
+  (set-default 'preview-scale-function 1.1)
+  (add-to-list 'TeX-view-program-list
     '("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))
-    (setq TeX-view-program-selection '((output-pdf "Skim")))
-  ))
+  (setq TeX-view-program-selection '((output-pdf "Skim"))))
 
 )
 
