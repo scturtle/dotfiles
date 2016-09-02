@@ -207,7 +207,7 @@ values."
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
-   dotspacemacs-highlight-delimiters 'all
+   dotspacemacs-highlight-delimiters nil
    ;; If non nil advises quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
@@ -244,7 +244,7 @@ This function is called at the very end of Spacemacs initialization after
 layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
-you should place you code here."
+you should place your code here."
 
 ;; evil in compilation mode (from github.com/asok/.emacs.d)
 (add-hook 'compilation-mode-hook
@@ -259,18 +259,6 @@ you should place you code here."
 (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
 (define-key evil-ex-completion-map (kbd "C-d") 'delete-forward-char)
 (define-key evil-ex-completion-map (kbd "C-h") 'evil-ex-delete-backward-char)
-
-;; use en_US.UTF-8 for git
-(with-eval-after-load 'magit
-    (defadvice magit-start-process (around lang-en_US activate)
-       (let ((process-environment process-environment))
-         (setenv "LC_ALL" "en_US.UTF-8")
-         ad-do-it))
-    (defadvice magit-call-process (around lang-en_US activate)
-       "Set LANG to en_US."
-       (let ((process-environment process-environment))
-         (setenv "LC_ALL" "en_US.UTF-8")
-         ad-do-it)))
 
 ;; encoding
 (prefer-coding-system 'chinese-gbk)
@@ -308,6 +296,7 @@ you should place you code here."
     ;; (push 'company-semantic company-backends)
     (setq company-clang-arguments '("-std=c++11"))
     (setq flycheck-clang-language-standard "c++11")
+    ;; (setq flycheck-clang-include-path '())
     (add-to-list 'company-c-headers-path-system
                  "/Library/Developer/CommandLineTools/usr/include/c++/v1")
   ))

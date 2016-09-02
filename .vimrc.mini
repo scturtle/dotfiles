@@ -8,8 +8,11 @@ set hidden "switching buffers without saving
 set showcmd " display incomplete commands
 set clipboard=unnamed " use system clipboard
 set backspace=indent,eol,start " backspacing in insert mode
+set cursorline " highlight current line
 set scrolloff=6
+set visualbell
 set autoread " reload files when changed on disk
+set wildmenu " GREAT autocomplete menu
 
 " for search
 set ignorecase " case-insensitive search
@@ -30,10 +33,16 @@ imap <c-a> <Home>
 imap <c-e> <End>
 imap <c-d> <Del>
 imap <c-h> <BS>
+" cmdline-editing
+cnoremap <c-b> <Left>
+cnoremap <c-f> <Right>
+cnoremap <c-a> <Home>
+cnoremap <c-e> <End>
+cnoremap <c-d> <Del>
 
 " indent
 set autoindent
-set smartindent
+set cindent
 
 " no template files
 set nobackup
@@ -42,7 +51,7 @@ set noswapfile
 
 " persistent undo
 set undofile
-set undodir=~/.vimundo
+set undodir=~/.undo
 set history=500
 
 "colorscheme desert
