@@ -1,52 +1,33 @@
 " vim: set ft=vim:
-" Vimperator 3.5
 
-source! /Users/scturtle/.vimperatorrc.local
-source ~/.vimperator/plugin/pinyin-hints.js
-
-" color
 hi ErrorMsg   -a background-color: #ff5555 !important;
 hi Hint       -a background-color: #ff5555 !important; font-size: 13px !important; line-height: 14px !important;
 hi HintActive -a background-color: #77ff77 !important;
 hi HintElem   -a background-color: #ffffaa !important;
 
-let mapleader=","
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-d> <Del>
+inoremap <C-h> <BS>
 
-" quick jump
-noremap <leader>1 :b 1<cr>
-noremap <leader>2 :b 2<cr>
-noremap <leader>3 :b 3<cr>
-noremap <leader>4 :b 4<cr>
-noremap <leader>5 :b 5<cr>
-noremap <leader>6 :b 6<cr>
-noremap <leader>7 :b 7<cr>
-noremap <leader>8 :b 8<cr>
-noremap <leader>9 :b 9<cr>
-
-" quick move
-noremap <leader>m1 :tabm 0<cr>
-noremap <leader>m2 :tabm 1<cr>
-noremap <leader>m3 :tabm 2<cr>
-noremap <leader>m4 :tabm 3<cr>
-noremap <leader>m5 :tabm 4<cr>
-noremap <leader>m6 :tabm 5<cr>
-noremap <leader>m7 :tabm 6<cr>
-noremap <leader>m8 :tabm 7<cr>
-noremap <leader>m9 :tabm 8<cr>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
 
 noremap j 3j
 noremap k 3k
 noremap J <C-d>
 noremap K <C-u>
-" noremap s <C-c>
 noremap s :stop<cr>
-noremap <C-h> gT
-noremap <C-l> gt
 
-" backward and forward
 noremap <C-i> <C-o>
 noremap <C-o> <C-i>
 
 set nextpattern+=\s*下一页|下一张|下一篇|下一頁|下页|后页\s*
 set previouspattern+=\s*上一页|上一张|上一篇|上一頁|上页|前页\s*
-set editor='/usr/local/bin/mvim -f'
+"set editor='/usr/local/bin/mvim -f'
