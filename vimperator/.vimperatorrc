@@ -1,33 +1,33 @@
 " vim: set ft=vim:
 
+" color
 hi ErrorMsg   -a background-color: #ff5555 !important;
 hi Hint       -a background-color: #ff5555 !important; font-size: 13px !important; line-height: 14px !important;
 hi HintActive -a background-color: #77ff77 !important;
-hi HintElem   -a background-color: #ffffaa !important;
-
-inoremap <C-p> <Up>
-inoremap <C-n> <Down>
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-inoremap <C-d> <Del>
-inoremap <C-h> <BS>
-
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
+hi HintElem -a background-color: #ffffaa !important;
 
 noremap j 3j
 noremap k 3k
 noremap J <C-d>
 noremap K <C-u>
 noremap s :stop<cr>
-
 noremap <C-i> <C-o>
 noremap <C-o> <C-i>
 
+" mimic emacs
+"inoremap <c-b> <Left>
+"inoremap <c-f> <Right>
+"inoremap <c-a> <Home>
+"inoremap <c-e> <End>
+"inoremap <c-d> <Del>
+"inoremap <c-h> <BS>
+" cmdline-editing
+cnoremap <c-b> <Left>
+cnoremap <c-f> <Right>
+cnoremap <c-a> <Home>
+cnoremap <c-e> <End>
+cnoremap <c-d> <Del>
+
 set nextpattern+=\s*下一页|下一张|下一篇|下一頁|下页|后页\s*
 set previouspattern+=\s*上一页|上一张|上一篇|上一頁|上页|前页\s*
-"set editor='/usr/local/bin/mvim -f'
+set editor='/usr/local/bin/mvim -f'

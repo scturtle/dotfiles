@@ -1,0 +1,8 @@
+.DS_Store
+.dir-locals.el
+GPATH
+GRTAGS
+GTAGS
+CTAGS
+.clang-complete
+.clang-format

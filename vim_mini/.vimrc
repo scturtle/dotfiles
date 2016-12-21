@@ -2,7 +2,7 @@ set nocompatible
 filetype plugin indent on
 syntax on
 
-set ruler " show line and row number on cursor
+"set ruler " show line and row number on cursor
 set showmatch " show matching bracket
 set hidden "switching buffers without saving
 set showcmd " display incomplete commands
@@ -21,18 +21,13 @@ set incsearch " search as you type
 set hlsearch
 set magic
 
-" encoding
-set encoding=utf-8
-set termencoding=utf-8
-set fileencodings=utf-8,chinese,latin-1
-
 " mimic emacs
-imap <c-b> <Left>
-imap <c-f> <Right>
-imap <c-a> <Home>
-imap <c-e> <End>
-imap <c-d> <Del>
-imap <c-h> <BS>
+inoremap <c-b> <Left>
+inoremap <c-f> <Right>
+inoremap <c-a> <Home>
+inoremap <c-e> <End>
+inoremap <c-d> <Del>
+inoremap <c-h> <BS>
 " cmdline-editing
 cnoremap <c-b> <Left>
 cnoremap <c-f> <Right>
@@ -52,7 +47,14 @@ set noswapfile
 " persistent undo
 set undofile
 set undodir=~/.undo
-set history=500
+set history=10000
+
+" encoding
+if has("multi_byte")
+  "set encoding=utf-8
+  set termencoding=utf-8
+  set fileencodings=utf-8,chinese,latin-1
+endif
 
 "colorscheme desert
 autocmd FileType python,c,cpp setlocal et sta ts=4 sts=4 sw=4
