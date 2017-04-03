@@ -29,11 +29,19 @@ inoremap <c-e> <End>
 inoremap <c-d> <Del>
 inoremap <c-h> <BS>
 " cmdline-editing
+cnoremap <c-g> <c-c>
 cnoremap <c-b> <Left>
 cnoremap <c-f> <Right>
 cnoremap <c-a> <Home>
 cnoremap <c-e> <End>
 cnoremap <c-d> <Del>
+execute "set <M-b>=\eb"
+execute "set <M-f>=\ef"
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
+
+" disable cmdline history
+map q: :
 
 " indent
 set autoindent
@@ -56,10 +64,17 @@ if has("multi_byte")
   set fileencodings=utf-8,chinese,latin-1
 endif
 
+if has('mouse')
+    set mouse=a
+endif
+
 "colorscheme desert
 autocmd FileType python,c,cpp setlocal et sta ts=4 sts=4 sw=4
 
 let mapleader=","
-map<silent><leader>ss :source ~/.vimrc<cr>
-map<silent><leader>ee :e ~/.vimrc<cr>
-autocmd! bufwritepost .vimrc source ~/.vimrc
+map<silent><leader>ss :source $MYVIMRC<cr>
+map<silent><leader>ee :e $MYVIMRC<cr>
+augroup reload_vimrc
+  autocmd!
+  autocmd bufwritepost $MYVIMRC source $MYVIMRC
+augroup END

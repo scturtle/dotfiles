@@ -70,7 +70,7 @@ values."
    ;; `used-but-keep-unused' installs only the used packages but won't uninstall
    ;; them if they become unused. `all' installs *all* packages supported by
    ;; Spacemacs and never uninstall them. (default is `used-only')
-   dotspacemacs-install-packages 'used-only))
+   dotspacemacs-install-packages 'used-but-keep-unused))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -138,7 +138,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 16
+                               :size 18
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -251,8 +251,18 @@ values."
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
-   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
-   ;; derivatives. If set to `relative', also turns on relative line numbers.
+   ;; Control line numbers activation.
+   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
+   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; This variable can also be set to a property list for finer control:
+   ;; '(:relative nil
+   ;;   :disabled-for-modes dired-mode
+   ;;                       doc-view-mode
+   ;;                       markdown-mode
+   ;;                       org-mode
+   ;;                       pdf-view-mode
+   ;;                       text-mode
+   ;;   :size-limit-kb 1000)
    ;; (default nil)
    dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
@@ -300,18 +310,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default git-magit-status-fullscreen t)
 
   ;; socks proxy
-  (setq url-gateway-method 'socks)
-  (setq socks-server '("Default server" "127.0.0.1" 1086 5))
+  ;; (setq url-gateway-method 'socks)
+  ;; (setq socks-server '("Default server" "127.0.0.1" 1086 5))
 
   ;; no more package-selected-packages
   (setq custom-file "~/custom.el")
   (when (file-exists-p custom-file) (load custom-file))
-
-  ;; for ipython 5
-  ;; (setq python-shell-interpreter "ipython"
-  ;;       python-shell-interpreter-args "--simple-prompt -i"
-  ;;       python-shell-interpreter-interactive-arg "--simple-prompt -i"
-  ;;       )
   )
 
 (defun dotspacemacs/user-config ()
@@ -344,6 +348,18 @@ you should place your code here."
   (prefer-coding-system 'chinese-gbk)
   (prefer-coding-system 'utf-8)
 
+;; use en_US.UTF-8 for git
+(with-eval-after-load 'magit
+    (defadvice magit-start-process (around lang-en_US activate)
+       (let ((process-environment process-environment))
+         (setenv "LC_ALL" "en_US.UTF-8")
+         ad-do-it))
+    (defadvice magit-call-process (around lang-en_US activate)
+       "Set LANG to en_US."
+       (let ((process-environment process-environment))
+         (setenv "LC_ALL" "en_US.UTF-8")
+         ad-do-it)))
+
   ;; undo-tree
   (setq undo-tree-auto-save-history t
         undo-tree-history-directory-alist
@@ -364,10 +380,30 @@ you should place your code here."
     )
 
   ;; c++
-  ;; xcode-select --install
-  ;; xcode-select -switch /Library/Developer/CommandLineTools
-  (setq c-default-style "linux"
-        c-basic-offset 2)
-  (c-set-offset 'substatement-open 0)
+  (defun my-c-mode-common-hook ()
+    ;; (c-set-style "linux")
+    (setq tab-width 4)
+    (setq c-basic-offset tab-width)
+    (c-set-offset 'substatement-open 0)
+    )
+  (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+  (add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
 
+  ;; clipboard
+  (setq x-select-enable-clipboard t)
+  (when (eq 'gnu/linux system-type)
+    (if window-system
+        (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+      (progn ;; (when (getenv "DISPLAY")
+        (defun xsel-cut-function (text &optional push)
+          (with-temp-buffer
+            (insert text)
+            (call-process-region (point-min) (point-max) "xsel" nil 0 nil "-b" "-i")))
+        (defun xsel-paste-function()
+          (let ((xsel-output (shell-command-to-string "xsel -b -o")))
+            (unless (string= (car kill-ring) xsel-output)
+              xsel-output )))
+        (setq interprogram-cut-function 'xsel-cut-function)
+        (setq interprogram-paste-function 'xsel-paste-function))
+      ))
   )

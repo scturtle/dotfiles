@@ -14,6 +14,10 @@ Plugin 'The-NERD-Commenter'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'scrooloose/syntastic'
 
+" for python
+Plugin 'davidhalter/jedi-vim'
+Plugin 'andviro/flake8-vim'
+
 " for haskell
 Plugin 'dag/vim2hs'
 "Plugin 'eagletmt/neco-ghc'
@@ -21,9 +25,7 @@ Plugin 'dag/vim2hs'
 "Plugin 'Shougo/vimproc.vim'
 
 " unused
-"Plugin 'davidhalter/jedi-vim'
 "Plugin 'SuperTab--Van-Dewoestine'
-"Plugin 'andviro/flake8-vim'
 "Plugin 'Align'
 " EasyMotion trigger:<leader><leader>[fFwb]
 "Plugin 'EasyMotion'
@@ -65,11 +67,19 @@ inoremap <c-e> <End>
 inoremap <c-d> <Del>
 inoremap <c-h> <BS>
 " cmdline-editing
+cnoremap <c-g> <c-c>
 cnoremap <c-b> <Left>
 cnoremap <c-f> <Right>
 cnoremap <c-a> <Home>
 cnoremap <c-e> <End>
 cnoremap <c-d> <Del>
+execute "set <M-b>=\eb"
+execute "set <M-f>=\ef"
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
+
+" disable cmdline history
+map q: :
 
 " indent
 set autoindent
@@ -90,6 +100,10 @@ if has("multi_byte")
   "set encoding=utf-8
   set termencoding=utf-8
   set fileencodings=utf-8,chinese,latin-1
+endif
+
+if has('mouse')
+    set mouse=a
 endif
 
 set background=dark
@@ -115,9 +129,12 @@ autocmd FileType html,javascript setlocal et sta ts=2 sts=2 sw=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=","
-map<silent><leader>ss :source ~/.vimrc<cr>
-map<silent><leader>ee :e ~/.vimrc<cr>
-autocmd! bufwritepost .vimrc source ~/.vimrc
+map<silent><leader>ss :source $MYVIMRC<cr>
+map<silent><leader>ee :e $MYVIMRC<cr>
+augroup reload_vimrc
+  autocmd!
+  autocmd bufwritepost $MYVIMRC source $MYVIMRC
+augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <C-h> <C-W>h
 map <C-j> <C-W>j
