@@ -26,7 +26,7 @@ set -x HOMEBREW_BOTTLE_DOMAIN https://mirrors.tuna.tsinghua.edu.cn/homebrew-bott
 
 # powerline
 powerline-daemon -q
-set fish_function_path $fish_function_path ~/miniconda3/lib/python3.5/site-packages/powerline/bindings/fish
+set fish_function_path $fish_function_path ~/miniconda3/lib/python3.6/site-packages/powerline/bindings/fish
 powerline-setup
 
 # conda

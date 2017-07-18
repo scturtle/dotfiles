@@ -13,6 +13,8 @@ alias rm='trash'
 # Miniconda3
 export PATH="~/miniconda3/bin:$PATH"
 
+export PATH="~/.local/bin:$PATH"
+
 # rust
 export PATH=~/.cargo/bin:$PATH
 export RUST_SRC_PATH=~/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src
