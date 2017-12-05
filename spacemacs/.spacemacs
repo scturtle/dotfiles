@@ -41,7 +41,7 @@ values."
      auto-completion
      version-control
      ;; semantic
-     mineo-rtags
+     ;; mineo-rtags
      git
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -54,6 +54,9 @@ values."
      rust
      (haskell :variables haskell-completion-backend 'intero)
      ;; mu4e
+     ;; (go :variables go-use-gometalinter t
+     ;;                go-tab-width 4)
+     lsp-cquery
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -71,7 +74,7 @@ values."
    ;; `used-but-keep-unused' installs only the used packages but won't uninstall
    ;; them if they become unused. `all' installs *all* packages supported by
    ;; Spacemacs and never uninstall them. (default is `used-only')
-   dotspacemacs-install-packages 'used-only))
+   dotspacemacs-install-packages 'used-but-keep-unused))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -386,9 +389,17 @@ you should place your code here."
     (setq tab-width 4)
     (setq c-basic-offset tab-width)
     (c-set-offset 'substatement-open 0)
+    (c-set-offset 'innamespace 0)
     )
   (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
-  (add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
+
+  ;; lsp
+  (setq cquery_root "/Users/scturtle/code/github/cquery")
+
+  ;; go
+  (setq flycheck-gometalinter-errors-only t)
+  (setq flycheck-gometalinter-fast t)
+  (setq flycheck-gometalinter-deadline "10s")
 
   ;; clipboard
   (setq x-select-enable-clipboard t)

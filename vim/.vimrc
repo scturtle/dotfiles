@@ -12,6 +12,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'CSApprox'
 Plugin 'The-NERD-Commenter'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'tyrannicaltoucan/vim-quantum'
 Plugin 'scrooloose/syntastic'
 
 " for python
@@ -48,7 +49,7 @@ set clipboard=unnamed " use system clipboard
 set backspace=indent,eol,start " backspacing in insert mode
 set cursorline " highlight current line
 set scrolloff=6
-set visualbell
+set novisualbell
 set autoread " reload files when changed on disk
 set wildmenu " GREAT autocomplete menu
 
@@ -106,10 +107,15 @@ if has('mouse')
     set mouse=a
 endif
 
+"set background=dark
+"colorscheme jellybeans
+"highlight Normal ctermbg=NONE
+"highlight nonText ctermbg=NONE
+
 set background=dark
-colorscheme jellybeans
-highlight Normal ctermbg=NONE
-highlight nonText ctermbg=NONE
+set termguicolors
+let g:quantum_black=1
+colorscheme quantum
 
 " for osx
 set go=aAce
@@ -123,7 +129,7 @@ set guifont=Source\ Code\ Pro:h16
 "setlocal expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4
 let g:pymode_python = 'python3'
 autocmd FileType python,haskell,c,cpp setlocal et sta ts=4 sts=4 sw=4
-autocmd FileType html,javascript setlocal et sta ts=2 sts=2 sw=2
+autocmd FileType html,javascript,cmake setlocal et sta ts=2 sts=2 sw=2
 
 "autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
@@ -149,7 +155,8 @@ set noshowmode
 set linespace&
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#checks = [ 'indent' ]
-let g:airline_theme = 'bubblegum'
+"let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'quantum'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" jedi-vim
 " goto:<leader>g  defn:<leader>d  doc:K  rename:<leader>r  related:<leader>n

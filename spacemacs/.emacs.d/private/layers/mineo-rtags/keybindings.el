@@ -1,6 +1,6 @@
 ;;; keybindings.el ---                               -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016  Wieland Hoffmann
+;; Copyright (C) 2016, 2017  Wieland Hoffmann
 
 ;; Author: Wieland Hoffmann <wieland@mineo>
 ;; Keywords:

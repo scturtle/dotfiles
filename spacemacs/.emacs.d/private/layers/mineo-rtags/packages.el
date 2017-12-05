@@ -31,11 +31,10 @@
 
 (defconst mineo-rtags-packages
   '(cmake-ide
+    helm-rtags
     rtags
     company-rtags
-    flycheck-rtags
-    helm-rtags
-    ))
+    flycheck-rtags))
 
 (defun mineo-rtags/init-cmake-ide ()
   (use-package cmake-ide
@@ -47,26 +46,24 @@
     :config
     (setq rtags-autostart-diagnostics t
           rtags-completions-enabled t
-          rtags-use-helm t)
-    ; See https://github.com/Andersbakken/rtags/issues/832
-    (require 'helm-rtags)
+          rtags-display-result-backend 'helm)
     (rtags-enable-standard-keybindings)
-    (add-hook 'c-mode-common-hook 'rtags-start-process-unless-running))
-  )
+    (add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)))
 
-(defun mineo-rtags/init-company-rtags ()
-  (use-package company-rtags
-    :ensure rtags
-    :config
-    (push '(company-rtags)
-          company-backends-c-mode-common)))
+(defun mineo-rtags/init-helm-rtags ()
+  (use-package helm-rtags))
 
 (defun mineo-rtags/init-flycheck-rtags ()
   (use-package flycheck-rtags
-    :ensure rtags))
+    :config
+    (add-hook 'c-mode-hook #'mineo-flycheck-rtags-setup)
+    (add-hook 'c++-mode-hook #'mineo-flycheck-rtags-setup)
+    (add-hook 'objc-mode-hook #'mineo-flycheck-rtags-setup)))
 
-(defun mineo-rtags/init-helm-rtags ()
-  (use-package helm-rtags
-    :ensure rtags))
+(defun mineo-rtags/init-company-rtags ()
+  (use-package company-rtags
+    :config
+    (push '(company-rtags)
+          company-backends-c-mode-common)))
 
 ;;; packages.el ends here

@@ -1,8 +1,10 @@
 .DS_Store
 .dir-locals.el
+custom.el
 GPATH
 GRTAGS
 GTAGS
 CTAGS
 .clang-complete
 .clang-format
+.cquery
