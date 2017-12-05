@@ -37,6 +37,7 @@
         (evil-leader/set-key-for-mode mode
           "r." 'xref-find-definitions
           "r," 'xref-find-references
+          "r[" 'xref-pop-marker-stack
           "rl" 'helm-imenu
           )))))
 
