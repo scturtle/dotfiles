@@ -34,6 +34,9 @@ values."
      ;; ivy
      helm
      osx
+     ;; (shell :variables
+     ;;        shell-default-shell 'eshell
+     ;;        shell-default-term-shell "/bin/bash")
      ;; emacs-lisp
      ;; eyebrowse
      (spell-checking :variables spell-checking-enable-by-default nil)
@@ -56,6 +59,9 @@ values."
      ;; mu4e
      ;; (go :variables go-use-gometalinter t
      ;;                go-tab-width 4)
+     ;; (go :variables
+     ;;     go-use-gometalinter t
+     ;;     go-tab-width 4)
      lsp-cquery
      )
    ;; List of additional packages that will be installed without being

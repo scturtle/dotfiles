@@ -20,4 +20,6 @@ export PATH=~/.cargo/bin:$PATH
 export RUST_SRC_PATH=~/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src
 export CARGO_HOME=~/.cargo
 
+export PATH=~/go/bin:$PATH
+
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

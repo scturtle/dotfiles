@@ -5,6 +5,7 @@ set fish_greeting
 set PATH /Library/Developer/CommandLineTools/usr/bin $PATH
 set PATH ~/miniconda3/bin $PATH
 set PATH ~/.cargo/bin $PATH
+set PATH ~/go/bin $PATH
 set PATH ~/.local/bin $PATH
 set PATH . $PATH
 
@@ -30,7 +31,7 @@ set fish_function_path $fish_function_path ~/miniconda3/lib/python3.6/site-packa
 powerline-setup
 
 # conda
-. ~/.config/fish/conda.fish
+. ~/miniconda3/etc/fish/conf.d/conda.fish
 
 # iterm2
 . ~/.iterm2_shell_integration.fish
