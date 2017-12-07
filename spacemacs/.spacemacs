@@ -401,6 +401,8 @@ you should place your code here."
 
   ;; lsp
   (setq cquery_root "/Users/scturtle/code/github/cquery")
+  (setq lsp-highlight-symbol-at-point nil)
+  (face-spec-set 'lsp-face-highlight-textual '((t :background "#424242")))
 
   ;; go
   (setq flycheck-gometalinter-errors-only t)
