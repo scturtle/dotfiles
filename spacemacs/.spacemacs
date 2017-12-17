@@ -400,7 +400,6 @@ you should place your code here."
   (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
   ;; lsp
-  (setq cquery_root "/Users/scturtle/code/github/cquery")
   (setq lsp-highlight-symbol-at-point nil)
   (face-spec-set 'lsp-face-highlight-textual '((t :background "#424242")))
 

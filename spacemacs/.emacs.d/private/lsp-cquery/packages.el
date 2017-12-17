@@ -18,9 +18,9 @@
     ))
 
 (defun lsp-cquery/init-lsp-mode ()
-  (use-package lsp-mode
-    :config (use-package lsp-flycheck :after flycheck)
-    ))
+  (use-package lsp-mode)
+  (use-package lsp-flycheck :after flycheck)
+  )
 
 (defun lsp-cquery/init-lsp-ui ()
   (use-package lsp-ui
