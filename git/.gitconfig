@@ -5,7 +5,7 @@
 [alias]
 	ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 [gpg]
-	program = gpg2
+	program = gpg
 [commit]
 	gpgsign = true
 [core]

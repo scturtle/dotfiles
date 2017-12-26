@@ -16,9 +16,10 @@ set -x CARGO_HOME ~/.cargo
 alias rm trash
 alias vim /Applications/MacVim.app/Contents/MacOS/Vim
 alias emacs "/Applications/Emacs.app/Contents/MacOS/Emacs"
-alias emx "/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+alias emx "env TERM=xterm-24bits /Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 alias pc "proxychains4 -q"
 alias pp "env ALL_PROXY=socks5://localhost:1086"
+alias tmux "env TERM=screen-256color tmux"
 
 # homebrew
 set -x HOMEBREW_NO_EMOJI 1

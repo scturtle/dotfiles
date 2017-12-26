@@ -10,7 +10,7 @@
 ;;; License: Unlicense
 
 (defconst lsp-cquery-packages
-  '(lsp-mode
+  '((lsp-mode :location local)
     (lsp-ui :location local)
     (company-lsp :toggle (configuration-layer/package-usedp 'company))
     (cquery :location local)
@@ -47,7 +47,6 @@
   (use-package cquery
     :init
     (progn
-      ;; (setq cquery_root "/Users/scturtle/code/github/cquery")
       (spacemacs/add-to-hooks #'lsp-cquery-enable '(c-mode-hook c++-mode-hook))
       (dolist (mode '(c-mode c++-mode))
         (evil-leader/set-key-for-mode mode

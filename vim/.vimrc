@@ -9,11 +9,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'CSApprox'
 Plugin 'The-NERD-Commenter'
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'tyrannicaltoucan/vim-quantum'
 Plugin 'scrooloose/syntastic'
+Plugin 'farmergreg/vim-lastplace'
+Plugin 'dracula/vim'
 
 " for python
 Plugin 'davidhalter/jedi-vim'
@@ -112,10 +112,8 @@ endif
 "highlight Normal ctermbg=NONE
 "highlight nonText ctermbg=NONE
 
-set background=dark
 set termguicolors
-let g:quantum_black=1
-colorscheme quantum
+color dracula
 
 " for osx
 set go=aAce
@@ -156,7 +154,7 @@ set linespace&
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#checks = [ 'indent' ]
 "let g:airline_theme = 'bubblegum'
-let g:airline_theme = 'quantum'
+let g:airline_theme = 'deus'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" jedi-vim
 " goto:<leader>g  defn:<leader>d  doc:K  rename:<leader>r  related:<leader>n
