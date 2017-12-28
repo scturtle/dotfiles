@@ -30,7 +30,6 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ;; ivy
      helm
      osx
      ;; (shell :variables
@@ -146,7 +145,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 16
+                               :size 18
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -369,6 +368,10 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
+  ;; stop smartparens being too smart
+  (setq sp-escape-wrapped-region nil)
+  (setq sp-escape-quotes-after-insert nil)
 
   ;; hide minor modes
   (setq dotspacemacs-mode-line-unicode-symbols nil)

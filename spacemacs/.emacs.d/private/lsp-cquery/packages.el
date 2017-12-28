@@ -38,9 +38,10 @@
   (use-package helm-xref
     :config
     (progn
-      (setq xref-prompt-for-identifier '(not xref-find-definitions xref-find-definitions-other-window
-                                             xref-find-definitions-other-frame xref-find-references
-                                             spacemacs/jump-to-definition spacemacs/jump-to-reference))
+      (setq xref-prompt-for-identifier
+            '(not xref-find-definitions xref-find-definitions-other-window
+                  xref-find-definitions-other-frame xref-find-references
+                  spacemacs/jump-to-definition spacemacs/jump-to-reference))
       (setq xref-show-xrefs-function 'helm-xref-show-xrefs))))
 
 (defun lsp-cquery/init-cquery ()
