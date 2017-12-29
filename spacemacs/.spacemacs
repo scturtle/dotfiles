@@ -51,6 +51,7 @@ This function should only modify configuration layer settings."
      ;; (haskell :variables haskell-completion-backend 'intero)
      ;; (go :variables go-use-gometalinter t
      ;;                go-tab-width 4)
+     markdown
      lsp-cquery
      )
    ;; List of additional packages that will be installed without being
@@ -69,7 +70,7 @@ This function should only modify configuration layer settings."
    ;; installs only the used packages but won't delete unused ones. `all'
    ;; installs *all* packages supported by Spacemacs and never uninstalls them.
    ;; (default is `used-only')
-   dotspacemacs-install-packages 'used-but-keep-unused))
+   dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
   "Initialization:
@@ -434,7 +435,7 @@ before packages are loaded."
     (c-set-offset 'substatement-open 0)
     (c-set-offset 'innamespace 0)
     )
-  (spacemacs/add-to-hooks 'c-mode-style '(c-mode-hook c++-mode-hook))
+  (spacemacs/add-to-hooks 'my-c-style '(c-mode-hook c++-mode-hook))
 
   ;; lsp
   (setq cquery-additional-arguments (list "--log-file" "/tmp/cquery.log"))
@@ -446,6 +447,7 @@ before packages are loaded."
   ;; (setq lsp-line-ignore-duplicate t)
   (setq lsp-line-code-actions-prefix "")
   ;; (setq lsp-print-io t) ;; for debug
+  (require 'markdown-mode)
 
   ;; go
   (setq flycheck-gometalinter-errors-only t)

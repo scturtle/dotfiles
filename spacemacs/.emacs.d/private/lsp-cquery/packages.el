@@ -12,9 +12,10 @@
 (defconst lsp-cquery-packages
   '((lsp-mode :location local)
     (lsp-ui :location local)
-    (company-lsp :toggle (configuration-layer/package-usedp 'company))
+    company-lsp
     (cquery :location local)
     helm-xref
+    markdown-mode
     ))
 
 (defun lsp-cquery/init-lsp-mode ()
@@ -22,10 +23,14 @@
   (use-package lsp-flycheck :after flycheck)
   )
 
+(defun lsp-cquery/post-init-markdown-mode ()
+  (use-package markdown-mode)) ;; no defer
+
 (defun lsp-cquery/init-lsp-ui ()
   (use-package lsp-ui
     :after lsp-mode
-    :config (add-hook 'lsp-after-open-hook 'lsp-line-mode)
+    :after markdown-mode
+    :config (add-hook 'lsp-after-open-hook 'lsp-ui-sideline-mode)
     ))
 
 (defun lsp-cquery/init-company-lsp ()
