@@ -38,7 +38,8 @@ This function should only modify configuration layer settings."
      ;; emacs-lisp
      syntax-checking
      auto-completion
-     version-control
+     (version-control :variables
+                      version-control-diff-side 'left)
      git
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -440,14 +441,15 @@ before packages are loaded."
   ;; lsp
   (setq cquery-additional-arguments (list "--log-file" "/tmp/cquery.log"))
   ;; (setq lsp-highlight-symbol-at-point nil)
-  (face-spec-set 'lsp-face-highlight-textual '((t :background "#424242")))
+  (face-spec-set 'lsp-face-highlight-textual '((t :background nil :inherit hl-line)))
   ;; (face-spec-set 'cquery-sem-member-var-face '((t :inherit nil)))
   ;; (face-spec-set 'cquery-sem-free-var-face '((t :inherit nil)))
-  ;; (setq lsp-enable-xref nil) ;; ???
-  ;; (setq lsp-line-ignore-duplicate t)
-  (setq lsp-line-code-actions-prefix "")
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-peek-enable nil)
+  (setq lsp-ui-sideline-code-actions-prefix "")
   ;; (setq lsp-print-io t) ;; for debug
-  (require 'markdown-mode)
+  (setq company-lsp-cache-candidates nil)
+  (setq company-lsp-async t)
 
   ;; go
   (setq flycheck-gometalinter-errors-only t)

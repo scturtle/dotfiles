@@ -19,9 +19,7 @@
     ))
 
 (defun lsp-cquery/init-lsp-mode ()
-  (use-package lsp-mode)
-  (use-package lsp-flycheck :after flycheck)
-  )
+  (use-package lsp-mode))
 
 (defun lsp-cquery/post-init-markdown-mode ()
   (use-package markdown-mode)) ;; no defer
@@ -30,7 +28,7 @@
   (use-package lsp-ui
     :after lsp-mode
     :after markdown-mode
-    :config (add-hook 'lsp-after-open-hook 'lsp-ui-sideline-mode)
+    :config (add-hook 'lsp-after-open-hook 'lsp-ui-mode)
     ))
 
 (defun lsp-cquery/init-company-lsp ()
