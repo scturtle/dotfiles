@@ -42,8 +42,7 @@ This function should only modify configuration layer settings."
                       version-control-diff-side 'left)
      git
      (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t)
+            c-c++-default-mode-for-headers 'c++-mode)
      gtags
      python
      org
@@ -129,8 +128,7 @@ It should only modify the values of Spacemacs settings."
    ;; `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((recents . 20)
-                                (projects . 10))
+   dotspacemacs-startup-lists '((recents . 20) (projects . 10))
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
@@ -138,9 +136,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes (if window-system
-                           '(spacemacs-light)
-                           '(dracula))
+   dotspacemacs-themes '(dracula)
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
@@ -356,8 +352,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq-default git-magit-status-fullscreen t)
 
   ;; socks proxy
-  (setq url-gateway-method 'socks)
-  (setq socks-server '("Default server" "127.0.0.1" 1086 5))
+  ;; (setq url-gateway-method 'socks)
+  ;; (setq socks-server '("Default server" "127.0.0.1" 1086 5))
 
   ;; no more package-selected-packages
   (setq custom-file "~/custom.el")
@@ -414,12 +410,12 @@ before packages are loaded."
         undo-tree-history-directory-alist
         `(("." . ,(concat user-home-directory ".undo"))))
 
-  (setq company-idle-delay 1)
+  (setq company-idle-delay 0.5)
   (setq flycheck-check-syntax-automatically '(mode-enabled save))
 
   ;; aspell
-  (setq flyspell-default-dictionary "english")
-  (setq ispell-program-name "/usr/local/bin/aspell")
+  ;; (setq flyspell-default-dictionary "english")
+  ;; (setq ispell-program-name "/usr/local/bin/aspell")
 
   ;; org
   (with-eval-after-load 'org
