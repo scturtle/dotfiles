@@ -11,7 +11,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'The-NERD-Commenter'
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'farmergreg/vim-lastplace'
 Plugin 'dracula/vim'
 

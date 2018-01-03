@@ -43,7 +43,7 @@ This function should only modify configuration layer settings."
      git
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
-     gtags
+     ;; gtags
      python
      org
      ;; html
@@ -143,7 +143,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 18
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -389,6 +389,11 @@ before packages are loaded."
   (define-key evil-ex-completion-map (kbd "C-d") 'delete-forward-char)
   (define-key evil-ex-completion-map (kbd "C-h") 'evil-ex-delete-backward-char)
 
+  ;; previous/nex modified hunk in git
+  (spacemacs/set-leader-keys
+    "gp" '(lambda () (interactive) (git-gutter+-next-hunk -1))
+    "gn" '(lambda () (interactive) (git-gutter+-next-hunk 1)))
+
   ;; encoding
   (prefer-coding-system 'chinese-gbk)
   (prefer-coding-system 'utf-8)
@@ -435,7 +440,7 @@ before packages are loaded."
   (spacemacs/add-to-hooks 'my-c-style '(c-mode-hook c++-mode-hook))
 
   ;; lsp
-  (setq cquery-additional-arguments (list "--log-file" "/tmp/cquery.log"))
+  (setq cquery-additional-arguments (list "--log-file" "cquery.log"))
   ;; (setq lsp-highlight-symbol-at-point nil)
   (face-spec-set 'lsp-face-highlight-textual '((t :background nil :inherit hl-line)))
   ;; (face-spec-set 'cquery-sem-member-var-face '((t :inherit nil)))
@@ -446,6 +451,7 @@ before packages are loaded."
   ;; (setq lsp-print-io t) ;; for debug
   (setq company-lsp-cache-candidates nil)
   (setq company-lsp-async t)
+  (setq company-transformers nil)
 
   ;; go
   (setq flycheck-gometalinter-errors-only t)
