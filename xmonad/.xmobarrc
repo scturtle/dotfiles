@@ -1,0 +1,15 @@
+Config {
+	 font = "xft:Ubuntu Mono:pixelsize=18:Bold"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = Top
+       , commands = [ Run Cpu [] 10
+                    , Run DiskU [("/", "disk: <usedp>%")] [] 20
+                    , Run DynNetwork ["--template", "<tx>kB/s <rx>kB/s"] 10
+                    , Run Date "%a %m/%d %X" "date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% }{ %cpu% | %disku% | %dynnetwork% | %date% "
+       }
