@@ -28,8 +28,12 @@
   (use-package lsp-ui
     :after lsp-mode
     :after markdown-mode
-    :config (add-hook 'lsp-after-open-hook 'lsp-ui-mode)
-    ))
+    :config
+    (progn
+      (add-hook 'lsp-after-open-hook 'lsp-ui-mode)
+      (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+      (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+      )))
 
 (defun lsp-cquery/init-company-lsp ()
   (use-package company-lsp
@@ -56,7 +60,8 @@
         (evil-leader/set-key-for-mode mode
           "r." 'xref-find-definitions
           "r," 'xref-find-references
-          "r[" 'xref-pop-marker-stack
+          "r[" 'lsp-ui-peek-jump-backward
+          "r]" 'lsp-ui-peek-jump-forward
           "rl" 'helm-imenu
           )))))
 

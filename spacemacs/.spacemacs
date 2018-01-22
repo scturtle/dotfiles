@@ -42,6 +42,7 @@ This function should only modify configuration layer settings."
                       version-control-diff-side 'left)
      git
      (c-c++ :variables
+            c-c++-enable-rtags-support nil
             c-c++-default-mode-for-headers 'c++-mode)
      ;; gtags
      python
@@ -105,7 +106,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
    ;; to `emacs-version'. (default 'emacs-version)
-   dotspacemacs-elpa-subdirectory 'emacs-version
+   dotspacemacs-elpa-subdirectory nil
    ;; One of `vim', `emacs' or `hybrid'.
    ;; `hybrid' is like `vim' except that `insert state' is replaced by the
    ;; `hybrid state' with `emacs' key bindings. The value can also be a list
@@ -358,6 +359,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; no more package-selected-packages
   (setq custom-file "~/custom.el")
   (when (file-exists-p custom-file) (load custom-file))
+
+  ;; (setq debug-on-quit t) ;; debug
   )
 
 (defun dotspacemacs/user-config ()
@@ -389,7 +392,7 @@ before packages are loaded."
   (define-key evil-ex-completion-map (kbd "C-d") 'delete-forward-char)
   (define-key evil-ex-completion-map (kbd "C-h") 'evil-ex-delete-backward-char)
 
-  ;; previous/nex modified hunk in git
+  ;; previous/next modified hunk in git
   (spacemacs/set-leader-keys
     "gp" '(lambda () (interactive) (git-gutter+-next-hunk -1))
     "gn" '(lambda () (interactive) (git-gutter+-next-hunk 1)))
@@ -441,6 +444,7 @@ before packages are loaded."
 
   ;; lsp
   (setq cquery-additional-arguments (list "--log-file" "cquery.log"))
+  (setq cquery-extra-init-params '(:cacheFormat "msgpack"))
   ;; (setq lsp-highlight-symbol-at-point nil)
   (face-spec-set 'lsp-face-highlight-textual '((t :background nil :inherit hl-line)))
   ;; (face-spec-set 'cquery-sem-member-var-face '((t :inherit nil)))
