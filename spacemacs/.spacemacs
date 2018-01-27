@@ -48,12 +48,13 @@ This function should only modify configuration layer settings."
      python
      org
      ;; html
-     ;; rust
+     rust
      ;; (haskell :variables haskell-completion-backend 'intero)
      ;; (go :variables go-use-gometalinter t
      ;;                go-tab-width 4)
      markdown
      lsp-cquery
+     lsp-rust
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -90,7 +91,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-elpa-https nil
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    ;; (default 5)
-   dotspacemacs-elpa-timeout 5
+   dotspacemacs-elpa-timeout 60
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the lastest
    ;; version of packages from MELPA. (default nil)
@@ -443,8 +444,9 @@ before packages are loaded."
   (spacemacs/add-to-hooks 'my-c-style '(c-mode-hook c++-mode-hook))
 
   ;; lsp
-  (setq cquery-additional-arguments (list "--log-file" "cquery.log"))
+  (setq cquery-extra-args (list "--log-file" "cquery.log"))
   (setq cquery-extra-init-params '(:cacheFormat "msgpack"))
+  (setq cquery-sem-highlight-method 'overlay)
   ;; (setq lsp-highlight-symbol-at-point nil)
   (face-spec-set 'lsp-face-highlight-textual '((t :background nil :inherit hl-line)))
   ;; (face-spec-set 'cquery-sem-member-var-face '((t :inherit nil)))
