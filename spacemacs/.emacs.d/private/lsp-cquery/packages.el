@@ -34,13 +34,13 @@
 
 (defun lsp-cquery/init-company-lsp ()
   (use-package company-lsp
-    :defer t
-    :init
-    (setq company-lsp-async t
-          company-transformers nil
-          company-lsp-cache-candidates nil)
-    (spacemacs|add-company-backends :backends company-lsp :modes c-mode-common)
-    ))
+    :config
+    (progn
+      (setq company-lsp-async t
+            company-transformers nil
+            company-lsp-cache-candidates nil)
+      (spacemacs|add-company-backends :backends company-lsp :modes c-mode-common)
+      )))
 
 (defun lsp-cquery/init-helm-xref ()
   "from github.com/MaskRay/Config"
