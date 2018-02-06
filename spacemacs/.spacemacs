@@ -42,7 +42,6 @@ This function should only modify configuration layer settings."
                       version-control-diff-side 'left)
      git
      (c-c++ :variables
-            c-c++-enable-rtags-support nil
             c-c++-default-mode-for-headers 'c++-mode)
      ;; gtags
      python
@@ -52,7 +51,6 @@ This function should only modify configuration layer settings."
      ;; (haskell :variables haskell-completion-backend 'intero)
      ;; (go :variables go-use-gometalinter t
      ;;                go-tab-width 4)
-     markdown
      lsp-cquery
      lsp-rust
      )
@@ -447,17 +445,10 @@ before packages are loaded."
   (setq cquery-extra-args (list "--log-file" "cquery.log"))
   (setq cquery-extra-init-params '(:cacheFormat "msgpack"))
   (setq cquery-sem-highlight-method 'overlay)
-  ;; (setq lsp-highlight-symbol-at-point nil)
   (face-spec-set 'lsp-face-highlight-textual '((t :background nil :inherit hl-line)))
-  ;; (face-spec-set 'cquery-sem-member-var-face '((t :inherit nil)))
-  ;; (face-spec-set 'cquery-sem-free-var-face '((t :inherit nil)))
   (setq lsp-ui-doc-enable nil)
-  (setq lsp-ui-peek-enable nil)
-  (setq lsp-ui-sideline-code-actions-prefix "")
+  ;; (setq lsp-ui-peek-enable nil)
   ;; (setq lsp-print-io t) ;; for debug
-  (setq company-lsp-cache-candidates nil)
-  (setq company-lsp-async t)
-  (setq company-transformers nil)
 
   ;; go
   (setq flycheck-gometalinter-errors-only t)

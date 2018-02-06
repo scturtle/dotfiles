@@ -12,7 +12,7 @@
 (defconst lsp-cquery-packages
   '((lsp-mode :location local)
     (lsp-ui :location local)
-    company-lsp
+    (company-lsp :location local)
     (cquery :location local)
     helm-xref
     markdown-mode
@@ -21,23 +21,25 @@
 (defun lsp-cquery/init-lsp-mode ()
   (use-package lsp-mode))
 
-(defun lsp-cquery/post-init-markdown-mode ()
-  (use-package markdown-mode)) ;; no defer
+(defun lsp-cquery/init-markdown-mode ()
+  (use-package markdown-mode))
 
 (defun lsp-cquery/init-lsp-ui ()
   (use-package lsp-ui
     :after lsp-mode
     :after markdown-mode
     :config
-    (progn
-      (add-hook 'lsp-after-open-hook 'lsp-ui-mode)
-      (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-      (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-      )))
+    (add-hook 'lsp-after-open-hook 'lsp-ui-mode)
+    ))
 
 (defun lsp-cquery/init-company-lsp ()
   (use-package company-lsp
-    :init (push 'company-lsp company-backends-c-mode-common)
+    :defer t
+    :init
+    (setq company-lsp-async t
+          company-transformers nil
+          company-lsp-cache-candidates nil)
+    (spacemacs|add-company-backends :backends company-lsp :modes c-mode-common)
     ))
 
 (defun lsp-cquery/init-helm-xref ()
@@ -49,7 +51,8 @@
             '(not xref-find-definitions xref-find-definitions-other-window
                   xref-find-definitions-other-frame xref-find-references
                   spacemacs/jump-to-definition spacemacs/jump-to-reference))
-      (setq xref-show-xrefs-function 'helm-xref-show-xrefs))))
+      (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
+    ))
 
 (defun lsp-cquery/init-cquery ()
   (use-package cquery
@@ -58,8 +61,8 @@
       (spacemacs/add-to-hooks #'lsp-cquery-enable '(c-mode-hook c++-mode-hook))
       (dolist (mode '(c-mode c++-mode))
         (evil-leader/set-key-for-mode mode
-          "r." 'xref-find-definitions
-          "r," 'xref-find-references
+          "r." 'lsp-ui-peek-find-definitions
+          "r," 'lsp-ui-peek-find-references
           "r[" 'lsp-ui-peek-jump-backward
           "r]" 'lsp-ui-peek-jump-forward
           "rl" 'helm-imenu
