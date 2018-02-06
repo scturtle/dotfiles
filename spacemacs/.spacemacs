@@ -447,7 +447,6 @@ before packages are loaded."
   (setq cquery-sem-highlight-method 'overlay)
   (face-spec-set 'lsp-face-highlight-textual '((t :background nil :inherit hl-line)))
   (setq lsp-ui-doc-enable nil)
-  ;; (setq lsp-ui-peek-enable nil)
   ;; (setq lsp-print-io t) ;; for debug
 
   ;; go

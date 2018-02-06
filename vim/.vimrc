@@ -118,7 +118,7 @@ color dracula
 " for osx
 set go=aAce
 if has("gui_running")
-    set transparency=10
+    set transparency=2
 endif
 
 set guifont=Source\ Code\ Pro:h16
