@@ -10,62 +10,33 @@
 ;;; License: Unlicense
 
 (defconst lsp-cquery-packages
-  '((lsp-mode :location local)
-    (lsp-ui :location local)
-    (company-lsp :location local)
-    (cquery :location local)
-    helm-xref
-    markdown-mode
-    ))
-
-(defun lsp-cquery/init-lsp-mode ()
-  (use-package lsp-mode))
-
-(defun lsp-cquery/init-markdown-mode ()
-  (use-package markdown-mode))
-
-(defun lsp-cquery/init-lsp-ui ()
-  (use-package lsp-ui
-    :after lsp-mode
-    :after markdown-mode
-    :config
-    (add-hook 'lsp-after-open-hook 'lsp-ui-mode)
-    ))
-
-(defun lsp-cquery/init-company-lsp ()
-  (use-package company-lsp
-    :config
-    (progn
-      (setq company-lsp-async t
-            company-transformers nil
-            company-lsp-cache-candidates nil)
-      (spacemacs|add-company-backends :backends company-lsp :modes c-mode-common)
-      )))
-
-(defun lsp-cquery/init-helm-xref ()
-  "from github.com/MaskRay/Config"
-  (use-package helm-xref
-    :config
-    (progn
-      (setq xref-prompt-for-identifier
-            '(not xref-find-definitions xref-find-definitions-other-window
-                  xref-find-definitions-other-frame xref-find-references
-                  spacemacs/jump-to-definition spacemacs/jump-to-reference))
-      (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
+  '((cquery :location local)
     ))
 
 (defun lsp-cquery/init-cquery ()
   (use-package cquery
     :init
     (progn
+      (spacemacs|add-company-backends :backends company-lsp :modes c-mode-common)
       (spacemacs/add-to-hooks #'lsp-cquery-enable '(c-mode-hook c++-mode-hook))
       (dolist (mode '(c-mode c++-mode))
         (evil-leader/set-key-for-mode mode
-          "r." 'lsp-ui-peek-find-definitions
-          "r," 'lsp-ui-peek-find-references
-          "r[" 'lsp-ui-peek-jump-backward
-          "r]" 'lsp-ui-peek-jump-forward
-          "rl" 'helm-imenu
+          "r." #'lsp-ui-peek-find-definitions
+          "r," #'lsp-ui-peek-find-references
+          "r[" #'lsp-ui-peek-jump-backward
+          "r]" #'lsp-ui-peek-jump-forward
+          ;; "qb" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/base"))
+          ;; "qc" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/callers"))
+          ;; "qd" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/derived"))
+          ;; "qv" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/vars"))
+          ;; "R"  #'cquery-freshen-index
+          ;; "hm" #'cquery-member-hierarchy
+          ;; "hi" #'cquery-inheritance-hierarchy
+          ;; "hI" (lambda () (interactive) (cquery-inheritance-hierarchy t))
+          ;; "hc" #'cquery-call-hierarchy
+          ;; "hC" (lambda () (interactive) (cquery-call-hierarchy t))
+          "ll" #'lsp-ui-imenu
+	        "lr" #'lsp-rename
           )))))
 
 ;;; packages.el ends here
