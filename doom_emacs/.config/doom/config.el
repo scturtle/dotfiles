@@ -35,11 +35,19 @@
 
   (map! :map lsp-ui-mode-map
         :localleader
-        :n "r." #'lsp-ui-peek-find-definitions
-        :n "r," #'lsp-ui-peek-find-references
-        :n "r[" #'lsp-ui-peek-jump-backward
-        :n "r]" #'lsp-ui-peek-jump-forward
+        :n "r ." #'lsp-ui-peek-find-definitions
+        :n "r ," #'lsp-ui-peek-find-references
+        :n "r [" #'lsp-ui-peek-jump-backward
+        :n "r ]" #'lsp-ui-peek-jump-forward
         )
+
+  (map! :map lsp-ui-peek-mode-map
+        "j"   #'lsp-ui-peek--select-next
+        "k"   #'lsp-ui-peek--select-prev
+        [tab] #'lsp-ui-peek--toggle-file
+        )
+
+  (add-hook! 'doom-load-theme-hook #'sync-lsp-ui-face)
   )
 
 (def-package! cquery
@@ -55,4 +63,22 @@
   (add-hook! 'c-mode-common-hook #'flycheck-mode)
   (set! :company-backend 'c-mode #'company-lsp)
   (set! :company-backend 'c++-mode #'company-lsp)
+  )
+
+(def-package! rainbow-mode)
+
+(def-package! git-gutter+
+  :commands (global-git-gutter+-mode git-gutter+-mode git-gutter+-refresh)
+  :init
+  (progn
+    (add-hook 'magit-pre-refresh-hook 'git-gutter+-refresh)
+    (run-with-idle-timer 1 nil 'global-git-gutter+-mode)
+    (setq git-gutter+-modified-sign "="
+          git-gutter+-added-sign "+"
+          git-gutter+-deleted-sign "-"
+          git-gutter+-diff-option "-w"
+          git-gutter+-hide-gutter t)
+    ;; TODO sync theme color
+    )
+  :config (global-git-gutter+-mode)
   )
