@@ -5,6 +5,16 @@
 (map!
  :gnvime "M-:" #'eval-expression
 
+ ;; mimic emacs
+ :i "C-b" #'backward-char
+ :i "C-f" #'forward-char
+ :i "A-b" #'backward-word
+ :i "A-f" #'forward-word
+ :i "C-p" #'previous-line
+ :i "C-n" #'next-line
+ :i "C-h" #'delete-backward-char
+ :i "C-d" #'delete-char
+
  (:leader
    :n "SPC" #'execute-extended-command
    :n ":"   #'eval-expression
@@ -12,16 +22,15 @@
    :n "TAB" #'my/switch-to-alternate-buffer
 
    :n "c l" #'evil-commentary-line
-   :v "s"   #'evil-surround-region
 
    :n "b m" #'my/switch-to-messages-buffer
    :n "b d" #'kill-this-buffer
+   :n "w d" #'evil-quit
 
    :n "f t" #'neotree-toggle
 
    :n "p t" #'+neotree/open
    :n "p f" #'projectile-find-file
-   :n "p s" #'+ivy/project-search
 
    :n "g a" #'projectile-find-other-file
    :n "g p" #'git-gutter:previous-hunk
