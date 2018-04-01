@@ -47,7 +47,7 @@
         [tab] #'lsp-ui-peek--toggle-file
         )
 
-  (add-hook! 'doom-load-theme-hook #'sync-lsp-ui-face)
+  (add-hook! 'doom-load-theme-hook #'my/sync-lsp-ui-face)
   )
 
 (def-package! cquery
@@ -72,13 +72,12 @@
   :init
   (progn
     (add-hook 'magit-pre-refresh-hook 'git-gutter+-refresh)
-    (run-with-idle-timer 1 nil 'global-git-gutter+-mode)
+    (if (not window-system)
+        (run-with-idle-timer 1 nil 'global-git-gutter+-mode))
     (setq git-gutter+-modified-sign "="
           git-gutter+-added-sign "+"
           git-gutter+-deleted-sign "-"
           git-gutter+-diff-option "-w"
           git-gutter+-hide-gutter t)
     ;; TODO sync theme color
-    )
-  :config (global-git-gutter+-mode)
-  )
+    ))

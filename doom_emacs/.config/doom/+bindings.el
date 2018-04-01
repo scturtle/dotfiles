@@ -8,11 +8,13 @@
  (:leader
    :n "SPC" #'execute-extended-command
    :n ":"   #'eval-expression
+   :n [tab] #'my/switch-to-alternate-buffer
+   :n "TAB" #'my/switch-to-alternate-buffer
 
    :n "c l" #'evil-commentary-line
    :v "s"   #'evil-surround-region
 
-   :n "b m" #'switch-to-messages-buffer
+   :n "b m" #'my/switch-to-messages-buffer
    :n "b d" #'kill-this-buffer
 
    :n "f t" #'neotree-toggle

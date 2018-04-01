@@ -14,6 +14,7 @@ set -x RUST_SRC_PATH ~/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustli
 set -x CARGO_HOME ~/.cargo
 
 alias rm trash
+alias rrm /bin/rm
 alias vim /Applications/MacVim.app/Contents/MacOS/Vim
 alias emacs "/Applications/Emacs.app/Contents/MacOS/Emacs"
 alias emx "env TERM=xterm-24bits /Applications/Emacs.app/Contents/MacOS/Emacs -nw"
@@ -24,7 +25,8 @@ alias tmux "env TERM=screen-256color tmux"
 # homebrew
 set -x HOMEBREW_NO_EMOJI 1
 set -x HOMEBREW_CASK_OPTS --appdir=/Applications
-set -x HOMEBREW_BOTTLE_DOMAIN https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+#set -x HOMEBREW_BOTTLE_DOMAIN https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+set -x HOMEBREW_BOTTLE_DOMAIN https://mirrors.ustc.edu.cn/homebrew-bottles
 
 # powerline
 powerline-daemon -q
