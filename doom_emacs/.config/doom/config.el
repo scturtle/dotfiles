@@ -1,25 +1,31 @@
 ;;;  -*- lexical-binding: t; -*-
 
-(load! +bindings)
 (load! +ui)
+(load! +bindings)
+
+(after! evil-multiedit
+  (setq evil-multiedit-follow-matches t))
 
 (after! cc-mode
   (setq tab-width 4)
   (setq c-basic-offset tab-width)
   (c-set-offset 'substatement-open 0)
   (c-set-offset 'innamespace 0)
-  (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
-  )
+  (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode))
 
 (after! company
   (setq company-idle-delay 0.5
         company-minimum-prefix-length 2
-        ))
+        company-transformers nil))
 
 (def-package! company-lsp
-  :defer t)
+  :defer t
+  :config
+  (setq company-lsp-async t
+        company-lsp-cache-candidates nil))
 
 (def-package! clang-format
+  :defer t
   :commands (clang-format-region clang-format-buffer))
 
 (def-package! lsp-mode
@@ -32,23 +38,7 @@
   (setq lsp-ui-doc-enable nil
         lsp-ui-sideline--show-symbol nil ;; FIXME
         )
-
-  (map! :map lsp-ui-mode-map
-        :localleader
-        :n "r ." #'lsp-ui-peek-find-definitions
-        :n "r ," #'lsp-ui-peek-find-references
-        :n "r [" #'lsp-ui-peek-jump-backward
-        :n "r ]" #'lsp-ui-peek-jump-forward
-        )
-
-  (map! :map lsp-ui-peek-mode-map
-        "j"   #'lsp-ui-peek--select-next
-        "k"   #'lsp-ui-peek--select-prev
-        [tab] #'lsp-ui-peek--toggle-file
-        )
-
-  (add-hook! 'doom-load-theme-hook #'my/sync-lsp-ui-face)
-  )
+  (add-hook! 'doom-load-theme-hook #'my/sync-lsp-ui-face))
 
 (def-package! cquery
   :load-path "~/code/repos/emacs-cquery"
@@ -65,7 +55,9 @@
   (set! :company-backend 'c++-mode #'company-lsp)
   )
 
-(def-package! rainbow-mode)
+(def-package! rainbow-mode
+  :defer t
+  :commands (rainbow-mode))
 
 (def-package! git-gutter+
   :commands (global-git-gutter+-mode git-gutter+-mode git-gutter+-refresh)
@@ -79,5 +71,4 @@
           git-gutter+-deleted-sign "-"
           git-gutter+-diff-option "-w"
           git-gutter+-hide-gutter t)
-    ;; TODO sync theme color
     ))

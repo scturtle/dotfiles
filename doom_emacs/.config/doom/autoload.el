@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
+(require 'evil-multiedit)
+
 ;;;###autoload
 (defun my/switch-to-messages-buffer ()
   "Stolen from syacemacs."
@@ -25,3 +27,20 @@
     (switch-to-buffer
      (cl-find-if (lambda (buffer) (not (eq buffer current-buffer)))
                  (mapcar #'car (window-prev-buffers))))))
+
+;;;###autoload
+(defun my/symbol-highlight ()
+  "Highlight current symbol. Restrict by evil visual region."
+  (interactive)
+  (setq evil-multiedit--dont-recall t)
+  (let ((beg (point-min)) (end (point-max)))
+    (when (evil-visual-state-p)
+      (setq beg evil-visual-beginning
+            end evil-visual-end)
+      (evil-exit-visual-state))
+    (setq symbol (or (thing-at-point 'symbol) (thing-at-point 'word)))
+    (when symbol
+      (setq regexp (format "\\_<%s\\_>" (regexp-quote symbol))
+            iedit-initial-string-local regexp)
+      (iedit-start regexp beg end)
+      (evil-multiedit-state))))
