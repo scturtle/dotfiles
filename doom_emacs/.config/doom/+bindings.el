@@ -51,7 +51,6 @@
    :n "g a" #'projectile-find-other-file
    :n "g p" #'git-gutter:previous-hunk
    :n "g n" #'git-gutter:next-hunk
-   :n "g s" #'magit-status
 
    :n "e l" #'flycheck-list-errors
    :n "e p" #'previous-error

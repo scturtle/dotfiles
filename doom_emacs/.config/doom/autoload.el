@@ -32,7 +32,6 @@
 (defun my/symbol-highlight ()
   "Highlight current symbol. Restrict by evil visual region."
   (interactive)
-  (setq evil-multiedit--dont-recall t)
   (let ((beg (point-min)) (end (point-max)))
     (when (evil-visual-state-p)
       (setq beg evil-visual-beginning
@@ -40,6 +39,7 @@
       (evil-exit-visual-state))
     (setq symbol (or (thing-at-point 'symbol) (thing-at-point 'word)))
     (when symbol
+      (setq evil-multiedit--dont-recall t)
       (setq regexp (format "\\_<%s\\_>" (regexp-quote symbol))
             iedit-initial-string-local regexp)
       (iedit-start regexp beg end)

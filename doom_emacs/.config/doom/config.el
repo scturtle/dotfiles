@@ -7,11 +7,21 @@
   (setq evil-multiedit-follow-matches t))
 
 (after! cc-mode
-  (setq tab-width 4)
-  (setq c-basic-offset tab-width)
-  (c-set-offset 'substatement-open 0)
-  (c-set-offset 'innamespace 0)
-  (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode))
+  (c-add-style
+   "work"
+   '((tab-width . 4)
+     (c-basic-offset . 4)
+     (indent-tabs-mode . nil)
+     (c-offsets-alist
+      . ((innamespace . 0)
+         (substatement-open . 0)
+         (access-label . /)
+         (inline-open . 0)
+         ))))
+  (setq c-default-style "work")
+  (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
+  (map! :after cc-mode :mode c-mode-base "{" #'c-electric-brace)
+  )
 
 (after! company
   (setq company-idle-delay 0.5
