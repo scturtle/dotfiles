@@ -53,8 +53,8 @@
    :n "g n" #'git-gutter:next-hunk
 
    :n "e l" #'flycheck-list-errors
-   :n "e p" #'previous-error
-   :n "e n" #'next-error
+   :n "e p" #'flycheck-previous-error
+   :n "e n" #'flycheck-next-error
 
    :n "/ h" #'my/symbol-highlight
    )

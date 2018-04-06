@@ -29,7 +29,7 @@
         company-transformers nil))
 
 (def-package! company-lsp
-  :defer t
+  ;; :defer t ;; for snippetSupport
   :config
   (setq company-lsp-async t
         company-lsp-cache-candidates nil))
@@ -81,4 +81,22 @@
           git-gutter+-deleted-sign "-"
           git-gutter+-diff-option "-w"
           git-gutter+-hide-gutter t)
+    ))
+
+;; clipboard
+(setq x-select-enable-clipboard t)
+(when (eq 'gnu/linux system-type)
+  (if window-system
+      (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+    (progn ;; (when (getenv "DISPLAY")
+      (defun xsel-cut-function (text &optional push)
+        (with-temp-buffer
+          (insert text)
+          (call-process-region (point-min) (point-max) "xsel" nil 0 nil "-b" "-i")))
+      (defun xsel-paste-function()
+        (let ((xsel-output (shell-command-to-string "xsel -b -o")))
+          (unless (string= (car kill-ring) xsel-output)
+            xsel-output )))
+      (setq interprogram-cut-function 'xsel-cut-function)
+      (setq interprogram-paste-function 'xsel-paste-function))
     ))
