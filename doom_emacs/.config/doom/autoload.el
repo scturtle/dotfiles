@@ -4,7 +4,7 @@
 
 ;;;###autoload
 (defun my/switch-to-messages-buffer ()
-  "Stolen from syacemacs."
+  "Stolen from spacemacs."
   (interactive)
   (with-current-buffer (messages-buffer)
     (goto-char (point-max))
@@ -12,7 +12,7 @@
 
 ;;;###autoload
 (defun my/switch-to-alternate-buffer ()
-  "Stolen from syacemacs."
+  "Stolen from spacemacs."
   (interactive)
   (let ((current-buffer (window-buffer)))
     (switch-to-buffer
@@ -20,15 +20,14 @@
                  (mapcar #'car (window-prev-buffers))))))
 
 ;;;###autoload
-(defun my/symbol-highlight ()
+(defun my/symbol-highlight (beg end)
   "Highlight current symbol. Restrict by evil visual region."
-  (interactive)
-  (let ((beg (point-min)) (end (point-max)))
-    (when (evil-visual-state-p)
-      (setq beg evil-visual-beginning
-            end evil-visual-end)
-      (evil-exit-visual-state))
-    (setq symbol (or (thing-at-point 'symbol) (thing-at-point 'word)))
+  (interactive
+   (if (evil-visual-state-p)
+       (prog1 (list evil-visual-beginning evil-visual-end)
+         (evil-exit-visual-state))
+     (list (point-min) (point-max))))
+  (let ((symbol (or (thing-at-point 'symbol) (thing-at-point 'word))))
     (when symbol
       (setq evil-multiedit--dont-recall t)
       (setq regexp (format "\\_<%s\\_>" (regexp-quote symbol))

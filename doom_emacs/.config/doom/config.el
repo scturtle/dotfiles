@@ -20,7 +20,7 @@
          ))))
   (setq c-default-style "work")
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
-  (map! :after cc-mode :mode c-mode-base "{" #'c-electric-brace)
+  ;; (map! :after cc-mode :mode c-mode-base "{" #'c-electric-brace)
   )
 
 (after! company
