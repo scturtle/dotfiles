@@ -41,7 +41,6 @@
   :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-enable nil)
-  (lsp-ui-sideline--show-symbol nil) ;; FIXME
   :custom-face
   (lsp-ui-peek-filename ((t :foreground "#f1fa8c")))
   (lsp-ui-peek-highlight ((t :background "#bd93f9")))
@@ -59,14 +58,16 @@
   :config
   (require 'projectile)
   (add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
-  (set! :company-backend 'c-mode #'company-lsp)
-  (set! :company-backend 'c++-mode #'company-lsp))
+  (set! :lookup '(c-mode c++-mode)
+    :definition #'lsp-ui-peek-find-definitions
+    :references #'lsp-ui-peek-find-references)
+  (set! :company-backend '(c-mode c++-mode) #'company-lsp))
 
 (def-package! rainbow-mode
   :commands (rainbow-mode))
 
 (def-package! git-gutter+
-  :if (not window-system)
+  :if (not (display-graphic-p))
   :init
   (add-hook! 'magit-pre-refresh-hook #'git-gutter+-refresh)
   (run-with-idle-timer 1 nil #'global-git-gutter+-mode)

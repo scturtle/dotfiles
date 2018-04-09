@@ -72,4 +72,9 @@
    "k"   #'lsp-ui-peek--select-prev
    [tab] #'lsp-ui-peek--toggle-file
    )
+
+ (:after magit
+   :map magit-mode-map
+   doom-leader-key nil
+   )
  )
