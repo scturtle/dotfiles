@@ -43,9 +43,9 @@
    :n "b d" #'kill-this-buffer
    :n "w d" #'evil-quit
 
-   :n "f t" #'+neotree/find-this-file
+   :n "f t" #'+treemacs/toggle
 
-   :n "p t" #'+neotree/open
+   :n "p t" #'treemacs-find-file
    :n "p f" #'projectile-find-file
 
    :n "g a" #'projectile-find-other-file
@@ -75,6 +75,7 @@
 
  (:after magit
    :map magit-mode-map
+   :map magit-revision-mode-map
    doom-leader-key nil
    )
  )

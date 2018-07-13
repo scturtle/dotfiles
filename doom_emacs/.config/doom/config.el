@@ -1,7 +1,7 @@
 ;;;  -*- lexical-binding: t; -*-
 
-(load! +ui)
-(load! +bindings)
+(load! "+ui")
+(load! "+bindings")
 
 (after! evil-multiedit
   (setq evil-multiedit-follow-matches t))
@@ -28,14 +28,16 @@
         company-minimum-prefix-length 2
         company-transformers nil))
 
-(def-package! company-lsp
-  :custom (company-lsp-cache-candidates nil))
-
 (def-package! clang-format
   :commands (clang-format-region clang-format-buffer))
 
 (def-package! lsp-mode
-  :defer t)
+  ;:defer t
+  )
+
+(def-package! company-lsp
+  :after lsp-mode
+  :custom (company-lsp-cache-candidates nil))
 
 (def-package! lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -46,36 +48,37 @@
   (lsp-ui-peek-highlight ((t :background "#bd93f9")))
   (lsp-face-highlight-textual ((t :background "#565761"))))
 
-(def-package! cquery
-  :load-path "~/code/repos/emacs-cquery"
-  :hook ((c-mode-common . lsp-cquery-enable)
+(def-package! ccls
+  :load-path "~/code/repos/emacs-ccls"
+  :hook ((c-mode-common . lsp-ccls-enable)
          (c-mode-common . flycheck-mode))
   :custom
-  (cquery-extra-args (list "--log-file" "cquery.log"))
-  (cquery-extra-init-params '(:cacheFormat "msgpack"))
-  (cquery-project-root-matchers '("compile_commands.json" ".cquery"))
-  (cquery-sem-highlight-method 'overlay)
+  (ccls-extra-args (list "--log-file" "ccls.log"))
+  ;(ccls-extra-init-params '(:cacheFormat "json"))
+  (ccls-project-root-matchers '("compile_commands.json" ".ccls_cache" ".ccls"))
+  (ccls-sem-highlight-method 'overlay)
   :config
   (require 'projectile)
-  (add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
-  (set! :lookup '(c-mode c++-mode)
+  (add-to-list 'projectile-globally-ignored-directories ".ccls_cache")
+  (set-lookup-handler! '(c-mode c++-mode)
     :definition #'lsp-ui-peek-find-definitions
     :references #'lsp-ui-peek-find-references)
-  (set! :company-backend '(c-mode c++-mode) #'company-lsp))
+  (set-company-backend! '(c-mode c++-mode) #'company-lsp))
 
 (def-package! rainbow-mode
   :commands (rainbow-mode))
 
 (def-package! git-gutter+
-  :if (not (display-graphic-p))
-  :init
-  (add-hook! 'magit-pre-refresh-hook #'git-gutter+-refresh)
-  (run-with-idle-timer 1 nil #'global-git-gutter+-mode)
-  (setq git-gutter+-modified-sign "="
-        git-gutter+-added-sign "+"
-        git-gutter+-deleted-sign "-"
-        git-gutter+-diff-option "-w"
-        git-gutter+-hide-gutter t))
+  :custom
+  (git-gutter+-modified-sign "=")
+  (git-gutter+-added-sign "+")
+  (git-gutter+-deleted-sign "-")
+  (git-gutter+-diff-option "-w")
+  (git-gutter+-hide-gutter t)
+  :config
+  (unless (display-graphic-p)
+    (add-hook! 'magit-pre-refresh-hook #'git-gutter+-refresh)
+    (run-with-idle-timer 1 nil #'global-git-gutter+-mode)))
 
 ;; clipboard
 (setq x-select-enable-clipboard t)
