@@ -60,7 +60,7 @@
   :config
   (require 'projectile)
   (add-to-list 'projectile-globally-ignored-directories ".ccls_cache")
-  (set-lookup-handler! '(c-mode c++-mode)
+  (set-lookup-handlers! '(c-mode c++-mode)
     :definition #'lsp-ui-peek-find-definitions
     :references #'lsp-ui-peek-find-references)
   (set-company-backend! '(c-mode c++-mode) #'company-lsp))

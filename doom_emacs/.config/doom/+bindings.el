@@ -73,6 +73,13 @@
    [tab] #'lsp-ui-peek--toggle-file
    )
 
+ (:after lsp-ui
+   :map lsp-ui-imenu-mode-map
+   :n "l" #'lsp-ui-imenu--view
+   :n "o" #'lsp-ui-imenu--view
+   :n "RET" #'lsp-ui-imenu--visit
+   )
+
  (:after magit
    :map magit-mode-map
    :map magit-revision-mode-map

@@ -22,7 +22,7 @@ main = do
     , focusedBorderColor = "#0077bb"
     , normalBorderColor = "#49483e"
     , borderWidth = 2
-    -- , terminal = "urxvt"
+    , terminal = "st"
     }
     `additionalKeys`
     [
