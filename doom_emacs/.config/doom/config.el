@@ -80,6 +80,8 @@
     (add-hook! 'magit-pre-refresh-hook #'git-gutter+-refresh)
     (run-with-idle-timer 1 nil #'global-git-gutter+-mode)))
 
+(def-package! centered-cursor-mode)
+
 ;; clipboard
 (setq x-select-enable-clipboard t)
 (when (eq 'gnu/linux system-type)

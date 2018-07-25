@@ -8,3 +8,4 @@
 (package! clang-format)
 (package! rainbow-mode)
 (package! git-gutter+)
+(package! centered-cursor-mode)
