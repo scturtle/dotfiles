@@ -14,8 +14,10 @@ main = do
     , handleEventHook = handleEventHook def <+> docksEventHook
     , logHook = dynamicLogWithPP xmobarPP
                   { ppOutput = hPutStrLn xmproc
-                  , ppTitle = xmobarColor "#cccccc" "" . shorten 80
-                  , ppCurrent = xmobarColor "#e6db74" "" . wrap "[" "]"
+                  , ppTitle = xmobarColor "#bfbfbf" "" . shorten 80
+                  , ppCurrent = xmobarColor "#f1fa8c" "" . wrap "[" "]"
+                  , ppWsSep = "  "
+                  , ppSep = "  -  "
                   }
     , modMask = mod4Mask
     , workspaces = ["term", "web", "fm"] ++ map show [4..9]

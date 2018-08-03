@@ -31,6 +31,7 @@
        evil-goggles      ; display visual hints when editing in evil
       ;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
+      ;modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
       ;neotree           ; a project drawer, like NERDTree for vim
        treemacs          ; a project drawer, like neotree but cooler
@@ -53,6 +54,7 @@
        ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
        eshell            ; a consistent, cross-platform shell (WIP)
+       hideshow          ; basic code-folding support
        imenu             ; an imenu sidebar and searchable code index
       ;term              ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
@@ -75,11 +77,11 @@
        :lang
       ;assembly          ; assembly for fun or debugging
        cc                ; C/C++/Obj-C madness
+      ;clojure           ; java with a lisp
       ;common-lisp       ; if you've seen one lisp, you've seen them all
       ;crystal           ; ruby at the speed of c
-      ;clojure           ; java with a lisp
       ;csharp            ; unity, .NET, and mono shenanigans
-       data              ; config/data formats
+      ;data              ; config/data formats
       ;erlang            ; an elegant language for a more civilized age
       ;elixir            ; erlang done right
       ;elm               ; care for a cup of TEA?
@@ -110,11 +112,12 @@
       ;purescript        ; javascript, but functional
        python            ; beautiful is better than ugly
       ;qt                ; the 'cutest' gui framework ever
+      ;racket            ; a DSL for DSLs
       ;rest              ; Emacs as a REST client
       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
       ;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
       ;scala             ; java, but good
-      ;sh                ; she sells (ba|z)sh shells on the C xor
+       (sh +fish)        ; she sells (ba|z)sh shells on the C xor
       ;solidity          ; do you need a blockchain? No.
       ;swift             ; who asked for emoji variables?
       ;web               ; the tubes

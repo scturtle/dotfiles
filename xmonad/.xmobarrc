@@ -1,15 +1,16 @@
 Config {
-	 font = "xft:Ubuntu Mono:pixelsize=18:Bold"
+	 font = "xft:Vera Sans:pixelsize=16"
        , bgColor = "black"
        , fgColor = "grey"
        , position = Top
-       , commands = [ Run Cpu [] 10
-                    , Run DiskU [("/", "disk: <usedp>%")] [] 20
+       , commands = [ Run Cpu ["-t", "cpu: <vbar> "] 10 -- <total>%
+                    , Run Memory ["-t","mem: <usedvbar>"] 10 -- <usedratio>%
+                    , Run DiskU [("/", "disk: <usedvbar>")] [] 60 -- <usedp>%
                     , Run DynNetwork ["--template", "<tx>kB/s <rx>kB/s"] 10
                     , Run Date "%a %m/%d %X" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{ %cpu% | %disku% | %dynnetwork% | %date% "
+       , template = " %StdinReader% }{ %cpu%  |  %memory%  |  %disku%  |  %dynnetwork%  |  %date% "
        }

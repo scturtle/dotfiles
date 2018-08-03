@@ -33,6 +33,8 @@
 
 (def-package! lsp-mode
   ;:defer t
+  :custom-face
+  (lsp-face-highlight-textual ((t :background "#565761")))
   )
 
 (def-package! company-lsp
@@ -43,10 +45,11 @@
   :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-enable nil)
+  (lsp-ui-peek-fontify 'always) ; FIXME
   :custom-face
   (lsp-ui-peek-filename ((t :foreground "#f1fa8c")))
   (lsp-ui-peek-highlight ((t :background "#bd93f9")))
-  (lsp-face-highlight-textual ((t :background "#565761"))))
+  )
 
 (def-package! ccls
   :load-path "~/code/repos/emacs-ccls"
