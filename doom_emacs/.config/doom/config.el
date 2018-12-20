@@ -32,7 +32,8 @@
   :commands (clang-format-region clang-format-buffer))
 
 (def-package! lsp-mode
-  ;:defer t
+  :config (require 'lsp-clients)
+  :custom (lsp-prefer-flymake nil)
   :custom-face
   (lsp-face-highlight-textual ((t :background "#565761")))
   )
@@ -54,13 +55,11 @@
 
 (def-package! ccls
   :load-path "~/code/repos/emacs-ccls"
-  :hook ((c-mode-common . lsp-ccls-enable)
-         (c-mode-common . flycheck-mode))
+  :hook ((c-mode-common . (lambda () (require 'ccls) (lsp))))
   :custom
-  (ccls-extra-args (list "--log-file" "ccls.log"))
-  (ccls-extra-init-params '(:cacheFormat "binary"
-			    :index (:blacklist (".*boost.*"))
-			    ))
+  (ccls-initialization-options '(:extraArgs ["--log-file" "ccls.log"]
+                                 :index (:blacklist (".*boost.*"))
+			                     ))
   (ccls-sem-highlight-method 'overlay)
   :config
   (require 'projectile)
