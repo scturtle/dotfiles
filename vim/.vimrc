@@ -45,7 +45,7 @@ syntax on
 set showmatch " show matching bracket
 set hidden "switching buffers without saving
 set showcmd " display incomplete commands
-set clipboard=unnamed " use system clipboard
+set clipboard=unnamedplus " use system clipboard
 set backspace=indent,eol,start " backspacing in insert mode
 set cursorline " highlight current line
 set scrolloff=6

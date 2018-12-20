@@ -45,6 +45,7 @@
   :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-enable nil)
+  (lsp-ui-sideline-enable nil)
   (lsp-ui-peek-fontify 'always) ; FIXME
   :custom-face
   (lsp-ui-peek-filename ((t :foreground "#f1fa8c")))
@@ -57,12 +58,13 @@
          (c-mode-common . flycheck-mode))
   :custom
   (ccls-extra-args (list "--log-file" "ccls.log"))
-  ;(ccls-extra-init-params '(:cacheFormat "json"))
-  (ccls-project-root-matchers '("compile_commands.json" ".ccls_cache" ".ccls"))
+  (ccls-extra-init-params '(:cacheFormat "binary"
+			    :index (:blacklist (".*boost.*"))
+			    ))
   (ccls-sem-highlight-method 'overlay)
   :config
   (require 'projectile)
-  (add-to-list 'projectile-globally-ignored-directories ".ccls_cache")
+  (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
   (set-lookup-handlers! '(c-mode c++-mode)
     :definition #'lsp-ui-peek-find-definitions
     :references #'lsp-ui-peek-find-references)

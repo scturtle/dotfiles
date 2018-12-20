@@ -8,7 +8,7 @@ import System.IO
 main = do
   xmproc <- spawnPipe "xmobar"
 
-  xmonad $ defaultConfig
+  xmonad $ def
     { manageHook = manageDocks <+> manageHook def
     , layoutHook = avoidStruts  $  layoutHook def
     , handleEventHook = handleEventHook def <+> docksEventHook

@@ -1,6 +1,6 @@
 ;; -*- no-byte-compile: t; -*-
 
-(disable-packages! '(evil-matchit))
+(disable-packages! company-prescient evil-matchit)
 (package! lsp-mode)
 (package! lsp-ui)
 (package! company-lsp)
