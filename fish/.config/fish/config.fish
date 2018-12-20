@@ -1,6 +1,9 @@
 # vim: set ft=sh :
 set fish_greeting
 
+set -x LC_ALL en_US.UTF-8
+set -x LANG en_US.UTF-8
+
 #set PATH /usr/local/texlive/2016basic/bin/universal-darwin $PATH
 set PATH /Library/Developer/CommandLineTools/usr/bin $PATH
 set PATH ~/miniconda3/bin $PATH

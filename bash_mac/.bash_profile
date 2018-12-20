@@ -23,3 +23,6 @@ export CARGO_HOME=~/.cargo
 export PATH=~/go/bin:$PATH
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
