@@ -20,8 +20,9 @@
          ))))
   (setq c-default-style "work")
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
-  ;; (map! :after cc-mode :mode c-mode-base "{" #'c-electric-brace)
   )
+
+(after! rust-mode (add-hook 'rust-mode-hook #'lsp))
 
 (after! company
   (setq company-idle-delay 0.5
@@ -51,6 +52,10 @@
   :custom-face
   (lsp-ui-peek-filename ((t :foreground "#f1fa8c")))
   (lsp-ui-peek-highlight ((t :background "#bd93f9")))
+  :config
+  (set-lookup-handlers! '(c-mode c++-mode rust-mode)
+     :definition #'lsp-ui-peek-find-definitions
+     :references #'lsp-ui-peek-find-references)
   )
 
 (def-package! ccls
@@ -58,16 +63,12 @@
   :hook ((c-mode-common . (lambda () (require 'ccls) (lsp))))
   :custom
   (ccls-initialization-options '(:extraArgs ["--log-file" "ccls.log"]
-                                 :index (:blacklist (".*boost.*"))
-			                     ))
+                                 :index (:blacklist (".*boost.*"))))
   (ccls-sem-highlight-method 'overlay)
   :config
   (require 'projectile)
   (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
-  (set-lookup-handlers! '(c-mode c++-mode)
-    :definition #'lsp-ui-peek-find-definitions
-    :references #'lsp-ui-peek-find-references)
-  (set-company-backend! '(c-mode c++-mode) #'company-lsp))
+  )
 
 (def-package! rainbow-mode
   :commands (rainbow-mode))
