@@ -22,7 +22,12 @@
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
   )
 
-(after! rust-mode (add-hook 'rust-mode-hook #'lsp))
+(after! rust-mode
+  (add-hook 'rust-mode-hook #'lsp)
+  (set-lookup-handlers! 'rust-mode
+     :definition #'lsp-ui-peek-find-definitions
+     :references #'lsp-ui-peek-find-references)
+  )
 
 (after! company
   (setq company-idle-delay 0.5
@@ -40,8 +45,8 @@
   )
 
 (def-package! company-lsp
-  :after lsp-mode
-  :custom (company-lsp-cache-candidates nil))
+  :custom (company-lsp-cache-candidates nil)
+  :config (set-company-backend! '(c-mode c++-mode rust-mode) #'company-lsp))
 
 (def-package! lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -53,7 +58,7 @@
   (lsp-ui-peek-filename ((t :foreground "#f1fa8c")))
   (lsp-ui-peek-highlight ((t :background "#bd93f9")))
   :config
-  (set-lookup-handlers! '(c-mode c++-mode rust-mode)
+  (set-lookup-handlers! '(c-mode c++-mode)
      :definition #'lsp-ui-peek-find-definitions
      :references #'lsp-ui-peek-find-references)
   )

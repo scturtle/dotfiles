@@ -1,6 +1,9 @@
 ;; -*- no-byte-compile: t; -*-
 
-(disable-packages! company-prescient evil-matchit)
+(package! company-prescient :disable t)
+(package! evil-matchit :disable t)
+(package! flycheck-popup-tip :disable t)
+
 (package! lsp-mode)
 (package! lsp-ui)
 (package! company-lsp)
@@ -9,3 +12,4 @@
 (package! rainbow-mode)
 (package! git-gutter+)
 (package! centered-cursor-mode)
+(package! rust-mode)
