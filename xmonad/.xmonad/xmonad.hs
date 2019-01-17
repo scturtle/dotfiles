@@ -24,9 +24,10 @@ main = do
     , focusedBorderColor = "#0077bb"
     , normalBorderColor = "#49483e"
     , borderWidth = 2
-    , terminal = "st"
+    , terminal = "alacritty"
     }
     `additionalKeys`
     [
-      ((mod4Mask, xK_p), spawn "dmenu_run -fn -*-fixed-*-*-*-*-18-*-*-*-*-*-*-*")
+      ((mod4Mask, xK_p), spawn "dmenu_run -fn -*-fixed-*-*-*-*-18-*-*-*-*-*-*-*"),
+      ((mod4Mask, xK_l), spawn "slock")
     ]

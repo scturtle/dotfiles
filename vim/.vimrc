@@ -20,7 +20,7 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'andviro/flake8-vim'
 
 " for haskell
-Plugin 'dag/vim2hs'
+"Plugin 'dag/vim2hs'
 "Plugin 'eagletmt/neco-ghc'
 "Plugin 'eagletmt/ghcmod-vim'
 "Plugin 'Shougo/vimproc.vim'
@@ -101,10 +101,6 @@ if has("multi_byte")
   "set encoding=utf-8
   set termencoding=utf-8
   set fileencodings=utf-8,chinese,latin-1
-endif
-
-if has('mouse')
-    set mouse=a
 endif
 
 "set background=dark

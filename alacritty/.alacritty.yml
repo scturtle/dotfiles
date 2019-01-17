@@ -1,0 +1,39 @@
+font:
+  normal:
+    family: Source Code Pro
+    style: Medium
+  bold:
+    family: Source Code Pro
+  italic:
+    family: Source Code Pro
+  size: 13
+
+colors:
+  primary:
+    background: '0x282a36'
+    foreground: '0xf8f8f2'
+  normal:
+    black:   '0x000000'
+    red:     '0xFF5555'
+    green:   '0x50FA7B'
+    yellow:  '0xF1FA8C'
+    blue:    '0xBD93F9'
+    magenta: '0xFF79C6'
+    cyan:    '0x8BE9FD'
+    white:   '0xBFBFBF'
+  bright:
+    black:   '0x44475a'
+    red:     '0xff5555'
+    green:   '0x50fa7b'
+    yellow:  '0xf1fa8c'
+    blue:    '0xbd93f9'
+    magenta: '0xff79c6'
+    cyan:    '0x8be9fd'
+    white:   '0xffffff'
+
+scrolling:
+  history: 0
+
+key_bindings:
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy  }

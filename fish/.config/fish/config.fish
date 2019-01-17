@@ -4,7 +4,6 @@ set fish_greeting
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 
-#set PATH /usr/local/texlive/2016basic/bin/universal-darwin $PATH
 set PATH /Library/Developer/CommandLineTools/usr/bin $PATH
 set PATH ~/miniconda3/bin $PATH
 set PATH ~/.cargo/bin $PATH
@@ -13,7 +12,6 @@ set PATH ~/.local/bin $PATH
 set PATH . $PATH
 
 # rust
-set -x RUST_SRC_PATH ~/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src
 set -x CARGO_HOME ~/.cargo
 
 alias rm trash

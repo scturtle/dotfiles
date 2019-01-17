@@ -1,5 +1,5 @@
-bind j scrollline 3
-bind k scrollline -3
+bind j scrollline 2
+bind k scrollline -2
 bind n findnext 1
 bind N findnext -1
 bind <c-p> tabprev

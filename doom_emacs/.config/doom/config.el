@@ -67,8 +67,8 @@
   :load-path "~/code/repos/emacs-ccls"
   :hook ((c-mode-common . (lambda () (require 'ccls) (lsp))))
   :custom
-  (ccls-initialization-options '(:extraArgs ["--log-file" "ccls.log"]
-                                 :index (:blacklist (".*boost.*"))))
+  ccls-args '("--log-file=/tmp/ccls.log")
+  (ccls-initialization-options '(:index (:blacklist (".*boost.*"))))
   (ccls-sem-highlight-method 'overlay)
   :config
   (require 'projectile)
