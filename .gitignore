@@ -1,2 +1,7 @@
 /spacemacs/.emacs.d/private/lsp-cquery/local
 fish/.config/fish/fishd.*
+/fish/.config/fish/fish_variables
+/xmonad/.xmonad/xmonad-x86_64-linux
+/xmonad/.xmonad/xmonad.errors
+/xmonad/.xmonad/xmonad.hi
+/xmonad/.xmonad/xmonad.o
