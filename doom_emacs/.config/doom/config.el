@@ -67,8 +67,8 @@
   :load-path "~/code/repos/emacs-ccls"
   :hook ((c-mode-common . (lambda () (require 'ccls) (lsp))))
   :custom
-  ccls-args '("--log-file=/tmp/ccls.log")
   (ccls-initialization-options '(:index (:blacklist (".*boost.*"))))
+  (ccls-args '("--log-file=/tmp/ccls.log"))
   (ccls-sem-highlight-method 'overlay)
   :config
   (require 'projectile)
@@ -91,6 +91,11 @@
     (run-with-idle-timer 1 nil #'global-git-gutter+-mode)))
 
 (def-package! centered-cursor-mode)
+
+(def-package! golden-ratio
+  :custom
+  (golden-ratio-extra-commands '(evil-window-left evil-window-right evil-window-up
+                                 evil-window-down evil-window-next evil-window-prev)))
 
 ;; clipboard
 (setq x-select-enable-clipboard t)

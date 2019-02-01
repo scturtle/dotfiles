@@ -13,3 +13,4 @@
 (package! git-gutter+)
 (package! centered-cursor-mode)
 (package! rust-mode)
+(package! golden-ratio)
