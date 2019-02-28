@@ -31,15 +31,13 @@
 
 (after! company
   (setq company-idle-delay 0.5
-        company-minimum-prefix-length 2
-        company-transformers nil))
+        company-minimum-prefix-length 2))
 
 (def-package! clang-format
   :commands (clang-format-region clang-format-buffer))
 
 (def-package! lsp-mode
   :config (require 'lsp-clients)
-  :custom (lsp-prefer-flymake nil)
   :custom-face
   (lsp-face-highlight-textual ((t :background "#565761")))
   )
@@ -49,7 +47,6 @@
   :config (set-company-backend! '(c-mode c++-mode rust-mode) #'company-lsp))
 
 (def-package! lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-enable nil)
   (lsp-ui-sideline-enable nil)
@@ -65,14 +62,21 @@
 
 (def-package! ccls
   :load-path "~/code/repos/emacs-ccls"
-  :hook ((c-mode-common . (lambda () (require 'ccls) (lsp))))
+  :hook ((c-mode c++-mode) . +lsp|init-ccls)
   :custom
   (ccls-initialization-options '(:index (:blacklist (".*boost.*"))))
   (ccls-args '("--log-file=/tmp/ccls.log"))
   (ccls-sem-highlight-method 'overlay)
   :config
-  (require 'projectile)
-  (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
+  (defun +lsp|init-ccls ()
+    (setq-local company-transformers nil)
+    (setq-local company-lsp-async t)
+    (setq-local company-lsp-cache-candidates nil)
+    (lsp))
+  (after! projectile
+    (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
+    (add-to-list 'projectile-project-root-files-bottom-up ".ccls-root")
+    (add-to-list 'projectile-project-root-files-top-down-recurring "compile_commands.json"))
   )
 
 (def-package! rainbow-mode

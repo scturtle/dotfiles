@@ -3,10 +3,9 @@
 (package! company-prescient :disable t)
 (package! evil-matchit :disable t)
 (package! flycheck-popup-tip :disable t)
+(package! irony :disable t)
+(package! rtags :disable t)
 
-(package! lsp-mode)
-(package! lsp-ui)
-(package! company-lsp)
 (package! ccls :ignore t)
 (package! clang-format)
 (package! rainbow-mode)
