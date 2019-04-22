@@ -45,7 +45,11 @@ syntax on
 set showmatch " show matching bracket
 set hidden "switching buffers without saving
 set showcmd " display incomplete commands
-set clipboard=unnamedplus " use system clipboard
+if has("macunix")
+  set clipboard=unnamed " use system clipboard
+else
+  set clipboard=unnamedplus " use system clipboard
+endif
 set backspace=indent,eol,start " backspacing in insert mode
 set cursorline " highlight current line
 set scrolloff=6

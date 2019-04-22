@@ -22,12 +22,9 @@
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
   )
 
-(after! rust-mode
-  (add-hook 'rust-mode-hook #'lsp)
-  (set-lookup-handlers! 'rust-mode
-     :definition #'lsp-ui-peek-find-definitions
-     :references #'lsp-ui-peek-find-references)
-  )
+(def-package! rustic
+  :load-path "~/code/repos/rustic"
+  :custom (rustic-lsp-server 'rust-analyzer))
 
 (after! company
   (setq company-idle-delay 0.5
@@ -51,6 +48,7 @@
   (lsp-ui-doc-enable nil)
   (lsp-ui-sideline-enable nil)
   (lsp-ui-peek-fontify 'always) ; FIXME
+  ;; (lsp-ui-flycheck-live-reporting nil)
   :custom-face
   (lsp-ui-peek-filename ((t :foreground "#f1fa8c")))
   (lsp-ui-peek-highlight ((t :background "#bd93f9")))
@@ -81,18 +79,6 @@
 
 (def-package! rainbow-mode
   :commands (rainbow-mode))
-
-(def-package! git-gutter+
-  :custom
-  (git-gutter+-modified-sign "=")
-  (git-gutter+-added-sign "+")
-  (git-gutter+-deleted-sign "-")
-  (git-gutter+-diff-option "-w")
-  (git-gutter+-hide-gutter t)
-  :config
-  (unless (display-graphic-p)
-    (add-hook! 'magit-pre-refresh-hook #'git-gutter+-refresh)
-    (run-with-idle-timer 1 nil #'global-git-gutter+-mode)))
 
 (def-package! centered-cursor-mode)
 
