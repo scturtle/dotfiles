@@ -1,7 +1,5 @@
 ;;; -*- lexical-binding: t; -*-
 
-(setq doom-localleader-key ",")
-
 (map! ;; mimic emacs
  :ie "C-b" #'backward-char
  :ie "C-f" #'forward-char
@@ -30,6 +28,7 @@
 
 (map!
  :gnvime "M-:" #'eval-expression
+ :m "," nil ;; unbind localleader
 
  (:leader
    :n "SPC" #'execute-extended-command

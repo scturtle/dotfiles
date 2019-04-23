@@ -115,10 +115,11 @@ endif
 set termguicolors
 color dracula
 
-" for osx
-set go=aAce
-if has("gui_running")
-    set transparency=2
+if has("macunix")
+  set go=aAce
+  if has("gui_running")
+      set transparency=2
+  endif
 endif
 
 set guifont=Source\ Code\ Pro:h16

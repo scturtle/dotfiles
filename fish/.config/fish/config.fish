@@ -14,7 +14,7 @@ set PATH . $PATH
 # rust
 #set -x RUSTUP_DIST_SERVER https://mirrors.ustc.edu.cn/rust-static
 set -x RUSTUP_DIST_SERVER https://mirrors.tuna.tsinghua.edu.cn/rustup
-set -x CARGO_HOME ~/.cargo
+#set -x CARGO_HOME ~/.cargo
 
 alias rm trash
 alias rrm /bin/rm

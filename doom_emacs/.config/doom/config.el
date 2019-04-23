@@ -34,6 +34,7 @@
   :commands (clang-format-region clang-format-buffer))
 
 (def-package! lsp-mode
+  :load-path "~/code/repos/lsp-mode"
   :config (require 'lsp-clients)
   :custom-face
   (lsp-face-highlight-textual ((t :background "#565761")))
