@@ -6,6 +6,8 @@
 (package! irony :disable t)
 (package! rtags :disable t)
 (package! rust-mode :disable t)
+(package! anaconda-mode :disable t)
+(package! company-anaconda :disable t)
 
 (package! ccls :ignore t)
 (package! clang-format)

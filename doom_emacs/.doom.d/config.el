@@ -1,7 +1,7 @@
 ;;;  -*- lexical-binding: t; -*-
 
-(load! "+ui")
-(load! "+bindings")
+(load! "ui")
+(load! "bindings")
 
 (after! evil-multiedit
   (setq evil-multiedit-follow-matches t))
@@ -24,7 +24,14 @@
 
 (def-package! rustic
   :load-path "~/code/repos/rustic"
-  :custom (rustic-lsp-server 'rust-analyzer))
+  :custom (rustic-lsp-server 'rust-analyzer)
+  :config (setq lsp-eldoc-prefer-signature-help nil)
+  )
+
+(after! web-mode
+  (setq web-mode-code-indent-offset 2
+        web-mode-css-indent-offset 2
+        web-mode-markup-indent-offset 2))
 
 (after! company
   (setq company-idle-delay 0.5
@@ -63,8 +70,9 @@
   :load-path "~/code/repos/emacs-ccls"
   :hook ((c-mode c++-mode) . +lsp|init-ccls)
   :custom
-  (ccls-initialization-options '(:index (:blacklist (".*boost.*"))))
   (ccls-args '("--log-file=/tmp/ccls.log"))
+  ;(ccls-initialization-options '(:index (:blacklist (".*boost.*")))
+  (ccls-initialization-options '(:clang (:excludeArgs ["-fopenmp" "-no-canonical-prefixes" "-fno-canonical-system-headers" "-mmxu2" "-mips32r2"])))
   (ccls-sem-highlight-method 'overlay)
   :config
   (defun +lsp|init-ccls ()
