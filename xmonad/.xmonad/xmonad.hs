@@ -28,6 +28,7 @@ main = do
     }
     `additionalKeys`
     [
-      ((mod4Mask, xK_p), spawn "dmenu_run -fn -*-fixed-*-*-*-*-18-*-*-*-*-*-*-*"),
+      ((mod4Mask, xK_p), spawn "rofi -show run"),
+      ((mod4Mask, xK_s), spawn "gnome-screenshot -a -i"),
       ((mod4Mask .|. shiftMask, xK_l), spawn "slock")
     ]

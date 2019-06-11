@@ -22,11 +22,11 @@
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
   )
 
-(def-package! rustic
-  :load-path "~/code/repos/rustic"
-  :custom (rustic-lsp-server 'rust-analyzer)
-  :config (setq lsp-eldoc-prefer-signature-help nil)
-  )
+;; (def-package! rustic
+;;   :load-path "~/code/repos/rustic"
+;;   :custom (rustic-lsp-server 'rust-analyzer)
+;;   :config (setq lsp-eldoc-prefer-signature-help nil)
+;;   )
 
 (after! web-mode
   (setq web-mode-code-indent-offset 2
@@ -41,8 +41,9 @@
   :commands (clang-format-region clang-format-buffer))
 
 (def-package! lsp-mode
-  :load-path "~/code/repos/lsp-mode"
+  ;; :load-path "~/code/repos/lsp-mode"
   :config (require 'lsp-clients)
+  :hook ((rust-mode python-mode) . lsp)
   :custom-face
   (lsp-face-highlight-textual ((t :background "#565761")))
   )
