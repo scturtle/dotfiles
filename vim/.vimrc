@@ -3,41 +3,21 @@ set shell=/bin/bash " avoid problem in fish
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'The-NERD-Commenter'
-Plugin 'nanotech/jellybeans.vim'
-"Plugin 'scrooloose/syntastic'
-Plugin 'farmergreg/vim-lastplace'
-Plugin 'dracula/vim'
-Plugin 'vim-scripts/DoxyGen-Syntax' " for megvii
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdcommenter'
+Plug 'nanotech/jellybeans.vim'
+Plug 'farmergreg/vim-lastplace'
+Plug 'dracula/vim'
+Plug 'vim-scripts/DoxyGen-Syntax' " for megvii
 
 " for python
-Plugin 'davidhalter/jedi-vim'
-Plugin 'andviro/flake8-vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'andviro/flake8-vim'
 
-" for haskell
-"Plugin 'dag/vim2hs'
-"Plugin 'eagletmt/neco-ghc'
-"Plugin 'eagletmt/ghcmod-vim'
-"Plugin 'Shougo/vimproc.vim'
-
-" unused
-"Plugin 'SuperTab--Van-Dewoestine'
-"Plugin 'Align'
-" EasyMotion trigger:<leader><leader>[fFwb]
-"Plugin 'EasyMotion'
-" :NERDTree " q to quit
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'sjl/gundo.vim'
-"Plugin 'travitch/hasksyn'
-"Plugin 'nbouscal/vim-stylish-haskell'
-
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on
 syntax on
