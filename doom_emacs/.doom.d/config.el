@@ -50,7 +50,7 @@
 
 (def-package! company-lsp
   :custom (company-lsp-cache-candidates nil)
-  :config (set-company-backend! '(c-mode c++-mode rust-mode) #'company-lsp))
+  :config (set-company-backend! '(c-mode c++-mode rust-mode python-mode) #'company-lsp))
 
 (def-package! lsp-ui
   :custom
@@ -73,7 +73,8 @@
   :custom
   (ccls-args '("--log-file=/tmp/ccls.log"))
   ;(ccls-initialization-options '(:index (:blacklist (".*boost.*")))
-  (ccls-initialization-options '(:clang (:excludeArgs ["-fopenmp" "-no-canonical-prefixes" "-fno-canonical-system-headers" "-mmxu2" "-mips32r2"])))
+  (ccls-initialization-options '(:clang (:excludeArgs ["-fopenmp" "-no-canonical-prefixes" "-fno-canonical-system-headers" "-mmxu2" "-mips32r2"
+                                                       "--sysroot=external/toolchain_v3_tk1_gcc5_archive"])))
   (ccls-sem-highlight-method 'overlay)
   :config
   (defun +lsp|init-ccls ()

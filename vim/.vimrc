@@ -14,6 +14,7 @@ Plugin 'nanotech/jellybeans.vim'
 "Plugin 'scrooloose/syntastic'
 Plugin 'farmergreg/vim-lastplace'
 Plugin 'dracula/vim'
+Plugin 'vim-scripts/DoxyGen-Syntax' " for megvii
 
 " for python
 Plugin 'davidhalter/jedi-vim'
@@ -56,6 +57,7 @@ set scrolloff=6
 set novisualbell
 set autoread " reload files when changed on disk
 set wildmenu " GREAT autocomplete menu
+set nomodeline " for megvii
 
 " for search
 set ignorecase " case-insensitive search
