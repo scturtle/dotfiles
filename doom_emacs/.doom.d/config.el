@@ -22,6 +22,9 @@
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
   )
 
+(after! magit
+  (setq magit-diff-refine-hunk nil))
+
 ;; (def-package! rustic
 ;;   :load-path "~/code/repos/rustic"
 ;;   :custom (rustic-lsp-server 'rust-analyzer)
