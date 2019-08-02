@@ -14,8 +14,8 @@ Plug 'dracula/vim'
 Plug 'vim-scripts/DoxyGen-Syntax' " for megvii
 
 " for python
-Plug 'davidhalter/jedi-vim'
-Plug 'andviro/flake8-vim'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'andviro/flake8-vim'
 
 call plug#end()
 

@@ -1,16 +1,14 @@
 Config {
-	 font = "xft:Vera Sans:pixelsize=16"
-       , bgColor = "black"
-       , fgColor = "grey"
-       , position = Top
-       , commands = [ Run Cpu ["-t", "cpu: <vbar> "] 10 -- <total>%
-                    , Run Memory ["-t","mem: <usedvbar>"] 10 -- <usedratio>%
-                    , Run DiskU [("/", "disk: <usedvbar>")] [] 60 -- <usedp>%
-                    , Run DynNetwork ["--template", "<tx>kB/s <rx>kB/s"] 10
-                    , Run Date "%a %m/%d %X" "date" 10
+         font = "xft:WenQuanYi Micro Hei Mono:pixelsize=16"
+       , bgColor = "#222"
+       , fgColor = "#dfdfdf"
+       , commands = [ Run Cpu ["-t", "cpu <vbar> <total>%", "-p", "3"] 10
+                    , Run Memory ["-t","mem <usedvbar> <usedratio>%", "-p", "2"] 10
+                    , Run DiskU [("/", "/ <usedp>%")] ["-p", "2"] 100
+                    , Run DynNetwork ["-t", "⇧<tx> ⇩<rx>", "-w", "4"] 10
+                    , Run Date "%a %m-%d %X" "date" 10
+		    , Run Com "checkmail" [] "" 600
                     , Run StdinReader
                     ]
-       , sepChar = "%"
-       , alignSep = "}{"
-       , template = " %StdinReader% }{ %cpu%  |  %memory%  |  %disku%  |  %dynnetwork%  |  %date% "
+       , template = "%StdinReader% }{ %checkmail% | %dynnetwork% | %cpu% | %memory% | %disku% | %date%"
        }
