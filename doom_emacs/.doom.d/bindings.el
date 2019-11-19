@@ -33,29 +33,29 @@
  (:leader
    :n "SPC" #'execute-extended-command
    :n ":"   #'eval-expression
-   :n [tab] #'my/switch-to-alternate-buffer
-   :n "TAB" #'my/switch-to-alternate-buffer
+   :n [tab] #'evil-switch-to-windows-last-buffer  ;; spc `
+   :n "TAB" #'evil-switch-to-windows-last-buffer  ;; spc b l
 
    :n "c l" #'evil-commentary-line
 
    :n "b m" #'my/switch-to-messages-buffer
    :n "b d" #'kill-this-buffer
-   :n "w d" #'evil-quit
+   :n "w d" #'evil-quit  ;; spc w q
 
-   :n "f t" #'+treemacs/toggle
+   :n "f t" #'+treemacs/toggle  ;; spc o p
+   ;; :n "p f" #'projectile-find-file
 
-   :n "p t" #'treemacs-find-file
-   :n "p f" #'projectile-find-file
+   :n "g a" #'projectile-find-other-file  ;; spc p o
+   :n "g p" #'git-gutter:previous-hunk  ;; spc g [
+   :n "g n" #'git-gutter:next-hunk  ;; spc g ]
 
-   :n "g a" #'projectile-find-other-file
-   :n "g p" #'git-gutter:previous-hunk
-   :n "g n" #'git-gutter:next-hunk
-
-   :n "e l" #'flycheck-list-errors
-   :n "e p" #'flycheck-previous-error
-   :n "e n" #'flycheck-next-error
+   :n "e l" #'flycheck-list-errors  ;; spc c x
+   :n "e p" #'flycheck-previous-error  ;; [ e
+   :n "e n" #'flycheck-next-error  ;; ] e
 
    :n "/ h" #'my/symbol-highlight
+   :n "/ p" #'+default/search-project  ;; spc s p
+   :n "/ P" #'+default/search-project-for-symbol-at-point  ;; spc *
    )
 
  (:localleader
@@ -79,9 +79,4 @@
    :n "RET" #'lsp-ui-imenu--visit
    )
 
- (:after magit
-   :map magit-mode-map
-   :map magit-revision-mode-map
-   doom-leader-key nil
-   )
  )

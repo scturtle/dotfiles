@@ -22,11 +22,13 @@
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
   )
 
+(after! flycheck
+  (setq flycheck-checker-error-threshold nil))
+
 (after! magit
   (setq magit-diff-refine-hunk nil))
 
 ;; (def-package! rustic
-;;   :load-path "~/code/repos/rustic"
 ;;   :custom (rustic-lsp-server 'rust-analyzer)
 ;;   :config (setq lsp-eldoc-prefer-signature-help nil)
 ;;   )
@@ -37,8 +39,7 @@
         web-mode-markup-indent-offset 2))
 
 (after! company
-  (setq company-idle-delay 0.5
-        company-minimum-prefix-length 2))
+  (setq company-idle-delay 0.3))
 
 (def-package! clang-format
   :commands (clang-format-region clang-format-buffer))
@@ -101,13 +102,16 @@
   (golden-ratio-extra-commands '(evil-window-left evil-window-right evil-window-up
                                  evil-window-down evil-window-next evil-window-prev)))
 
+(def-package! evil-commentary)
+(def-package! xclip)
+
 ;; clipboard
-(setq x-select-enable-clipboard t)
+(setq select-enable-clipboard t)
 (when (eq 'gnu/linux system-type)
   (if window-system
       (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
     (progn ;; (when (getenv "DISPLAY")
-      (defun xsel-cut-function (text &optional push)
+      (defun xsel-cut-function (text &optional _)
         (with-temp-buffer
           (insert text)
           (call-process-region (point-min) (point-max) "xsel" nil 0 nil "-b" "-i")))

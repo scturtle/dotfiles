@@ -11,15 +11,6 @@
     (switch-to-buffer (current-buffer))))
 
 ;;;###autoload
-(defun my/switch-to-alternate-buffer ()
-  "Stolen from spacemacs."
-  (interactive)
-  (let ((current-buffer (window-buffer)))
-    (switch-to-buffer
-     (cl-find-if (lambda (buffer) (not (eq buffer current-buffer)))
-                 (mapcar #'car (window-prev-buffers))))))
-
-;;;###autoload
 (defun my/symbol-highlight (beg end)
   "Highlight current symbol. Restrict by evil visual region."
   (interactive
