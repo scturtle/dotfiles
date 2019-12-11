@@ -3,10 +3,7 @@
 (load! "ui")
 (load! "bindings")
 
-(after! evil-multiedit
-  (setq evil-multiedit-follow-matches t))
-
-(after! cc-mode
+(add-hook! cc-mode
   (c-add-style
    "work"
    '((tab-width . 4)
@@ -22,13 +19,16 @@
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
   )
 
+(after! evil-multiedit
+  (setq evil-multiedit-follow-matches t))
+
 (after! flycheck
   (setq flycheck-checker-error-threshold nil))
 
 (after! magit
   (setq magit-diff-refine-hunk nil))
 
-;; (def-package! rustic
+;; (use-package! rustic
 ;;   :custom (rustic-lsp-server 'rust-analyzer)
 ;;   :config (setq lsp-eldoc-prefer-signature-help nil)
 ;;   )
@@ -41,24 +41,23 @@
 (after! company
   (setq company-idle-delay 0.3))
 
-(def-package! clang-format
+(use-package! clang-format
   :commands (clang-format-region clang-format-buffer))
 
-(def-package! lsp-mode
-  ;; :load-path "~/code/repos/lsp-mode"
+(use-package! lsp-mode
   :config (require 'lsp-clients)
   :hook ((rust-mode python-mode) . lsp)
   :custom-face
   (lsp-face-highlight-textual ((t :background "#565761")))
   )
 
-(def-package! company-lsp
+(use-package! company-lsp
   :custom (company-lsp-cache-candidates nil)
   :config (set-company-backend! '(c-mode c++-mode rust-mode python-mode) #'company-lsp))
 
-(def-package! lsp-ui
+(use-package! lsp-ui
   :custom
-  (lsp-ui-doc-enable nil)
+  ;; (lsp-ui-doc-enable nil)
   (lsp-ui-sideline-enable nil)
   (lsp-ui-peek-fontify 'always) ; FIXME
   ;; (lsp-ui-flycheck-live-reporting nil)
@@ -71,7 +70,7 @@
      :references #'lsp-ui-peek-find-references)
   )
 
-(def-package! ccls
+(use-package! ccls
   :load-path "~/code/repos/emacs-ccls"
   :hook ((c-mode c++-mode) . +lsp|init-ccls)
   :custom
@@ -92,18 +91,18 @@
     (add-to-list 'projectile-project-root-files-top-down-recurring "compile_commands.json"))
   )
 
-(def-package! rainbow-mode
+(use-package! rainbow-mode
   :commands (rainbow-mode))
 
-(def-package! centered-cursor-mode)
+(use-package! centered-cursor-mode)
 
-(def-package! golden-ratio
+(use-package! golden-ratio
   :custom
   (golden-ratio-extra-commands '(evil-window-left evil-window-right evil-window-up
                                  evil-window-down evil-window-next evil-window-prev)))
 
-(def-package! evil-commentary)
-(def-package! xclip)
+(use-package! evil-commentary)
+(use-package! xclip)
 
 ;; clipboard
 (setq select-enable-clipboard t)

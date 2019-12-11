@@ -150,7 +150,3 @@ autocmd FileType python map <buffer> <F7> :PyFlake<CR>
 let g:PyFlakeOnWrite = 0
 let g:PyFlakeDisabledMessages = 'E226'
 " let g:PyFlakeRangeCommand = 'Q'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" vim2hs
-let g:haskell_conceal = 0
-"let g:haskell_conceal_wide = 1
