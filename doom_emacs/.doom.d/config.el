@@ -23,7 +23,9 @@
   (setq evil-multiedit-follow-matches t))
 
 (after! flycheck
-  (setq flycheck-checker-error-threshold nil))
+  ;(setq flycheck-checker-error-threshold nil)
+  (defun flycheck-disable-excessive-checker (_ _))
+  )
 
 (after! magit
   (setq magit-diff-refine-hunk nil))
@@ -46,14 +48,16 @@
 
 (use-package! lsp-mode
   :config (require 'lsp-clients)
-  :hook ((rust-mode python-mode) . lsp)
+  :hook ((rustic-mode python-mode) . lsp)
   :custom-face
   (lsp-face-highlight-textual ((t :background "#565761")))
+  :custom
+  (lsp-signature-render-documentation nil)
   )
 
 (use-package! company-lsp
   :custom (company-lsp-cache-candidates nil)
-  :config (set-company-backend! '(c-mode c++-mode rust-mode python-mode) #'company-lsp))
+  :config (set-company-backend! '(c-mode c++-mode rustic-mode python-mode) #'company-lsp))
 
 (use-package! lsp-ui
   :custom
