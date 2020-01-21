@@ -3,6 +3,25 @@
 (load! "ui")
 (load! "bindings")
 
+(setq read-process-output-max (* 1024 1024))
+
+(setq recenter-redisplay nil)
+(setenv "XAPIAN_CJK_NGRAM" "1")
+
+(set-email-account! "megvii"
+  '((mu4e-sent-folder         . "/megvii/已发送邮件")
+    (mu4e-drafts-folder       . "/megvii/草稿")
+    (mu4e-trash-folder        . "/megvii/已删除邮件")
+    (mu4e-refile-folder       . "/megvii/存档")
+    (smtpmail-smtp-user       . "shenchao@megvii.com")
+    (user-mail-address        . "shenchao@megvii.com")
+    (mu4e-compose-signature   . "")
+    (mu4e-view-date-format    . "%F %T")
+    (mu4e-headers-date-format . "%F %T")
+    (mu4e-headers-include-related . nil)
+    (mu4e-headers-fields . ((:human-date . 24) (:flags . 8) (:from . 16) (:subject)))
+    ) t)
+
 (add-hook! cc-mode
   (c-add-style
    "work"

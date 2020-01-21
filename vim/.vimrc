@@ -134,19 +134,8 @@ nnoremap gB :bp<cr>
 set laststatus=2 " /N
 set noshowmode
 set linespace&
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#checks = [ 'indent' ]
 "let g:airline_theme = 'bubblegum'
 let g:airline_theme = 'deus'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" jedi-vim
-" goto:<leader>g  defn:<leader>d  doc:K  rename:<leader>r  related:<leader>n
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = 0
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" flake8-vim
-autocmd FileType python map <buffer> <F7> :PyFlake<CR>
-let g:PyFlakeOnWrite = 0
-let g:PyFlakeDisabledMessages = 'E226'
-" let g:PyFlakeRangeCommand = 'Q'

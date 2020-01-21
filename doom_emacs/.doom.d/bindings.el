@@ -54,6 +54,7 @@
    :n "e n" #'flycheck-next-error  ;; ] e
 
    :n "/ h" #'my/symbol-highlight
+   :n "/ b" #'swiper-thing-at-point  ;; spc s S
    :n "/ p" #'+default/search-project  ;; spc s p
    :n "/ P" #'+default/search-project-for-symbol-at-point  ;; spc *
    )
