@@ -15,3 +15,4 @@
 (package! golden-ratio)
 (package! evil-commentary)
 (package! xclip)
+(package! lsp-python-ms)

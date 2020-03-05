@@ -60,37 +60,42 @@
         web-mode-markup-indent-offset 2))
 
 (after! company
-  (setq company-idle-delay 0.3))
+  (setq company-idle-delay 0.0))
 
 (use-package! clang-format
   :commands (clang-format-region clang-format-buffer))
 
+(use-package! lsp-python-ms
+  :hook (python-mode . (lambda () (require 'lsp-python-ms) (lsp)))
+  :custom (lsp-python-ms-executable "~/.local/bin/Microsoft.Python.LanguageServer")
+  )
+
 (use-package! lsp-mode
   :config (require 'lsp-clients)
-  :hook ((rustic-mode python-mode) . lsp)
+  ;:hook ((rustic-mode python-mode) . lsp)
   :custom-face
   (lsp-face-highlight-textual ((t :background "#565761")))
-  :custom
-  (lsp-signature-render-documentation nil)
+  ;:custom (lsp-signature-render-documentation nil)
   )
 
 (use-package! company-lsp
   :custom (company-lsp-cache-candidates nil)
-  :config (set-company-backend! '(c-mode c++-mode rustic-mode python-mode) #'company-lsp))
+  :config (set-company-backend! '(c-mode c++-mode rustic-mode python-mode) #'company-lsp)
+  )
 
 (use-package! lsp-ui
   :custom
-  ;; (lsp-ui-doc-enable nil)
+  (lsp-ui-doc-enable t)
   (lsp-ui-sideline-enable nil)
-  (lsp-ui-peek-fontify 'always) ; FIXME
-  ;; (lsp-ui-flycheck-live-reporting nil)
   :custom-face
+  (lsp-ui-doc-background ((t :background "#1e2029")))
   (lsp-ui-peek-filename ((t :foreground "#f1fa8c")))
   (lsp-ui-peek-highlight ((t :background "#bd93f9")))
   :config
-  (set-lookup-handlers! '(c-mode c++-mode)
+  (set-lookup-handlers! '(c-mode c++-mode python-mode)
      :definition #'lsp-ui-peek-find-definitions
      :references #'lsp-ui-peek-find-references)
+  (flycheck-add-next-checker 'lsp 'python-flake8)
   )
 
 (use-package! ccls
