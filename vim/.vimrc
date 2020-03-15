@@ -13,10 +13,6 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'dracula/vim'
 Plug 'vim-scripts/DoxyGen-Syntax' " for megvii
 
-" for python
-"Plug 'davidhalter/jedi-vim'
-"Plug 'andviro/flake8-vim'
-
 call plug#end()
 
 filetype plugin indent on

@@ -6,6 +6,10 @@
 (setq read-process-output-max (* 1024 1024))
 
 (setq recenter-redisplay nil)
+
+(setq org-directory "~/code/notes")
+(setq deft-directory org-directory)
+
 (setenv "XAPIAN_CJK_NGRAM" "1")
 
 (set-email-account! "megvii"

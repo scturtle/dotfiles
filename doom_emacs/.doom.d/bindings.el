@@ -80,4 +80,9 @@
    :n "RET" #'lsp-ui-imenu--visit
    )
 
+ (:after evil-org
+   :map evil-org-mode-map
+   :i "C-h" #'delete-backward-char
+   :i "C-d" #'delete-char
+   )
  )
