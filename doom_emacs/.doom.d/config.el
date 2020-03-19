@@ -96,9 +96,6 @@
   (lsp-ui-peek-filename ((t :foreground "#f1fa8c")))
   (lsp-ui-peek-highlight ((t :background "#bd93f9")))
   :config
-  (set-lookup-handlers! '(c-mode c++-mode python-mode)
-     :definition #'lsp-ui-peek-find-definitions
-     :references #'lsp-ui-peek-find-references)
   (flycheck-add-next-checker 'lsp 'python-flake8)
   )
 

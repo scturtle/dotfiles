@@ -17,6 +17,7 @@ set PATH . $PATH
 set -x RUSTUP_DIST_SERVER https://mirrors.tuna.tsinghua.edu.cn/rustup
 #set -x CARGO_HOME ~/.cargo
 
+alias ema "env LC_ALL=zh_CN.UTF-8 emacs"
 alias emx "env TERM=xterm-24bits emacs -nw"
 alias pc proxychains4
 alias pp "env ALL_PROXY=socks5://localhost:1086"
