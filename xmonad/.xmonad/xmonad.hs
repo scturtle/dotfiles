@@ -17,7 +17,7 @@ main = do
                   , ppTitle = xmobarColor "#dfdfdf" "" . shorten 80
                   , ppCurrent = xmobarColor "#0091e6" "" . \s -> "<fn=1>\xf111</fn>"
                   , ppHidden  = xmobarColor "#aaaaaa" "" . \s -> "<fn=1>\xf111</fn>"
-                  , ppHiddenNoWindows = xmobarColor "#aaaaaa" "" . \s -> "<fn=1>\xf22d</fn>"
+                  , ppHiddenNoWindows = xmobarColor "#aaaaaa" "" . \s -> "<fn=1>\xf1ce</fn>"
                   , ppWsSep = " "
                   , ppSep = " - "
                   }

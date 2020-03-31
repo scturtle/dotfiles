@@ -8,11 +8,10 @@
 (package! anaconda-mode :disable t)
 (package! company-anaconda :disable t)
 
-(package! ccls :ignore t)
+;(package! ccls :ignore t)
 (package! clang-format)
 (package! rainbow-mode)
 (package! centered-cursor-mode)
 (package! golden-ratio)
-(package! evil-commentary)
 (package! xclip)
 (package! lsp-python-ms)

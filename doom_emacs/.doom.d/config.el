@@ -100,24 +100,18 @@
   )
 
 (use-package! ccls
-  :load-path "~/code/repos/emacs-ccls"
-  :hook ((c-mode c++-mode) . +lsp|init-ccls)
+  ;:load-path "~/code/repos/emacs-ccls"
+  :hook ((c-mode c++-mode) .  (lambda () (require 'ccls) (lsp)))
   :custom
   (ccls-args '("--log-file=/tmp/ccls.log"))
   ;(ccls-initialization-options '(:index (:blacklist (".*boost.*")))
-  (ccls-initialization-options '(:clang (:excludeArgs ["-fopenmp" "-no-canonical-prefixes" "-fno-canonical-system-headers" "-mmxu2" "-mips32r2"
-                                                       "--sysroot=external/toolchain_v3_tk1_gcc5_archive"])))
-  (ccls-sem-highlight-method 'overlay)
+  (ccls-initialization-options
+   '(:clang (:excludeArgs ["-fopenmp" "-no-canonical-prefixes" "-fno-canonical-system-headers" "-mmxu2" "-mips32r2"
+                           "--sysroot=external/toolchain_v3_tk1_gcc5_archive"])))
+  (ccls-sem-highlight-method 'font-lock)  ; overlay or font-lock(faster)
   :config
-  (defun +lsp|init-ccls ()
-    (setq-local company-transformers nil)
-    (setq-local company-lsp-async t)
-    (setq-local company-lsp-cache-candidates nil)
-    (lsp))
   (after! projectile
-    (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
-    (add-to-list 'projectile-project-root-files-bottom-up ".ccls-root")
-    (add-to-list 'projectile-project-root-files-top-down-recurring "compile_commands.json"))
+    (add-to-list 'projectile-globally-ignored-directories ".ccls-cache"))
   )
 
 (use-package! rainbow-mode
@@ -130,7 +124,6 @@
   (golden-ratio-extra-commands '(evil-window-left evil-window-right evil-window-up
                                  evil-window-down evil-window-next evil-window-prev)))
 
-(use-package! evil-commentary)
 (use-package! xclip)
 
 ;; clipboard

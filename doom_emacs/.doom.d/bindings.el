@@ -36,7 +36,7 @@
    :n [tab] #'evil-switch-to-windows-last-buffer  ;; spc `
    :n "TAB" #'evil-switch-to-windows-last-buffer  ;; spc b l
 
-   :n "c l" #'evil-commentary-line
+   :n "c l" #'evilnc-comment-or-uncomment-lines  ;; M-;
 
    :n "b m" #'my/switch-to-messages-buffer
    :n "b d" #'kill-this-buffer
