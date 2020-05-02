@@ -8,7 +8,9 @@
 (setq recenter-redisplay nil)
 
 (setq org-directory "~/code/notes")
-(setq deft-directory org-directory)
+(after! deft
+  (setq deft-directory org-directory)
+  (setq deft-auto-save-interval 0))
 
 (setenv "XAPIAN_CJK_NGRAM" "1")
 
@@ -53,10 +55,13 @@
 (after! magit
   (setq magit-diff-refine-hunk nil))
 
-;; (use-package! rustic
-;;   :custom (rustic-lsp-server 'rust-analyzer)
-;;   :config (setq lsp-eldoc-prefer-signature-help nil)
-;;   )
+(use-package! rustic
+  :defer t
+  :custom (rustic-lsp-server 'rust-analyzer)
+  :config
+  (setq rust-match-angle-brackets nil)
+  ;; (setq lsp-eldoc-prefer-signature-help nil)
+  )
 
 (after! web-mode
   (setq web-mode-code-indent-offset 2
@@ -66,15 +71,14 @@
 (after! company
   (setq company-idle-delay 0.0))
 
-(use-package! clang-format
-  :commands (clang-format-region clang-format-buffer))
-
 (use-package! lsp-python-ms
+  :defer t
   :hook (python-mode . (lambda () (require 'lsp-python-ms) (lsp)))
   :custom (lsp-python-ms-executable "~/.local/bin/Microsoft.Python.LanguageServer")
   )
 
 (use-package! lsp-mode
+  :defer t
   :config (require 'lsp-clients)
   ;:hook ((rustic-mode python-mode) . lsp)
   :custom-face
@@ -83,23 +87,27 @@
   )
 
 (use-package! company-lsp
+  :defer t
   :custom (company-lsp-cache-candidates nil)
   :config (set-company-backend! '(c-mode c++-mode rustic-mode python-mode) #'company-lsp)
   )
 
 (use-package! lsp-ui
+  :defer t
   :custom
   (lsp-ui-doc-enable t)
   (lsp-ui-sideline-enable nil)
   :custom-face
   (lsp-ui-doc-background ((t :background "#1e2029")))
   (lsp-ui-peek-filename ((t :foreground "#f1fa8c")))
-  (lsp-ui-peek-highlight ((t :background "#bd93f9")))
+  ;; (lsp-ui-peek-highlight ((t :forground "#282a36")))
+  ;; (lsp-ui-peek-highlight ((t :background "#bd93f9")))
   :config
   (flycheck-add-next-checker 'lsp 'python-flake8)
   )
 
 (use-package! ccls
+  :defer t
   ;:load-path "~/code/repos/emacs-ccls"
   :hook ((c-mode c++-mode) .  (lambda () (require 'ccls) (lsp)))
   :custom
@@ -115,16 +123,18 @@
   )
 
 (use-package! rainbow-mode
+  :defer t
   :commands (rainbow-mode))
 
-(use-package! centered-cursor-mode)
+(use-package! centered-cursor-mode :defer t)
 
 (use-package! golden-ratio
+  :defer t
   :custom
   (golden-ratio-extra-commands '(evil-window-left evil-window-right evil-window-up
                                  evil-window-down evil-window-next evil-window-prev)))
 
-(use-package! xclip)
+(use-package! xclip :defer t)
 
 ;; clipboard
 (setq select-enable-clipboard t)

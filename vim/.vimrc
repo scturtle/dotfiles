@@ -12,6 +12,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'farmergreg/vim-lastplace'
 Plug 'dracula/vim'
 Plug 'vim-scripts/DoxyGen-Syntax' " for megvii
+Plug 'psliwka/vim-smoothie'
 
 call plug#end()
 
