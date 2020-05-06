@@ -7,6 +7,7 @@ import System.IO
 
 main = do
   xmproc <- spawnPipe "xmobar"
+  bgproc <- spawnPipe "feh --bg-scale /home/shenchao/Pictures/wallpaper.jpg"
 
   xmonad $ def
     { manageHook = manageDocks <+> manageHook def

@@ -29,14 +29,13 @@
 (map!
  :gnvime "M-:" #'eval-expression
  :m "," nil ;; unbind localleader
+ :ni "M-;" #'evilnc-comment-or-uncomment-lines
 
  (:leader
    :n "SPC" #'execute-extended-command
    :n ":"   #'eval-expression
    :n [tab] #'evil-switch-to-windows-last-buffer  ;; spc `
    :n "TAB" #'evil-switch-to-windows-last-buffer  ;; spc b l
-
-   :n "c l" #'evilnc-comment-or-uncomment-lines  ;; M-;
 
    :n "b m" #'my/switch-to-messages-buffer
    :n "b d" #'kill-this-buffer
