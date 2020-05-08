@@ -5,19 +5,21 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrains Mono:pixelsize=17:antialias=true:autohint=true:weight=medium";
+static char *font = "JetBrains Mono:pixelsize=17:weight=medium:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
- * 2: utmp option
+ * 2: scroll and/or utmp
  * 3: SHELL environment variable
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
 static char *shell = "/home/shenchao/.local/bin/fish";
 char *utmp = NULL;
+/* scroll program: to enable use a string like "scroll" */
+char *scroll = NULL;
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 
 /* identification sequence returned in DA and DECID */
@@ -95,14 +97,14 @@ static const char *colorname[] = {
 	"#BFBFBF",
 
 	/* 8 bright colors */
-    "#44475a",
-    "#ff5555",
-    "#50fa7b",
-    "#f1fa8c",
-    "#bd93f9",
-    "#ff79c6",
-    "#8be9fd",
-    "#ffffff",
+	"#44475a",
+	"#ff5555",
+	"#50fa7b",
+	"#f1fa8c",
+	"#bd93f9",
+	"#ff79c6",
+	"#8be9fd",
+	"#ffffff",
 
 	[255] = 0,
 

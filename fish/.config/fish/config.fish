@@ -1,10 +1,6 @@
 # vim: set ft=sh :
 set fish_greeting
 
-function fish_prompt
-  echo -s (set_color ccc) (hostname) ' ' (set_color green) (prompt_pwd) (set_color normal) '> '
-end
-
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 set -x LANGUAGE en_US.UTF-8
