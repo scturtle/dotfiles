@@ -26,7 +26,16 @@
     (mu4e-headers-date-format . "%F %T")
     (mu4e-headers-include-related . nil)
     (mu4e-headers-fields . ((:human-date . 24) (:flags . 8) (:from . 16) (:subject)))
+    (mu4e-maildir-shortcuts . ((:maildir "/megvii/inbox" :key ?i)
+                               (:maildir "/megvii/存档"  :key ?a)
+                               (:maildir "/megvii/草稿"  :key ?d)
+                               (:maildir "/megvii/已删除邮件" :key ?x)
+                               (:maildir "/megvii/已发送邮件" :key ?s)))
     ) t)
+
+(after! mu4e
+  (setq mu4e-query-rewrite-function #'mu4e-goodies~break-cjk-query)
+  )
 
 (add-hook! cc-mode
   (c-add-style
