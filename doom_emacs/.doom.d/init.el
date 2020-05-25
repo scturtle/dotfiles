@@ -14,7 +14,9 @@
 ;;      Alternatively, press 'gd' (or 'C-c g d') on a module to browse its
 ;;      directory (for easy access to its source code).
 
-(add-load-path! "/home/shenchao/code/repos/mu/mu4e")
+(setq mu4e-custom-dir "/home/shenchao/code/repos/mu/mu4e")
+(if (file-directory-p mu4e-custom-dir)
+    (add-load-path! mu4e-custom-dir))
 
 (setq doom-localleader-key ",")
 
@@ -55,7 +57,7 @@
        :editor
        (evil +everywhere); come to the dark side, we have cookies
        ;;file-templates    ; auto-snippets for empty files
-       fold              ; (nigh) universal code folding
+       ;;fold              ; (nigh) universal code folding
        ;;(format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
@@ -165,7 +167,7 @@
        ;;yaml              ; JSON, but readable
 
        :email
-       mu4e
+       ;;mu4e
        ;;notmuch
        ;;(wanderlust +gmail)
 

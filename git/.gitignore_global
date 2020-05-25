@@ -4,8 +4,7 @@
 .clang-format
 compile_commands.json
 .ccls-cache
-ccls.log
 .ccls
 .projectile
-flycheck_*.elc
+flycheck_*.*
 *.bak

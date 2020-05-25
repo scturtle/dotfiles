@@ -3,8 +3,6 @@
 (load! "ui")
 (load! "bindings")
 
-(setq read-process-output-max (* 1024 1024))
-
 (setq recenter-redisplay nil)
 
 (setq org-directory "~/code/notes")
@@ -64,11 +62,9 @@
 (after! magit
   (setq magit-diff-refine-hunk nil))
 
-(use-package! rustic
-  :defer t
-  :custom (rustic-lsp-server 'rust-analyzer)
-  :config
-  (setq rust-match-angle-brackets nil)
+(after! rustic
+  (setq rustic-lsp-server 'rust-analyzer
+        rust-match-angle-brackets nil)
   ;; (setq lsp-eldoc-prefer-signature-help nil)
   )
 
@@ -88,17 +84,11 @@
 
 (use-package! lsp-mode
   :defer t
-  :config (require 'lsp-clients)
-  ;:hook ((rustic-mode python-mode) . lsp)
   :custom-face
   (lsp-face-highlight-textual ((t :background "#565761")))
-  ;:custom (lsp-signature-render-documentation nil)
-  )
-
-(use-package! company-lsp
-  :defer t
-  :custom (company-lsp-cache-candidates nil)
-  :config (set-company-backend! '(c-mode c++-mode rustic-mode python-mode) #'company-lsp)
+  :custom
+  ;; rust doc is too long (see: lsp-signature-auto-activate / lsp-signature-doc-lines)
+  (lsp-signature-render-documentation nil)
   )
 
 (use-package! lsp-ui
