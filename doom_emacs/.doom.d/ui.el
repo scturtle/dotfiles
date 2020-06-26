@@ -8,6 +8,7 @@
     (setq doom-unicode-font (font-spec :family "PingFang SC" :weight 'light :size 20))
   (setq doom-unicode-font (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))
 
-(setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-vibrant)
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))

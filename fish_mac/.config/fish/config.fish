@@ -4,11 +4,12 @@ set fish_greeting
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 
-set PATH /usr/local/bin $PATH
-#set PATH /Library/Developer/CommandLineTools/usr/bin $PATH
-set PATH ~/.cargo/bin $PATH
-set PATH ~/.local/bin $PATH
-set PATH . $PATH
+set -u fish_user_paths \
+	~/.local/bin \
+	~/.cargo/bin \
+	/usr/local/bin \
+	~/.gem/ruby/2.6.0/bin \
+	$fish_user_paths
 
 # rust
 set -x RUSTUP_DIST_SERVER https://mirrors.tuna.tsinghua.edu.cn/rustup
@@ -29,3 +30,7 @@ set -x HOMEBREW_BOTTLE_DOMAIN https://mirrors.tuna.tsinghua.edu.cn/homebrew-bott
 
 # iterm2
 . ~/.iterm2_shell_integration.fish
+
+# pyenv init
+pyenv init - | source
+pyenv virtualenv-init - | source

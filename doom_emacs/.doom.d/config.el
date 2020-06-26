@@ -68,6 +68,18 @@
   ;; (setq lsp-eldoc-prefer-signature-help nil)
   )
 
+(cl-defmethod lsp-clients-extract-signature-on-hover (contents (_server-id (eql rust-analyzer)))
+  (-let* (((&hash "value") contents)
+          (groups (--partition-by (s-blank? it) (s-lines value)))
+          (sig_group (if (s-equals? "```rust" (car (-third-item groups)))
+                         (-third-item groups)
+                       (car groups)))
+          (sig (--> sig_group
+                    (--drop-while (s-equals? "```rust" it) it)
+                    (--take-while (not (s-equals? "```" it)) it)
+                    (s-join "" it))))
+    (lsp--render-element (concat "```rust\n" sig "\n```"))))
+
 (after! web-mode
   (setq web-mode-code-indent-offset 2
         web-mode-css-indent-offset 2
@@ -76,11 +88,9 @@
 (after! company
   (setq company-idle-delay 0.0))
 
-(use-package! lsp-python-ms
-  :defer t
-  :hook (python-mode . (lambda () (require 'lsp-python-ms) (lsp)))
-  :custom (lsp-python-ms-executable "~/.local/bin/Microsoft.Python.LanguageServer")
-  )
+(after! lsp-python-ms
+  (setq lsp-python-ms-executable "~/.local/bin/Microsoft.Python.LanguageServer")
+  (set-lsp-priority! 'mspyls 1))
 
 (use-package! lsp-mode
   :defer t
@@ -102,7 +112,7 @@
   ;; (lsp-ui-peek-highlight ((t :forground "#282a36")))
   ;; (lsp-ui-peek-highlight ((t :background "#bd93f9")))
   :config
-  (flycheck-add-next-checker 'lsp 'python-flake8)
+  ;(flycheck-add-next-checker 'lsp 'python-flake8)
   )
 
 (use-package! ccls
@@ -133,11 +143,12 @@
   (golden-ratio-extra-commands '(evil-window-left evil-window-right evil-window-up
                                  evil-window-down evil-window-next evil-window-prev)))
 
-(use-package! xclip :defer t)
+(use-package! explain-pause-mode :defer t)
 
 ;; clipboard
 (setq select-enable-clipboard t)
 (when (eq 'gnu/linux system-type)
+  (use-package! xclip :defer t)
   (if window-system
       (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
     (progn ;; (when (getenv "DISPLAY")

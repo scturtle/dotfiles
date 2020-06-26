@@ -10,4 +10,6 @@
 (package! centered-cursor-mode)
 (package! golden-ratio)
 (package! xclip)
-(package! lsp-python-ms)
+
+(package! explain-pause-mode
+  :recipe (:host github :repo "lastquestion/explain-pause-mode"))

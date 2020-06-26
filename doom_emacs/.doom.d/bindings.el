@@ -84,4 +84,9 @@
    :i "C-h" #'delete-backward-char
    :i "C-d" #'delete-char
    )
+
+ (:after company
+  :map company-active-map
+  "C-h" nil  ;; del instead of doc
+  )
  )
