@@ -33,6 +33,9 @@
 
 (after! mu4e
   (setq mu4e-query-rewrite-function #'mu4e-goodies~break-cjk-query)
+  (setq mu4e-view-use-gnus t) ;; show calendar
+  (require 'mu4e-icalendar)
+  (mu4e-icalendar-setup)
   )
 
 (add-hook! cc-mode
