@@ -56,6 +56,8 @@
    :n "/ b" #'swiper-thing-at-point  ;; spc s S
    :n "/ p" #'+default/search-project  ;; spc s p
    :n "/ P" #'+default/search-project-for-symbol-at-point  ;; spc *
+
+   :n "t t" #'tab-bar-switch-to-tab
    )
 
  (:localleader
@@ -90,3 +92,14 @@
   "C-h" nil  ;; del instead of doc
   )
  )
+
+(evil-ex-define-cmd "tabnew" #'tab-bar-new-tab)
+(evil-ex-define-cmd "tabc[lose]" #'tab-bar-close-tab)
+(evil-ex-define-cmd "tabo[nly]" #'tab-bar-close-other-tabs)
+(evil-ex-define-cmd "tabn[ext]" #'tab-bar-switch-to-next-tab)
+(evil-ex-define-cmd "tabp[revious]" #'tab-bar-switch-to-prev-tab)
+(evil-define-command evil-tabmove (idx)
+  :repeat nil
+  (interactive "<a>")
+  (tab-bar-move-tab-to (1+ (string-to-number idx))))
+(evil-ex-define-cmd "tabm[ove]" 'evil-tabmove)

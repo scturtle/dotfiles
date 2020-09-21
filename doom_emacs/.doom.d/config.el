@@ -91,10 +91,6 @@
 (after! company
   (setq company-idle-delay 0.0))
 
-(after! lsp-python-ms
-  (setq lsp-python-ms-executable "~/.local/bin/Microsoft.Python.LanguageServer")
-  (set-lsp-priority! 'mspyls 1))
-
 (use-package! lsp-mode
   :defer t
   :custom-face
