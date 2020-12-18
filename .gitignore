@@ -9,3 +9,4 @@
 /xmonad/.xmonad/xmonad.o
 /xmonad/.xmonad/xmonad.state
 /fish/.config/fish/completions/
+/doom_emacs/.doom.d/custom.el

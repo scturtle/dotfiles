@@ -22,6 +22,8 @@ alias emx "env TERM=xterm-24bits /Applications/Emacs.app/Contents/MacOS/Emacs -n
 alias pc "proxychains4 -q"
 alias pp "env ALL_PROXY=socks5://localhost:1086"
 
+set -x EMACS /Applications/Emacs.app/Contents/MacOS/Emacs
+
 # homebrew
 set -x HOMEBREW_NO_EMOJI 1
 set -x HOMEBREW_NO_AUTO_UPDATE 1

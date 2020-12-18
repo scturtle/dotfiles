@@ -38,6 +38,14 @@
   (mu4e-icalendar-setup)
   )
 
+(after! deft
+  (map! :map deft-mode-map
+        :i "C-n" nil ;; #'deft-new-file
+        :i "C-m" nil ;; #'deft-new-file-named
+        :n "a"   nil ;; #'deft-new-file
+        :n "A"   nil ;; #'deft-new-file-named
+   ))
+
 (add-hook! cc-mode
   (c-add-style
    "work"

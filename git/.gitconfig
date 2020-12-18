@@ -3,6 +3,8 @@
 	email = scturtle@gmail.com
 	signingkey = 899C7671AF1A9565
 [alias]
+	unstage = reset HEAD --
+	uncommit = reset --soft HEAD~1
 	ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 [gpg]
 	program = gpg
@@ -11,9 +13,9 @@
 [core]
 	excludesfile = /Users/scturtle/.gitignore_global
 [http]
-	proxy = socks5://127.0.0.1:1086
+	;proxy = socks5://127.0.0.1:1086
 [https]
-	proxy = socks5://127.0.0.1:1086
+	;proxy = socks5://127.0.0.1:1086
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
