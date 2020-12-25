@@ -61,13 +61,6 @@
    :n "t t" #'tab-bar-switch-to-tab
    )
 
- (:localleader
-   :n "r ." #'lsp-ui-peek-find-definitions
-   :n "r ," #'lsp-ui-peek-find-references
-   :n "r [" #'lsp-ui-peek-jump-backward
-   :n "r ]" #'lsp-ui-peek-jump-forward
-   )
-
  (:after lsp-ui
    :map lsp-ui-peek-mode-map
    "j"   #'lsp-ui-peek--select-next
@@ -92,15 +85,19 @@
   :map company-active-map
   "C-h" nil  ;; del instead of doc
   )
- )
 
-(evil-ex-define-cmd "tabnew" #'tab-bar-new-tab)
-(evil-ex-define-cmd "tabc[lose]" #'tab-bar-close-tab)
-(evil-ex-define-cmd "tabo[nly]" #'tab-bar-close-other-tabs)
-(evil-ex-define-cmd "tabn[ext]" #'tab-bar-switch-to-next-tab)
-(evil-ex-define-cmd "tabp[revious]" #'tab-bar-switch-to-prev-tab)
-(evil-define-command evil-tabmove (idx)
-  :repeat nil
-  (interactive "<a>")
-  (tab-bar-move-tab-to (1+ (string-to-number idx))))
-(evil-ex-define-cmd "tabm[ove]" 'evil-tabmove)
+ (:after magit
+  :map magit-status-mode-map
+   :n "gT" #'tab-bar-switch-to-prev-tab
+   :n "gt" #'tab-bar-switch-to-next-tab
+  )
+
+ (:after deft
+  :map deft-mode-map
+   :ni "C-p" #'evil-previous-line
+   :ni "C-n" #'evil-next-line ;; #'deft-new-file
+   :i "C-m" nil ;; #'deft-new-file-named
+   :n "a"   nil ;; #'deft-new-file
+   :n "A"   nil ;; #'deft-new-file-named
+   )
+ )

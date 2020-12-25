@@ -23,3 +23,6 @@
 	required = true
 [github]
 	user = scturtle
+[lfs]
+	fetchrecentrefsdays = 0
+	pruneoffsetdays = 0

@@ -8,3 +8,4 @@ compile_commands.json
 .projectile
 flycheck_*.*
 *.bak
+typings
