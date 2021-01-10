@@ -6,7 +6,6 @@
 (package! anaconda-mode :disable t)
 (package! company-anaconda :disable t)
 
-(package! rainbow-mode)
 (package! centered-cursor-mode)
 (package! golden-ratio)
 (package! xclip)
