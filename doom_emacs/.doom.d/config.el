@@ -132,21 +132,3 @@
                                  evil-window-down evil-window-next evil-window-prev)))
 
 (use-package! explain-pause-mode :defer t)
-
-;; clipboard
-(setq select-enable-clipboard t)
-(when (eq 'gnu/linux system-type)
-  (use-package! xclip :defer t)
-  (if window-system
-      (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
-    (progn ;; (when (getenv "DISPLAY")
-      (defun xsel-cut-function (text &optional _)
-        (with-temp-buffer
-          (insert text)
-          (call-process-region (point-min) (point-max) "xsel" nil 0 nil "-b" "-i")))
-      (defun xsel-paste-function()
-        (let ((xsel-output (shell-command-to-string "xsel -b -o")))
-          (unless (string= (car kill-ring) xsel-output)
-            xsel-output )))
-      (setq interprogram-cut-function 'xsel-cut-function)
-      (setq interprogram-paste-function 'xsel-paste-function))))

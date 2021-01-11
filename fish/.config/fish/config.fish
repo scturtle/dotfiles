@@ -4,6 +4,7 @@ set fish_greeting
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 set -x LANGUAGE en_US.UTF-8
+set -x DISPLAY :0
 
 set PATH ~/.cargo/bin $PATH
 set PATH ~/.local/bin $PATH
