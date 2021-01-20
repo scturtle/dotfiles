@@ -11,3 +11,5 @@
 
 (package! explain-pause-mode
   :recipe (:host github :repo "lastquestion/explain-pause-mode"))
+
+(package! protobuf-mode)

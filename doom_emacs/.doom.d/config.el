@@ -71,6 +71,9 @@
 (after! magit
   (setq magit-diff-refine-hunk nil))
 
+(setq evil-collection-magit-want-horizontal-movement t
+      evil-collection-magit-use-z-for-folds t)
+
 (after! company
   (setq company-idle-delay 0.0))
 
@@ -93,21 +96,15 @@
 
 (use-package! lsp-mode
   :defer t
-  :custom-face
-  (lsp-face-highlight-textual ((t :background "#565761")))
   :custom
   (lsp-signature-render-documentation nil))
 
 (use-package! lsp-ui
   :defer t
   :custom
-  (lsp-ui-doc-enable t)
   (lsp-ui-sideline-enable nil)
   :custom-face
-  (lsp-ui-doc-background ((t :background "#1e2029")))
-  (lsp-ui-peek-filename ((t :foreground "#f1fa8c")))
-  ;; (lsp-ui-peek-highlight ((t :forground "#282a36")))
-  ;; (lsp-ui-peek-highlight ((t :background "#bd93f9")))
+  (lsp-ui-peek-highlight ((t :forground nil :background nil :inherit highlight)))
   )
 
 (use-package! ccls
@@ -132,3 +129,5 @@
                                  evil-window-down evil-window-next evil-window-prev)))
 
 (use-package! explain-pause-mode :defer t)
+
+(use-package! protobuf-mode :defer t)
