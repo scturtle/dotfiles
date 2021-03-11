@@ -92,6 +92,13 @@
    :n "gt" #'tab-bar-switch-to-next-tab
   )
 
+ (:after magit
+  :map magit-diff-mode-map
+   :n "$" #'evil-end-of-line
+   :n "w" #'evil-forward-word-begin
+   :n "b" #'evil-backward-word-begin
+  )
+
  (:after deft
   :map deft-mode-map
    :ni "C-p" #'evil-previous-line
