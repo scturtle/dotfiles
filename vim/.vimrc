@@ -101,7 +101,7 @@ if has("macunix")
   endif
 endif
 
-set guifont=Source\ Code\ Pro:h16
+set guifont=JetBrains\ Mono:h18
 
 " indent
 "setlocal expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4

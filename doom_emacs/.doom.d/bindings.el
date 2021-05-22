@@ -9,6 +9,7 @@
  :i  "C-n" #'next-line
  :i  "C-h" #'delete-backward-char
  :i  "C-d" #'delete-char
+ :i  "C-k" #'kill-line
 
  (:after evil :after ivy
    :map (evil-ex-completion-map
@@ -23,6 +24,7 @@
    "C-f" #'forward-char
    "C-h" #'delete-backward-char
    "C-d" #'delete-char
+   "C-k" #'kill-line
    )
  )
 
@@ -79,6 +81,7 @@
    :map evil-org-mode-map
    :i "C-h" #'delete-backward-char
    :i "C-d" #'delete-char
+   :i "C-k" #'kill-line
    )
 
  (:after company
