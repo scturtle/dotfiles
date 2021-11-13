@@ -10,33 +10,6 @@
   (setq deft-directory org-directory)
   (setq deft-auto-save-interval 0))
 
-(setenv "XAPIAN_CJK_NGRAM" "1")
-
-(set-email-account! "megvii"
-  '((mu4e-sent-folder         . "/megvii/已发送邮件")
-    (mu4e-drafts-folder       . "/megvii/草稿")
-    (mu4e-trash-folder        . "/megvii/已删除邮件")
-    (mu4e-refile-folder       . "/megvii/存档")
-    (smtpmail-smtp-user       . "shenchao@megvii.com")
-    (user-mail-address        . "shenchao@megvii.com")
-    (mu4e-compose-signature   . "")
-    (mu4e-view-date-format    . "%F %T")
-    (mu4e-headers-date-format . "%F %T")
-    (mu4e-headers-include-related . nil)
-    (mu4e-headers-fields . ((:human-date . 24) (:flags . 8) (:from . 16) (:subject)))
-    (mu4e-maildir-shortcuts . ((:maildir "/megvii/inbox" :key ?i)
-                               (:maildir "/megvii/存档"  :key ?a)
-                               (:maildir "/megvii/草稿"  :key ?d)
-                               (:maildir "/megvii/已删除邮件" :key ?x)
-                               (:maildir "/megvii/已发送邮件" :key ?s)))
-    ) t)
-
-(after! mu4e
-  (setq mu4e-query-rewrite-function #'mu4e-goodies~break-cjk-query)
-  (setq mu4e-view-use-gnus t) ;; show calendar
-  (require 'mu4e-icalendar)
-  (mu4e-icalendar-setup))
-
 (after! cc-mode
   (c-add-style
    "work"

@@ -14,10 +14,6 @@
 ;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
 ;;      directory (for easy access to its source code).
 
-(setq mu4e-custom-dir "/home/shenchao/code/repos/mu/mu4e")
-(if (file-directory-p mu4e-custom-dir)
-    (add-load-path! mu4e-custom-dir))
-
 (setq doom-localleader-key ",")
 
 (doom! :input
@@ -175,7 +171,7 @@
        ;;yaml              ; JSON, but readable
 
        :email
-       ;;mu4e
+       ;;(mu4e +org +gmail)
        ;;notmuch
        ;;(wanderlust +gmail)
 
