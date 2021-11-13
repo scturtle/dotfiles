@@ -3,6 +3,10 @@
 (load! "ui")
 (load! "bindings")
 
+(setq doom-localleader-key ",")
+
+(setq evil-want-fine-undo t)
+
 (setq recenter-redisplay nil)
 
 (setq org-directory "~/code/notes")
@@ -13,8 +17,8 @@
 (after! cc-mode
   (c-add-style
    "work"
-   '((tab-width . 4)
-     (c-basic-offset . 4)
+   '((tab-width . 2)
+     (c-basic-offset . 2)
      (indent-tabs-mode . nil)
      (c-offsets-alist
       . ((innamespace . 0)
@@ -39,7 +43,7 @@
   (setq evil-multiedit-follow-matches t))
 
 (after! flycheck
-  (defun flycheck-disable-excessive-checker (_ _)))
+  (defun flycheck-disable-excessive-checker (_ __)))
 
 (after! magit
   (setq magit-diff-refine-hunk nil))
@@ -75,6 +79,7 @@
 (use-package! lsp-ui
   :defer t
   :custom
+  (lsp-ui-doc-enable nil)
   (lsp-ui-sideline-enable nil)
   :custom-face
   (lsp-ui-peek-highlight ((t :forground nil :background nil :inherit highlight)))
@@ -82,12 +87,10 @@
 
 (use-package! ccls
   :defer t
-  :hook ((c-mode c++-mode) .  (lambda () (require 'ccls) (lsp)))
   :custom
   (ccls-args '("--log-file=/tmp/ccls.log"))
   (ccls-initialization-options
-   '(:clang (:excludeArgs ["-fopenmp" "-no-canonical-prefixes" "-fno-canonical-system-headers" "-mmxu2" "-mips32r2"
-                           "--sysroot=external/toolchain_v3_tk1_gcc5_archive"])))
+   '(:clang (:excludeArgs ["-fopenmp" "-no-canonical-prefixes" "-fno-canonical-system-headers"])))
   (ccls-sem-highlight-method 'font-lock)  ; overlay or font-lock(faster)
   :config
   (after! projectile

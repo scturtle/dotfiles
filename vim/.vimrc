@@ -35,6 +35,7 @@ set novisualbell
 set autoread " reload files when changed on disk
 set wildmenu " GREAT autocomplete menu
 set nomodeline " for megvii
+set noesckeys
 
 " for search
 set ignorecase " case-insensitive search

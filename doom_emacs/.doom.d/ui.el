@@ -8,8 +8,7 @@
         (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))
 
 ;; (setq doom-theme 'doom-dracula)
-;; (setq doom-theme 'doom-vibrant)
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-vibrant)
 
 (add-hook 'window-setup-hook #'toggle-frame-maximized)
 

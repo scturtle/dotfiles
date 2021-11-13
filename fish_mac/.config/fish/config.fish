@@ -10,7 +10,7 @@ fish_add_path -m ~/.local/bin
 
 # rust
 #-set -x RUSTUP_DIST_SERVER https://mirrors.tuna.tsinghua.edu.cn/rustup
-set -x RUSTUP_DIST_SERVER https://mirrors.ustc.edu.cn/rust-static
+#set -x RUSTUP_DIST_SERVER https://mirrors.ustc.edu.cn/rust-static
 
 alias rm trash
 alias rrm /bin/rm
@@ -28,11 +28,11 @@ set -x HOMEBREW_NO_EMOJI 1
 set -x HOMEBREW_NO_AUTO_UPDATE 1
 set -x HOMEBREW_CASK_OPTS --appdir=/Applications
 #set -x HOMEBREW_BOTTLE_DOMAIN https://mirrors.aliyun.com/homebrew/homebrew-bottles
-set -x HOMEBREW_BOTTLE_DOMAIN https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+#set -x HOMEBREW_BOTTLE_DOMAIN https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 
 # iterm2
 . ~/.iterm2_shell_integration.fish
 
 # pyenv init
-pyenv init - | source
-pyenv virtualenv-init - | source
+status is-login; and pyenv init --path | source
+status is-interactive; and pyenv init - | source
