@@ -74,6 +74,7 @@
 (use-package! lsp-mode
   :defer t
   :custom
+  (lsp-lens-enable nil)
   (lsp-signature-render-documentation nil))
 
 (use-package! lsp-ui

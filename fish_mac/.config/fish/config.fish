@@ -14,14 +14,10 @@ fish_add_path -m ~/.local/bin
 
 alias rm trash
 alias rrm /bin/rm
-#alias vim /Applications/MacVim.app/Contents/MacOS/Vim
-alias emacs "/Applications/Emacs.app/Contents/MacOS/Emacs"
-alias emx "env TERM=xterm-24bits /Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+alias emx "TERM=xterm-24bit emacs -nw"
 alias pc "proxychains4 -q"
-alias pp "env ALL_PROXY=socks5://localhost:1086"
+alias pp "https_proxy=http://127.0.0.1:1087 http_proxy=http://127.0.0.1:1087 all_proxy=socks5://127.0.0.1:1087"
 alias yp "you-get -p /Applications/IINA.app/Contents/MacOS/iina-cli"
-
-set -x EMACS /Applications/Emacs.app/Contents/MacOS/Emacs
 
 # homebrew
 set -x HOMEBREW_NO_EMOJI 1
