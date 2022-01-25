@@ -12,7 +12,7 @@ set PATH /home/linuxbrew/.linuxbrew/bin $PATH
 set PATH . $PATH
 
 alias ema "env LC_ALL=zh_CN.UTF-8 emacs"
-alias emx "emacs -nw"
+alias emx "COLORTERM=truecolor emacs -nw"
 alias emc "emacsclient -t"
 alias pc proxychains4
 alias pp "env ALL_PROXY=socks5://localhost:1086"
@@ -20,4 +20,5 @@ alias ss "sudo systemctl"
 alias sj "sudo journalctl"
 
 # pyenv init
-status --is-interactive; and source (pyenv init -|psub)
+status is-login; and pyenv init --path | source
+status is-interactive; and pyenv init - | source

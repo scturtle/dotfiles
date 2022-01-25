@@ -52,9 +52,10 @@
       evil-collection-magit-use-z-for-folds t)
 
 (after! company
-  (setq company-idle-delay 0.0))
+  (setq company-idle-delay 0.5))
 
 (after! rustic
+  (setq company-idle-delay 0.0)
   (setq rustic-lsp-server 'rust-analyzer
         rust-match-angle-brackets nil))
 

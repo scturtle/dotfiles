@@ -49,6 +49,8 @@
    :n "g a" #'projectile-find-other-file  ;; spc p o
    :n "g p" #'git-gutter:previous-hunk  ;; spc g [
    :n "g n" #'git-gutter:next-hunk  ;; spc g ]
+   :n "c p" #'smerge-prev
+   :n "c n" #'smerge-next
 
    :n "e l" #'flycheck-list-errors  ;; spc c x
    :n "e p" #'flycheck-previous-error  ;; [ e
