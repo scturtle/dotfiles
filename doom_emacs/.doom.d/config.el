@@ -3,8 +3,6 @@
 (load! "ui")
 (load! "bindings")
 
-(setq doom-localleader-key ",")
-
 (setq evil-want-fine-undo t)
 
 (setq recenter-redisplay nil)
