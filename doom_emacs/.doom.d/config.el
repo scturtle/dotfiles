@@ -13,6 +13,7 @@
   (setq deft-auto-save-interval 0))
 
 (after! cc-mode
+  (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
   (c-add-style
    "work"
    '((tab-width . 2)
