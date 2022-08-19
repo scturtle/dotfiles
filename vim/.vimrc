@@ -10,6 +10,7 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'dracula/vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 "Plug 'rhysd/vim-llvm'
 "Plug 'powerman/vim-plugin-ansiesc'
 
@@ -119,3 +120,5 @@ augroup END
 " airline
 let g:airline_theme = 'dracula'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:oscyank_term = "kitty"
+vnoremap <leader>y :OSCYank<CR>
