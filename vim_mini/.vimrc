@@ -69,12 +69,14 @@ if has('mouse')
 endif
 
 "colorscheme desert
+
+" highlight/diff color
 hi Search     ctermfg=0
 hi DiffAdd    ctermfg=233 ctermbg=194
-hi DiffChange ctermfg=233 ctermbg=248
+hi DiffChange ctermfg=231 ctermbg=239
 hi DiffText   ctermfg=233 ctermbg=189
 hi DiffDelete ctermfg=252 ctermbg=224
-hi Folded     ctermfg=8   ctermbg=248
+hi Folded     ctermfg=233 ctermbg=248
 
 autocmd FileType python,c,cpp setlocal et sta ts=4 sts=4 sw=4
 

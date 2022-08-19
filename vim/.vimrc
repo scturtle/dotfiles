@@ -5,14 +5,13 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
-Plug 'nanotech/jellybeans.vim'
 Plug 'farmergreg/vim-lastplace'
 Plug 'dracula/vim'
-Plug 'vim-scripts/DoxyGen-Syntax' " for megvii
-"Plug 'psliwka/vim-smoothie'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'rhysd/vim-llvm'
+"Plug 'powerman/vim-plugin-ansiesc'
 
 call plug#end()
 
@@ -29,7 +28,7 @@ else
   set clipboard=unnamedplus " use system clipboard
 endif
 set backspace=indent,eol,start " backspacing in insert mode
-set cursorline " highlight current line
+"set cursorline " highlight current line
 set scrolloff=6
 set novisualbell
 set autoread " reload files when changed on disk
@@ -43,6 +42,9 @@ set smartcase " case-sensitive search if any caps
 set incsearch " search as you type
 set hlsearch
 set magic
+
+nnoremap gb :bn<cr>
+nnoremap gB :bp<cr>
 
 " mimic emacs
 inoremap <c-b> <Left>
@@ -87,12 +89,7 @@ if has("multi_byte")
   set fileencodings=utf-8,chinese,latin-1
 endif
 
-"set background=dark
-"colorscheme jellybeans
-"highlight Normal ctermbg=NONE
-"highlight nonText ctermbg=NONE
-
-set termguicolors
+set termguicolors " true color
 color dracula
 
 if has("macunix")
@@ -106,11 +103,9 @@ set guifont=JetBrains\ Mono:h18
 
 " indent
 "setlocal expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4
-let g:pymode_python = 'python3'
-autocmd FileType python,haskell,c,cpp setlocal et sta ts=4 sts=4 sw=4
+autocmd FileType python,c,cpp setlocal et sta ts=4 sts=4 sw=4
 autocmd FileType html,javascript,cmake setlocal et sta ts=2 sts=2 sw=2
-
-"autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+autocmd FileType mlir setlocal nowrap
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=","
@@ -121,19 +116,6 @@ augroup reload_vimrc
   autocmd bufwritepost $MYVIMRC source $MYVIMRC
 augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <C-h> <C-W>h
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-l> <C-W>l
-nnoremap gb :bn<cr>
-nnoremap gB :bp<cr>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline
-set laststatus=2 " /N
-set noshowmode
-set linespace&
-"let g:airline_powerline_fonts = 1
-let g:airline#extensions#whitespace#checks = [ 'indent' ]
-"let g:airline_theme = 'bubblegum'
-let g:airline_theme = 'deus'
+let g:airline_theme = 'dracula'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
