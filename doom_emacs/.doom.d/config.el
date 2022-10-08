@@ -12,10 +12,21 @@
   (setq deft-directory org-directory)
   (setq deft-auto-save-interval 0))
 
+;; (when (file-directory-p "~/code/llvm-project")
 (when (file-directory-p "~/workspace/llvm_emacs")
-  (add-to-list 'load-path (expand-file-name "~/workspace/llvm_emacs"))
+  ;; (add-load-path! "~/code/llvm-project/llvm/utils/emacs")
+  ;; (add-load-path! "~/code/llvm-project/mlir/utils/emacs")
+  (add-load-path! "~/workspace/llvm_emacs")
   (require 'tablegen-mode)
   (require 'mlir-mode))
+
+(after! lsp-mode
+  (with-eval-after-load 'lsp-mode
+    (add-to-list 'lsp-language-id-configuration '(tablegen-mode . "tablegen"))
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-stdio-connection "tblgen-lsp-server")
+                      :activation-fn (lsp-activate-on "tablegen")
+                      :server-id 'tblgenls))))
 
 (after! cc-mode
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)

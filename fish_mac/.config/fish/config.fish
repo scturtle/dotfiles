@@ -14,10 +14,11 @@ fish_add_path -m ~/.local/bin
 
 alias rm trash
 alias rrm /bin/rm
-alias emx "TERM=xterm-24bit emacs -nw"
+alias emx "COLORTERM=truecolor emacs -nw"
 alias pc "proxychains4 -q"
 alias pp "https_proxy=http://127.0.0.1:1087 http_proxy=http://127.0.0.1:1087 all_proxy=socks5://127.0.0.1:1087"
 alias yp "you-get -p /Applications/IINA.app/Contents/MacOS/iina-cli"
+alias docker podman
 
 # homebrew
 set -x HOMEBREW_NO_EMOJI 1
@@ -27,7 +28,7 @@ set -x HOMEBREW_CASK_OPTS --appdir=/Applications
 #set -x HOMEBREW_BOTTLE_DOMAIN https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 
 # iterm2
-. ~/.iterm2_shell_integration.fish
+# . ~/.iterm2_shell_integration.fish
 
 # pyenv init
 status is-login; and pyenv init --path | source
