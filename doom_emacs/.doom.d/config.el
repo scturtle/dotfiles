@@ -12,6 +12,11 @@
   (setq deft-directory org-directory)
   (setq deft-auto-save-interval 0))
 
+(when (file-directory-p "~/workspace/llvm_emacs")
+  (add-to-list 'load-path (expand-file-name "~/workspace/llvm_emacs"))
+  (require 'tablegen-mode)
+  (require 'mlir-mode))
+
 (after! cc-mode
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
   (c-add-style

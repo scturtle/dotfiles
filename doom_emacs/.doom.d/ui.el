@@ -9,8 +9,9 @@
 
 ;; (setq doom-theme 'doom-dracula)
 ;; (setq doom-theme 'doom-vibrant)
-(setq doom-theme 'doom-one)
 ;; (setq doom-theme 'doom-city-lights)
+;; (setq doom-theme 'doom-one)
+(setq doom-theme 'doom-aura)
 
 (add-hook 'window-setup-hook #'toggle-frame-maximized)
 

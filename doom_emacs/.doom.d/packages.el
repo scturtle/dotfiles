@@ -11,3 +11,5 @@
   :recipe (:host github :repo "lastquestion/explain-pause-mode"))
 
 (package! protobuf-mode)
+(package! lsp-pyright)
+(package! rainbow-mode)
