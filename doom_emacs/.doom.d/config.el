@@ -91,6 +91,7 @@
   :defer t
   :custom
   (lsp-lens-enable nil)
+  (lsp-enable-file-watchers nil)
   (lsp-signature-render-documentation nil))
 
 (use-package! lsp-ui
