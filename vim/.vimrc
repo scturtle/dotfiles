@@ -1,41 +1,33 @@
 set shell=/bin/bash " avoid problem in fish
-
 set nocompatible
 filetype off
 
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
-
 Plug 'scrooloose/nerdcommenter'
 Plug 'farmergreg/vim-lastplace'
-Plug 'dracula/vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 "Plug 'rhysd/vim-llvm'
-"Plug 'powerman/vim-plugin-ansiesc'
-
 call plug#end()
 
 filetype plugin indent on
 syntax on
 
-"set ruler " show line and row number on cursor
+""set ruler " show line and row number on cursor
 set showmatch " show matching bracket
 set hidden "switching buffers without saving
 set showcmd " display incomplete commands
-if has("macunix")
-  set clipboard=unnamed " use system clipboard
-else
-  set clipboard=unnamedplus " use system clipboard
-endif
+set clipboard=unnamed,unnamedplus " use system clipboard
 set backspace=indent,eol,start " backspacing in insert mode
-"set cursorline " highlight current line
+""set cursorline " highlight current line
 set scrolloff=6
 set novisualbell
 set autoread " reload files when changed on disk
 set wildmenu " GREAT autocomplete menu
-set nomodeline " for megvii
+"set nomodeline
 set noesckeys
+set laststatus=2
+set statusline=%y%m%r\ %<%F\ %=\ %l:%c\ \ %03P
 
 " for search
 set ignorecase " case-insensitive search
@@ -90,25 +82,18 @@ if has("multi_byte")
   set fileencodings=utf-8,chinese,latin-1
 endif
 
-set termguicolors " true color
-color dracula
+set termguicolors
+color aura
 
-if has("macunix")
-  set go=aAce
-  if has("gui_running")
-      set transparency=2
-  endif
+if has("gui_running")
+  set guifont=JetBrains\ Mono:h18
 endif
 
-set guifont=JetBrains\ Mono:h18
-
-" indent
 "setlocal expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4
 autocmd FileType python,c,cpp setlocal et sta ts=4 sts=4 sw=4
 autocmd FileType html,javascript,cmake setlocal et sta ts=2 sts=2 sw=2
 autocmd FileType mlir setlocal nowrap
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=","
 map<silent><leader>ss :source $MYVIMRC<cr>
 map<silent><leader>ee :e $MYVIMRC<cr>
@@ -116,9 +101,6 @@ augroup reload_vimrc
   autocmd!
   autocmd bufwritepost $MYVIMRC source $MYVIMRC
 augroup END
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" airline
-let g:airline_theme = 'dracula'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let g:oscyank_term = "kitty"
 vnoremap <leader>y :OSCYank<CR>
