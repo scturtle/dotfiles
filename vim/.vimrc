@@ -19,7 +19,7 @@ set hidden "switching buffers without saving
 set showcmd " display incomplete commands
 set clipboard=unnamed,unnamedplus " use system clipboard
 set backspace=indent,eol,start " backspacing in insert mode
-""set cursorline " highlight current line
+set cursorline " highlight current line
 set scrolloff=6
 set novisualbell
 set autoread " reload files when changed on disk

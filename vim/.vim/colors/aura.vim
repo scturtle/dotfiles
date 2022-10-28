@@ -9,7 +9,9 @@ let g:colors_name = "aura"
 hi Normal guifg=#edecee guibg=NONE
 hi Cursor guifg=#6d6d6d guibg=#edecee
 hi CursorLine guifg=NONE guibg=#1c1b27 gui=NONE cterm=NONE
-hi link CursorColumn CursorLine
+hi CursorLineNr guifg=#edecee guibg=NONE gui=NONE cterm=NONE
+hi! link CursorColumn CursorLine
+hi! link ColorColumn CursorLine
 hi Visual guifg=#0f0f0f guibg=#a277ff
 hi VisualNOS guifg=#0f0f0f guibg=#a277ff
 hi Search guifg=#0f0f0f guibg=#a277ff
@@ -21,12 +23,14 @@ hi StatusLine guifg=#2d2d2d guibg=#edecee
 hi StatusLineNC guifg=#1c1b27 guibg=#edecee
 hi VertSplit guifg=#1c1b27 guibg=NONE
 hi LineNr guifg=#6d6d6d guibg=NONE
-hi link NonText LineNr
-" TODO: MatchParen, WarningMsg, ErrorMsg
+hi ErrorMsg guifg=#ff6767 guibg=NONE
+hi WarningMsg guifg=#ffca85 guibg=NONE
+hi NonText guifg=#82e2ff guibg=NONE
 
 hi Pmenu guifg=#edecee guibg=#2d2d2d
 hi PmenuSel guifg=#edecee guibg=#a277ff
-" TODO: PmenuSbar, PmenuThumb
+hi PmenuSbar guifg=#edecee guibg=#6d6d6d
+hi PmenuThumb guifg=#6d6d6d guibg=#edecee
 hi Underlined guifg=#61ffca guibg=NONE
 hi WildMenu guifg=#edecee guibg=#a277ff
 hi EndOfBuffer guifg=#6d6d6d guibg=NONE
@@ -37,23 +41,22 @@ hi Title guifg=#edecee guibg=NONE
 
 hi Identifier guifg=#f694ff guibg=NONE
 hi PreProc guifg=#82e2ff guibg=NONE
-hi link PreCondit PreProc
-hi link PreCondit PreProc
-hi link Define PreProc
+hi! link PreCondit PreProc
+hi! link Define PreProc
 hi Include guifg=#a277ff guibg=NONE
 hi Comment guifg=#6d6d6d guibg=NONE
 hi Constant guifg=#61ffca guibg=NONE
-hi link String Constant
-hi link Number Constant
+hi! link String Constant
+hi! link Number Constant
 hi Function guifg=#ffca85 guibg=NONE
 hi Statement guifg=#a277ff guibg=NONE
-hi link Label Statement
+hi! link Label Statement
 hi Type guifg=#ffca85 guibg=NONE
-hi link StorageClass Type
-hi link Structure Type
-hi link Typedef Type
-hi Todo guifg=#edecee guibg=#ffca85
-hi Error guifg=#edecee guibg=#ff6767
+hi! link StorageClass Type
+hi! link Structure Type
+hi! link Typedef Type
+hi Todo guifg=#6d6d6d guibg=#ffca85
+hi Error guifg=#6d6d6d guibg=#ff6767
 hi Special guifg=#a277ff guibg=NONE
 hi SpecialKey guifg=#a277ff guibg=NONE
 
