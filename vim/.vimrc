@@ -86,7 +86,7 @@ set termguicolors
 color aura
 
 if has("gui_running")
-  set guifont=JetBrains\ Mono:h18
+  set guifont=JetBrains\ Mono:h16
 endif
 
 "setlocal expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4

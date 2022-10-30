@@ -10,3 +10,4 @@ flycheck_*.*
 *.bak
 typings
 .cache
+build

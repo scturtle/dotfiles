@@ -13,3 +13,4 @@
 (package! protobuf-mode)
 (package! lsp-pyright)
 (package! rainbow-mode)
+(package! benchmark-init)
