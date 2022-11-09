@@ -20,6 +20,15 @@
   (require 'tablegen-mode)
   (require 'mlir-mode))
 
+;; non-blocking json rpc FTW
+(setq lsp-idle-delay 0
+      eldoc-idle-delay 0
+      company-idle-delay 0)
+
+;; fix "zz" to scroll line to center in neotree
+(after! neotree
+  (evil-define-key 'normal neotree-mode-map "z" nil))
+
 (after! lsp-mode
   (with-eval-after-load 'lsp-mode
     (add-to-list 'lsp-language-id-configuration '(tablegen-mode . "tablegen"))
@@ -66,11 +75,7 @@
 (setq evil-collection-magit-want-horizontal-movement t
       evil-collection-magit-use-z-for-folds t)
 
-(after! company
-  (setq company-idle-delay 0.5))
-
 (after! rustic
-  (setq company-idle-delay 0.0)
   (setq rustic-lsp-server 'rust-analyzer
         rust-match-angle-brackets nil))
 
