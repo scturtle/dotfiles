@@ -15,12 +15,11 @@
 (package! nose :disable t)
 (package! python-pytest :disable t)
 
-(package! centered-cursor-mode)
 (package! golden-ratio)
 
 (package! explain-pause-mode
   :recipe (:host github :repo "lastquestion/explain-pause-mode"))
 
-(package! protobuf-mode)
+; (package! protobuf-mode)
 (package! rainbow-mode)
 (package! benchmark-init)

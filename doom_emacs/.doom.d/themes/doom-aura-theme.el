@@ -95,6 +95,8 @@
    ((org-code &override) :foreground yellow)
    (org-todo :foreground orange :bold 'inherit)
    ((org-link &override) :foreground orange)
+   ;;; markdown
+   ((markdown-code-face &override) :background (doom-darken base1 0.125))
    )
 
   ;;;; Base theme variable overrides-

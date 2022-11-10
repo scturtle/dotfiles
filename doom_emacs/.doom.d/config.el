@@ -129,4 +129,4 @@
 
 (use-package! explain-pause-mode :defer t)
 
-(use-package! protobuf-mode :defer t)
+; (use-package! protobuf-mode :defer t)

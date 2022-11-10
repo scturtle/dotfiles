@@ -69,7 +69,7 @@ hi Error guifg=#6d6d6d guibg=#ff6767
 hi Special guifg=#a277ff guibg=NONE
 hi SpecialKey guifg=#a277ff guibg=NONE
 
-hi DiffAdd guifg=#6d6d6d guibg=#9dff65
-hi DiffChange guifg=#6d6d6d guibg=#ffca85
-hi DiffDelete guifg=#6d6d6d guibg=#ff6767
+hi DiffAdd guifg=#6d6d6d guibg=#bdff98
+hi DiffChange guifg=#6d6d6d guibg=#ffe0b8
+hi DiffDelete guifg=#6d6d6d guibg=#ff9a9a
 hi DiffText guifg=#edecee guibg=#6d6d6d
