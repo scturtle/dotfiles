@@ -89,6 +89,15 @@
    ;;;; company
    (company-tooltip-common :foreground yellow :bold)
    (company-tooltip-selection :background (doom-darken blue 0.3))
+   ;;;; outline <built-in>
+   ((outline-1 &override) :foreground magenta)
+   (outline-2 :inherit 'outline-1 :foreground violet)
+   (outline-3 :inherit 'outline-2 :foreground (doom-lighten violet 0.35))
+   (outline-4 :inherit 'outline-3 :foreground (doom-lighten magenta 0.35))
+   (outline-5 :inherit 'outline-4 :foreground (doom-lighten violet 0.6))
+   (outline-6 :inherit 'outline-5 :foreground (doom-lighten magenta 0.6))
+   (outline-7 :inherit 'outline-6 :foreground (doom-lighten violet 0.85))
+   (outline-8 :inherit 'outline-7 :foreground (doom-lighten magenta 0.85))
    ;;;; org <built-in>
    ((org-block &override) :background (doom-darken base1 0.125) :foreground base7)
    ((org-block-begin-line &override) :background (doom-darken base1 0.125) :foreground comments)

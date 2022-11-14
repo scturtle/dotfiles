@@ -104,4 +104,9 @@
   :n "a"   nil  ;; #'deft-new-file
   :n "A"   nil  ;; #'deft-new-file-named
   )
+
+ (:after neotree
+  :map neotree-mode-map
+  :n "w" #'neotree-stretch-toggle
+  )
  )
