@@ -12,13 +12,21 @@
   (setq deft-directory org-directory)
   (setq deft-auto-save-interval 0))
 
-;; (when (file-directory-p "~/code/llvm-project")
-(when (file-directory-p "~/workspace/llvm_emacs")
-  ;; (add-load-path! "~/code/llvm-project/llvm/utils/emacs")
-  ;; (add-load-path! "~/code/llvm-project/mlir/utils/emacs")
-  (add-load-path! "~/workspace/llvm_emacs")
-  (require 'tablegen-mode)
-  (require 'mlir-mode))
+;; setup llvm
+(let* ((dirs '("~/workspace/llvm-utils" "~/code/llvm-project"))
+       (llvm-dir (cl-first (cl-remove-if-not 'file-directory-p dirs)))
+       (lsp-cmds '("tblgen-lsp-server" "--tablegen-compilation-database=tablegen_compile_commands.yml")))
+  (when llvm-dir
+    (add-load-path! (concat llvm-dir "/llvm/utils/emacs"))
+    (add-load-path! (concat llvm-dir "/mlir/utils/emacs"))
+    (require 'tablegen-mode)
+    (require 'mlir-mode)
+    (after! lsp-mode
+      (add-to-list 'lsp-language-id-configuration '(tablegen-mode . "tablegen"))
+      (lsp-register-client
+       (make-lsp-client :new-connection (lsp-stdio-connection lsp-cmds)
+                        :major-modes '(tablegen-mode)
+                        :server-id 'tblgenls)))))
 
 ;; non-blocking json rpc FTW
 (setq lsp-idle-delay 0
@@ -28,14 +36,6 @@
 ;; fix "zz" to scroll line to center in neotree
 (after! neotree
   (evil-define-key 'normal neotree-mode-map "z" nil))
-
-(after! lsp-mode
-  (with-eval-after-load 'lsp-mode
-    (add-to-list 'lsp-language-id-configuration '(tablegen-mode . "tablegen"))
-    (lsp-register-client
-     (make-lsp-client :new-connection (lsp-stdio-connection "tblgen-lsp-server")
-                      :activation-fn (lsp-activate-on "tablegen")
-                      :server-id 'tblgenls))))
 
 ;; do not cache the shitty result from rust-analyzer
 (advice-add #'lsp-hover :after (lambda () (setq lsp--hover-saved-bounds nil)))
