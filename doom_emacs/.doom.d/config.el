@@ -37,6 +37,9 @@
                       :activation-fn (lsp-activate-on "tablegen")
                       :server-id 'tblgenls))))
 
+;; do not cache the shitty result from rust-analyzer
+(advice-add #'lsp-hover :after (lambda () (setq lsp--hover-saved-bounds nil)))
+
 (after! cc-mode
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
   (c-add-style
