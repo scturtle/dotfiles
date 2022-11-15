@@ -40,9 +40,6 @@
   :n "TAB" #'evil-switch-to-windows-last-buffer  ;; spc b l
 
   :n "b m" #'my/switch-to-messages-buffer
-  ;; :n "b d" #'kill-this-buffer  ;; spc b k
-
-  ;; :n "f t" #'+treemacs/toggle  ;; spc o p
 
   :n "g a" #'projectile-find-other-file  ;; spc p o
   :n "g p" #'git-gutter:previous-hunk  ;; spc g [
@@ -55,10 +52,10 @@
   :n "e n" #'flycheck-next-error  ;; ] e
 
   :n "s h" #'my/symbol-highlight
-  ;; :n "/" nil  ;; search-project
-  ;; :n "/ h" #'my/symbol-highlight
-  ;; :n "/ b" #'swiper-thing-at-point  ;; spc s S
-  ;; :n "/ p" #'+default/search-project  ;; spc s p
+  :n "/" nil  ;; #'search-project
+  :n "/ p" #'+vertico/project-search
+  :n "/ f" #'+vertico/consult-fd
+  :n "/ h" #'+vertico/search-symbol-at-point  ;; s S
 
   :n "t t" #'tab-bar-switch-to-tab
   )

@@ -1,10 +1,10 @@
 ;;; doom-aura-theme.el --- inspired by the aura theme -*- lexical-binding: t; no-byte-compile: t; -*-
 ;;
+;; Date: November 11, 2022
 ;; Author: scturtle <https://github.com/scturtle>
-;; Maintainer: hlissner <https://github.com/hlissner>
+;; Maintainer: scturtle <https://github.com/scturtle>
 ;; Source: https://github.com/daltonmenezes/aura-theme
 ;;
-;;; Commentary:
 ;;; Code:
 
 (require 'doom-themes)
@@ -20,7 +20,7 @@
 ;;; Theme definition
 
 (def-doom-theme doom-aura
-  "A dark theme based on aura theme"
+  "A dark theme based on aura theme."
 
   ((bg         '("#21202e"))
    (bg-alt     '("#1c1b27")) ;; hl-line
