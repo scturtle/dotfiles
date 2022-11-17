@@ -21,6 +21,7 @@
     (add-load-path! (concat llvm-dir "/mlir/utils/emacs"))
     (require 'tablegen-mode)
     (require 'mlir-mode)
+    (add-hook! 'tablegen-mode-hook :append #'lsp!)
     (after! lsp-mode
       (add-to-list 'lsp-language-id-configuration '(tablegen-mode . "tablegen"))
       (lsp-register-client
