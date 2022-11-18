@@ -33,6 +33,10 @@
 
  :ni "M-;" #'evilnc-comment-or-uncomment-lines
 
+ :ni "C-t" #'better-jumper-jump-backward
+ :n "g b" #'better-jumper-jump-backward
+ :n "g h" #'better-jumper-jump-forward
+
  (:leader
   :n "SPC" #'execute-extended-command
   :n ":"   #'eval-expression  ;; spc ;
