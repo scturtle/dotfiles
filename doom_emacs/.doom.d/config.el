@@ -39,7 +39,7 @@
   (evil-define-key 'normal neotree-mode-map "z" nil))
 
 ;; do not cache the shitty result from rust-analyzer
-(advice-add #'lsp-hover :after (lambda () (setq lsp--hover-saved-bounds nil)))
+(advice-add #'lsp-eldoc-function :after (lambda (&rest _) (setq lsp--hover-saved-bounds nil)))
 
 (after! cc-mode
   (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
