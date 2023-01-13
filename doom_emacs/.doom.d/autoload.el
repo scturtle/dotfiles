@@ -3,14 +3,6 @@
 (require 'evil-multiedit)
 
 ;;;###autoload
-(defun my/switch-to-messages-buffer ()
-  "Stolen from spacemacs."
-  (interactive)
-  (with-current-buffer (messages-buffer)
-    (goto-char (point-max))
-    (switch-to-buffer (current-buffer))))
-
-;;;###autoload
 (defun my/symbol-highlight (beg end)
   "Highlight current symbol. Restrict by evil visual region."
   (interactive

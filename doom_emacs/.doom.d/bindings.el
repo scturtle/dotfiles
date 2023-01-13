@@ -43,7 +43,7 @@
   :n [tab] #'evil-switch-to-windows-last-buffer  ;; spc `
   :n "TAB" #'evil-switch-to-windows-last-buffer  ;; spc b l
 
-  :n "b m" #'my/switch-to-messages-buffer
+  :n "b m" (lambda() (interactive) (switch-to-buffer "*Messages*"))
 
   :n "g a" #'projectile-find-other-file  ;; spc p o
   :n "g p" #'git-gutter:previous-hunk  ;; spc g [
