@@ -3,6 +3,12 @@
 (load! "ui")
 (load! "bindings")
 
+(setq tab-bar-close-button-show nil
+      tab-bar-tab-name-function 'tab-bar-tab-name-truncated
+      tab-bar-tab-name-ellipsis "…")
+
+(setq treesit-extra-load-path '("~/code/tree-sitter-module/dist"))
+
 (setq evil-want-fine-undo t)
 
 (setq recenter-redisplay nil)
@@ -104,6 +110,8 @@
   (lsp-signature-render-documentation nil))
 
 ;; lsp over tramp
+(after! tramp-sh ;; for magit to use newer git
+  (add-to-list 'tramp-remote-path "~/.local/bin"))
 (after! lsp-mode
   ;; https://github.com/emacs-lsp/lsp-mode/pull/2531
   ;; https://github.com/emacs-lsp/lsp-mode/issues/2375

@@ -9,9 +9,9 @@
 [gpg]
 	program = gpg
 [commit]
-	gpgsign = true
+	;gpgsign = true
 [core]
-	excludesfile = /Users/scturtle/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [http]
 	;proxy = socks5://127.0.0.1:1086
 [https]

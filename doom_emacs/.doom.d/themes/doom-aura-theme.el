@@ -106,6 +106,8 @@
    ((org-link &override) :foreground orange)
    ;;; markdown
    ((markdown-code-face &override) :background (doom-darken base1 0.125))
+   ;;; tabbar
+   ((tab-bar-tab-inactive &override) :foreground base4)
    )
 
   ;;;; Base theme variable overrides-

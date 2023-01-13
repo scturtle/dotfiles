@@ -61,7 +61,12 @@
   :n "/ f" #'+vertico/consult-fd
   :n "/ h" #'+vertico/search-symbol-at-point  ;; s S
 
-  :n "t t" #'tab-bar-switch-to-tab
+  :n "t n" #'tab-bar-new-tab
+  :n "1" (lambda() (interactive) (tab-bar-select-tab 1))
+  :n "2" (lambda() (interactive) (tab-bar-select-tab 2))
+  :n "3" (lambda() (interactive) (tab-bar-select-tab 3))
+  :n "4" (lambda() (interactive) (tab-bar-select-tab 4))
+  :n "5" (lambda() (interactive) (tab-bar-select-tab 5))
   )
 
  (:after lsp-ui

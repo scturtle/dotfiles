@@ -23,3 +23,5 @@
 ; (package! protobuf-mode)
 (package! rainbow-mode)
 (package! benchmark-init)
+
+(unpin! t)
