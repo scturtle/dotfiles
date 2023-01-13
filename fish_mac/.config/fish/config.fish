@@ -4,6 +4,7 @@ set -g fish_greeting
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 
+fish_add_path -m /opt/homebrew/bin
 fish_add_path -m /usr/local/bin
 fish_add_path -m ~/.cargo/bin
 fish_add_path -m ~/.local/bin
