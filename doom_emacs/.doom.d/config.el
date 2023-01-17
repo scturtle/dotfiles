@@ -149,3 +149,5 @@
                                  evil-window-down evil-window-next evil-window-prev)))
 
 (use-package! explain-pause-mode :defer t)
+
+(defun all-the-icons-octicon (&rest _))

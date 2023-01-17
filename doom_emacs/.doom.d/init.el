@@ -74,7 +74,7 @@
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
-       eshell            ; the elisp shell that works everywhere
+       ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
        ;;vterm             ; the best terminal emulation in Emacs
@@ -195,6 +195,6 @@
 
 ;; run with --debug-init
 (when init-file-debug
-  (add-load-path! "~/.emacs.d/.local/straight/build-28.2/benchmark-init")
+  (add-load-path! (concat "~/.emacs.d/.local/straight/build-" emacs-version "/benchmark-init"))
   (require 'benchmark-init)
-  (add-hook 'doom-first-input-hook #'benchmark-init/deactivate))
+  (add-hook 'doom-after-init-hook #'benchmark-init/deactivate))
