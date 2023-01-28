@@ -26,3 +26,5 @@
 [lfs]
 	fetchrecentrefsdays = 0
 	pruneoffsetdays = 0
+[url "https://ghproxy.com/https://github"]
+	;insteadOf = https://github

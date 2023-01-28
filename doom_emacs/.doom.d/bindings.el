@@ -46,8 +46,8 @@
   :n "b m" (lambda() (interactive) (switch-to-buffer "*Messages*"))
 
   :n "g a" #'projectile-find-other-file  ;; spc p o
-  :n "g p" #'git-gutter:previous-hunk  ;; spc g [
-  :n "g n" #'git-gutter:next-hunk  ;; spc g ]
+  :n "g p" #'+vc-gutter/previous-hunk  ;; spc g [
+  :n "g n" #'+vc-gutter/next-hunk  ;; spc g ]
   :n "c p" #'smerge-prev
   :n "c n" #'smerge-next
 

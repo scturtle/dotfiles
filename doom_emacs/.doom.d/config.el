@@ -82,7 +82,7 @@
   (lsp-lens-enable nil)
   (lsp-enable-file-watchers nil)
   (lsp-signature-render-documentation nil)
-  (lsp-client-packages '(ccls lsp-rust lsp-pyright)))
+  (lsp-client-packages '(ccls lsp-rust)))
 
 ;; lsp over tramp
 (after! tramp-sh ;; for magit to use newer git
@@ -149,5 +149,3 @@
                                  evil-window-down evil-window-next evil-window-prev)))
 
 (use-package! explain-pause-mode :defer t)
-
-(defun all-the-icons-octicon (&rest _))
