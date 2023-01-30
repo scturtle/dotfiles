@@ -87,6 +87,11 @@
   :i "C-k" #'kill-line
   )
 
+ (:map org-mode-map
+  :localleader
+  "z" #'org-insert-structure-template
+  )
+
  (:after company
   :map company-active-map
   "C-h" nil  ;; del instead of doc
