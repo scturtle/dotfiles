@@ -25,7 +25,6 @@ alias docker podman
 set -x HOMEBREW_NO_EMOJI 1
 set -x HOMEBREW_CASK_OPTS --appdir=/Applications
 
-# pyenv init
-status is-login; and pyenv init --path | source
-status is-interactive; and pyenv init - | source
-status is-interactive; and pyenv virtualenv-init - | source
+# pyenv
+pyenv init - | source
+pyenv virtualenv-init - | source

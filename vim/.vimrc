@@ -102,5 +102,6 @@ augroup reload_vimrc
   autocmd bufwritepost $MYVIMRC source $MYVIMRC
 augroup END
 
-let g:oscyank_term = "kitty"
-vnoremap <leader>y :OSCYank<CR>
+" vim-oscyank
+let g:oscyank_silent = 1
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankRegister "' | endif
