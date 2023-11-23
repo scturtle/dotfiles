@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdcommenter'
 Plug 'farmergreg/vim-lastplace'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 "Plug 'rhysd/vim-llvm'
 call plug#end()
 
@@ -83,7 +84,8 @@ if has("multi_byte")
 endif
 
 set termguicolors
-color aura
+"color aura
+color catppuccin_mocha
 
 if has("gui_running")
   set guifont=JetBrains\ Mono:h16
