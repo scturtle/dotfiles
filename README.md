@@ -1,3 +1,3 @@
 ```shell
-$ stow -v -R --target ~ fish kitty doomemacs tmux vim
+$ stow -v -R -t ~ fish kitty doomemacs tmux vim
 ```
