@@ -19,8 +19,3 @@ alias docker podman
 # homebrew
 set -x HOMEBREW_NO_EMOJI 1
 set -x HOMEBREW_CASK_OPTS --appdir=/Applications
-
-# pyenv
-pyenv init - --no-rehash | source
-# https://github.com/pyenv/pyenv-virtualenv/issues/259
-pyenv virtualenv-init - | sed 's/--on-event fish_prompt/--on-variable PWD --on-variable PYENV_VERSION/g' | source
