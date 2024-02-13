@@ -85,7 +85,8 @@ endif
 
 set termguicolors
 "color aura
-color catppuccin_mocha
+"color catppuccin_mocha
+color catppuccin_latte
 
 if has("gui_running")
   set guifont=JetBrains\ Mono:h16

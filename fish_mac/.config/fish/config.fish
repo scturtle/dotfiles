@@ -9,13 +9,22 @@ fish_add_path -m /usr/local/bin
 fish_add_path -m ~/.cargo/bin
 fish_add_path -m ~/.local/bin
 
-alias rm trash
-alias rrm /bin/rm
 alias emx "COLORTERM=truecolor TERM=xterm-kitty emacs -nw"
-alias pc "proxychains4 -q"
 alias pp "env ALL_PROXY=socks5://127.0.0.1:1086"
 alias docker podman
+
+# emacs lsp-mode
+set -x LSP_USE_PLISTS 1
 
 # homebrew
 set -x HOMEBREW_NO_EMOJI 1
 set -x HOMEBREW_CASK_OPTS --appdir=/Applications
+
+# plugins
+if status -i && ! functions -q fisher
+	curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+	fisher install jorgebucaran/fisher
+	fisher install jethrokuan/z
+	fisher install catppuccin/fish
+	fish_config theme save "Catppuccin Latte"
+end
