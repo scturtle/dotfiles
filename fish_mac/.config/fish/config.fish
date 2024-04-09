@@ -4,10 +4,10 @@ set fish_greeting
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 
-fish_add_path -m /opt/homebrew/bin
-fish_add_path -m /usr/local/bin
-fish_add_path -m ~/.cargo/bin
-fish_add_path -m ~/.local/bin
+set -gxp PATH /opt/homebrew/bin
+set -gxp PATH /usr/local/bin
+set -gxp PATH ~/.cargo/bin
+set -gxp PATH ~/.local/bin
 
 alias emx "emacs -nw"
 alias pp "env ALL_PROXY=socks5://127.0.0.1:1086"
