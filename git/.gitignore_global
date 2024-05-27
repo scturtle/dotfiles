@@ -3,6 +3,7 @@
 .projectile
 .clang-format
 compile_commands.json
+tablegen_compile_commands.yml
 .ccls-cache
 .ccls
 .projectile
