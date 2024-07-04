@@ -1,3 +1,4 @@
 patch:
   switches/@0/+:
-      reset: 1
+    reset: 1
+  translator/preedit_format:
