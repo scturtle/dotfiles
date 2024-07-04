@@ -16,4 +16,4 @@ patch:
     - { when: composing, accept: Control+g, send: Escape }
     # optimized_mode_switch:
     - { when: always, accept: Control+space, unset_option: ascii_mode }
-    - { when: always, accept: F10, set_option: ascii_mode }
+    - { when: always, accept: Super+space, set_option: ascii_mode }
