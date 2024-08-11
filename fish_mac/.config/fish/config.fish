@@ -27,3 +27,6 @@ if status -i && ! functions -q fisher
 	fisher install catppuccin/fish
 	fish_config theme save "Catppuccin Latte"
 end
+
+# for fd
+set -x LS_COLORS

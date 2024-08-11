@@ -1,4 +1,6 @@
 patch:
   switches/@0/+:
     reset: 1
+  engine/processors/+:
+    lua_processor@commit_on_set_ascii
   translator/preedit_format:
