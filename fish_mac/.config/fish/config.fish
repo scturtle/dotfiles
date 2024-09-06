@@ -18,6 +18,7 @@ set -x LSP_USE_PLISTS 1
 # homebrew
 set -x HOMEBREW_NO_EMOJI 1
 set -x HOMEBREW_CASK_OPTS --appdir=/Applications
+set -x HOMEBREW_NO_AUTO_UPDATE 1
 
 # plugins
 if status -i && ! functions -q fisher
