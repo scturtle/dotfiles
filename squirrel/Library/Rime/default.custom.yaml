@@ -1,6 +1,6 @@
 patch:
   schema_list:
-    - schema: double_pinyin
+    - schema: rime_frost_double_pinyin
   menu/page_size: 7
   key_binder/bindings:
     # 翻页 - =

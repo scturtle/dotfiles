@@ -1,0 +1,46 @@
+# Squirrel settings
+# encoding: utf-8
+
+# 可参考 /Library/Input Methods/Squirrel.app/Contents/SharedSupport/squirrel.yaml
+
+config_version: '2024-07-11'
+keyboard_layout: default
+chord_duration: 0.1
+show_notifications_when: appropriate
+
+style:
+  color_scheme: wechat
+
+preset_color_schemes:
+  wechat:
+    name: '微信'
+    author: zsakvo
+
+    candidate_list_layout: stacked  # stacked | linear
+    text_orientation: horizontal # horizontal | vertical
+
+    inline_preedit: true    # 在文本框顯示輸入串
+    inline_candidate: false # 在文本框顯示首選項
+    translucency: true      # 透明度總開關
+    alpha: 0.9
+
+    candidate_format: '%c %@ '
+
+    font_face: PingFangSC
+    font_point: 18
+    label_font_point: 16
+
+    back_color: 0xFFFFFF
+    comment_text_color: 0x999999
+    hilited_candidate_back_color: 0x75B100
+    hilited_candidate_text_color: 0xFFFFFF
+    text_color: 0x424242
+
+    border_height: 0
+    border_width: 2
+    corner_radius: 5
+    hilited_corner_radius: 5
+
+    line_spacing: 8
+    hilite_spacing: 6
+    spacing: 12

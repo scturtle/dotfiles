@@ -1,9 +1,0 @@
-patch:
-  style/+:
-    color_scheme: wechat
-    alpha: 0.9
-  preset_color_schemes/wechat/+:
-    font_point: 18
-    label_font_point: 16
-    border_width: 2
-    candidate_list_layout: stacked
