@@ -14,3 +14,7 @@ alias emx "COLORTERM=truecolor emacs -nw"
 alias pc "proxychains4 -q"
 alias ss "sudo systemctl"
 alias sj "sudo journalctl"
+
+if status --is-login
+  if not set -q TMUX; and tmux has-session 2>/dev/null; tmux attach; end;
+end
