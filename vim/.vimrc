@@ -20,7 +20,7 @@ set hidden "switching buffers without saving
 set showcmd " display incomplete commands
 set clipboard=unnamed,unnamedplus " use system clipboard
 set backspace=indent,eol,start " backspacing in insert mode
-set cursorline " highlight current line
+"set cursorline " highlight current line
 set scrolloff=6
 set novisualbell
 set autoread " reload files when changed on disk
@@ -84,17 +84,12 @@ if has("multi_byte")
 endif
 
 set termguicolors
-"color aura
 "color catppuccin_mocha
 color catppuccin_latte
 
-if has("gui_running")
-  set guifont=JetBrains\ Mono:h16
-endif
-
 "setlocal expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4
-autocmd FileType python,c,cpp setlocal et sta ts=4 sts=4 sw=4
-autocmd FileType html,javascript,cmake setlocal et sta ts=2 sts=2 sw=2
+autocmd FileType python setlocal et sta ts=4 sts=4 sw=4
+autocmd FileType rust,c,cpp setlocal et sta ts=2 sts=2 sw=2
 autocmd FileType mlir setlocal nowrap
 
 let mapleader=","
