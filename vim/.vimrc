@@ -84,8 +84,8 @@ if has("multi_byte")
 endif
 
 set termguicolors
-"color catppuccin_mocha
-color catppuccin_latte
+color catppuccin_mocha
+"color catppuccin_latte
 
 "setlocal expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4
 autocmd FileType python setlocal et sta ts=4 sts=4 sw=4

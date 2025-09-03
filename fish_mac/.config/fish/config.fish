@@ -12,9 +12,6 @@ set -gxp PATH ~/.local/bin
 alias emx "emacs -nw"
 alias pp "env ALL_PROXY=socks5://127.0.0.1:1086"
 
-# emacs lsp-mode
-set -x LSP_USE_PLISTS 1
-
 # homebrew
 set -x HOMEBREW_NO_EMOJI 1
 set -x HOMEBREW_CASK_OPTS --appdir=/Applications
