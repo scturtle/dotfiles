@@ -6,7 +6,7 @@ set -x LANG en_US.UTF-8
 
 set -gxp PATH /opt/homebrew/bin
 set -gxp PATH /usr/local/bin
-set -gxp PATH ~/.cargo/bin
+set -gxp PATH /usr/local/opt/rustup/bin
 set -gxp PATH ~/.local/bin
 
 alias emx "emacs -nw"
