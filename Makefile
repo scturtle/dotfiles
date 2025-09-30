@@ -1,12 +1,12 @@
 # https://github.com/matheusmoreira/.files/blob/master/GNUmakefile
 
-makefile := $(abspath $(lastword $(MAKEFILE_LIST)))
-dotfiles := $(abspath $(dir $(makefile)))
-
-mkdir = mkdir -p ${HOME}/$(1)
-link = ln -snf ${dotfiles}/$@/$(1) ${HOME}/$(1)
-
+mkdir = mkdir -p ~/$(1)
+link = ln -snf $(CURDIR)/$@/$(1) ~/$(1)
 batch_link = $(foreach file,$(patsubst $@/%,%,$(wildcard $@/$(1)/*)),$(call link,$(file));)
+
+.PHONY: hints
+hints:
+	@echo Usage: make git vim fish kitty
 
 force:
 

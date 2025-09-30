@@ -1,3 +1,3 @@
 ```shell
-$ stow -v -R -t ~ fish kitty doomemacs tmux vim
+$ make git vim fish kitty
 ```
