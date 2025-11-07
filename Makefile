@@ -24,7 +24,6 @@ git: force
 	$(call link,.gitignore_global)
 	$(call link,.gitconfig)
 
-
 kitty: dir := .config/kitty
 kitty: force
 	$(call mkdir,$(dir))
@@ -52,3 +51,7 @@ vim: force
 yabai: force
 	$(call link,.skhdrc)
 	$(call link,.yabairc)
+
+keyd: force
+	$(call mkdir,.config/keyd)
+	$(call link,.config/keyd/default.conf)
