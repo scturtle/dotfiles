@@ -55,3 +55,7 @@ yabai: force
 keyd: force
 	$(call mkdir,.config/keyd)
 	$(call link,.config/keyd/default.conf)
+
+fontconfig: force
+	$(call mkdir,.config/fontconfig)
+	$(call link,.config/fontconfig/fonts.conf)
