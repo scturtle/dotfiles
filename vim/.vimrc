@@ -85,6 +85,10 @@ endif
 
 set termguicolors
 color catppuccin_mocha
+hi DiffAdd guibg=#8EC08C
+hi DiffChange guibg=#82A9EC
+hi DiffDelete guibg=#CD7792
+hi DiffText guibg=#6987BD
 "color catppuccin_latte
 
 "setlocal expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4
