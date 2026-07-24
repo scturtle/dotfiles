@@ -8,6 +8,7 @@ set -x DISPLAY :0
 
 set -gxp PATH ~/.cargo/bin
 set -gxp PATH ~/.local/bin
+set -gxp PATH ~/.local/share/pi-node/current/bin
 
 alias emx "emacs -nw"
 alias pc "proxychains4 -q"
